@@ -8,21 +8,13 @@ const listingSchema = new Schema({
   },
   description: String,
   image: {
-    type: {
-      filename: String,
-      url: String,
-    },
-    default: {
-      filename: "Camellia",
-      url: "https://images.pexels.com/photos/34629974/pexels-photo-34629974.jpeg",
-    },
+    type: String,
+    default:
+      "https://images.pexels.com/photos/34629974/pexels-photo-34629974.jpeg",
     set: (v) =>
-      v && v.url
+      v && v.trim() !== ""
         ? v
-        : {
-            url: "https://images.pexels.com/photos/34629974/pexels-photo-34629974.jpeg",
-            filename: "Camellia",
-          },
+        : "https://images.pexels.com/photos/34629974/pexels-photo-34629974.jpeg",
   },
   price: Number,
   location: String,
