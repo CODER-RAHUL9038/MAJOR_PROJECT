@@ -38,7 +38,7 @@ app.get("/listings/new", (req, res) => {
 app.post("/listings", async (req, res) => {
   let newListing = await new Listing(req.body.listing); // shorter syntax of creating new listing when passing the entire form body
   await newListing.save();
-  console.log("✅New Listing Created");
+  console.log("✅New Listing Created in dB");
   res.redirect("/listings");
 });
 
@@ -74,7 +74,7 @@ app.put("/listings/:id", async (req, res) => {
 app.delete("/listings/:id", async (req, res) => {
   let { id } = req.params;
   let deletedListing = await Listing.findByIdAndDelete(id);
-  console.log("❌Listing deleted");
+  console.log("❌Listing deleted from dB");
   res.redirect("/listings");
 });
 
