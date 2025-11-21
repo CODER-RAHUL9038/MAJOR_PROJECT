@@ -58,7 +58,7 @@ body {
   border-radius: 1rem !important;
   width: 100% !important;
   object-fit: cover !important;
-  height: 20rem;
+  height: 15rem;
 }
 .card-body {
   padding: 0 !important;
@@ -74,16 +74,23 @@ body {
 .card-img-top:hover {
   transform: translateY(-10px);
   transform: scale(0.97);
-  transition: 0.2s ease;
+  transition: 0.3s ease-in-out;
 
   box-shadow: 0 0 15px rgba(13, 110, 253, 0.4);
 }
-.card {
-  transition: 0.5s ease;
-}
 
 /* Show Page*/
-.show-img{
-  height: 30vh;
-  
+.show-img {
+  height: 40vh;
 }
+.show-img:hover {
+  transform: none;
+  box-shadow: none;
+}
+/* .show-btns{
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  text-align: center;
+
+} */

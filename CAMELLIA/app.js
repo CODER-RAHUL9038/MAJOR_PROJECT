@@ -27,7 +27,7 @@ async function main() {
 }
 //Index Route
 app.get("/listings", async (req, res) => {
-  const allListings = await Listing.find({});
+  const allListings = await Listing.find().sort({ createdAt: -1 }); //latest listing will stack first
   res.render("listings/index.ejs", { allListings });
 });
 

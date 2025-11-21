@@ -3,11 +3,13 @@
   <br />
   <div class="row justify-content-center">
     <div class="col-8">
-      <h3>Create a New Listing</h3><br>
+      <h3>Create a New Listing</h3>
+      <br />
       <form method="post" action="/listings">
         <div class="mb-3">
           <label for="title" class="form-label">Title</label>
           <input
+            required
             class="form-control"
             type="text"
             name="listing[title]"
@@ -17,6 +19,7 @@
         <div class="mb-3 col">
           <label for="description" class="form-label">Description</label>
           <textarea
+            required
             class="form-control"
             name="listing[description]"
             placeholder="Enter description"
@@ -27,6 +30,7 @@
           <div class="mb-3 col-md-4">
             <label for="price" class="form-label">Price</label>
             <input
+              required
               type="number"
               class="form-control"
               name="listing[price]"
@@ -36,6 +40,7 @@
           <div class="mb-3 col-md-8">
             <label for="country" class="form-label">Country</label>
             <input
+              required
               class="form-control"
               type="text"
               name="listing[country]"
@@ -46,6 +51,7 @@
         <div class="mb-3 col">
           <label for="image" class="form-label">Image</label>
           <input
+            required
             type="text"
             class="form-control"
             name="listing[image]"
@@ -55,6 +61,7 @@
         <div class="mb-3 col">
           <label for="location" class="form-label">Location</label>
           <input
+            required
             class="form-control"
             type="text"
             name="listing[location]"
@@ -62,7 +69,6 @@
           />
         </div>
         <button class="btn btn-success add-btn my-3">Add</button>
-        
       </form>
     </div>
   </div>
