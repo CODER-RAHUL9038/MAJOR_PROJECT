@@ -4,7 +4,12 @@
   <div class="row justify-content-center">
     <div class="col-8">
       <h3>Edit Listing</h3>
-      <form method="post" action="/listings/<%= listing._id %>?_method=PUT">
+      <form
+        method="post"
+        class="needs-validation"
+        novalidate
+        action="/listings/<%= listing._id %>?_method=PUT"
+      >
         <div class="mb-3">
           <label for="title" class="form-label">Title</label>
           <input
@@ -15,6 +20,8 @@
             value="<%= listing.title %>"
             placeholder="Enter title"
           />
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please enter title</div>
         </div>
 
         <div class="mb-3">
@@ -24,9 +31,11 @@
             name="listing[description]"
             placeholder="Enter description"
             id="description"
+            required
           >
 <%= listing.description %></textarea
           >
+          <div class="invalid-feedback">Please enter description</div>
         </div>
         <div class="mb-3">
           <label for="image" class="form-label">Image</label>
@@ -36,6 +45,7 @@
             name="listing[image]"
             value="<%= listing.image %>"
             placeholder="Enter image"
+            required
           />
         </div>
         <div class="row">
@@ -49,6 +59,7 @@
               value="<%= listing.price %>"
               placeholder="Enter price"
             />
+            <div class="invalid-feedback">Please enter price</div>
           </div>
           <div class="mb-3 col-md-8">
             <label for="country" class="form-label">Country</label>
@@ -60,6 +71,7 @@
               name="listing[country]"
               placeholder="Enter country name"
             />
+            <div class="invalid-feedback">Please enter country</div>
           </div>
         </div>
         <div class="mb-3">
@@ -72,8 +84,9 @@
             name="listing[location]"
             placeholder="Enter location"
           />
+          <div class="invalid-feedback">Please enter location</div>
         </div>
-        <button class="btn btn-danger my-3">Edit</button>
+        <button class="btn btn-danger my-3">Save</button>
       </form>
     </div>
   </div>

@@ -6,6 +6,8 @@ const MONGO_URL = "mongodb://127.0.0.1:27017/camellia";
 const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
+const wrapAsync = require("./utils/wrapAsync.js");
+const ExpressError = require("./utils/ExpressError.js");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -26,10 +28,13 @@ async function main() {
   await mongoose.connect(MONGO_URL);
 }
 //Index Route
-app.get("/listings", async (req, res) => {
-  const allListings = await Listing.find().sort({ createdAt: -1 }); //latest listing will stack first
-  res.render("listings/index.ejs", { allListings });
-});
+app.get(
+  "/listings",
+  wrapAsync(async (req, res) => {
+    const allListings = await Listing.find().sort({ createdAt: -1 }); //latest listing will stack first
+    res.render("listings/index.ejs", { allListings });
+  })
+);
 
 //Create route
 //Handling new listing request
@@ -38,51 +43,109 @@ app.get("/listings/new", (req, res) => {
 });
 
 //Handling form data from new
-app.post("/listings", async (req, res) => {
-  let newListing = await new Listing(req.body.listing); // shorter syntax of creating new listing when passing the entire form body
-  await newListing.save();
-  console.log("✅New Listing Created in dB");
-  res.redirect("/listings");
-});
+
+app.post(
+  "/listings",
+  wrapAsync(async (req, res, next) => {
+    if (!req.body.listing) {
+      throw new ExpressError(400, "Send valid data to create a listing");
+    }
+    let newListing = await new Listing(req.body.listing); // shorter syntax of creating new listing when passing the entire form body
+    await newListing.save();
+    console.log("✅New Listing Created in dB");
+    res.redirect("/listings");
+  })
+);
 
 //Show Route
-app.get("/listings/:id", async (req, res) => {
-  let { id } = req.params;
-  const listing = await Listing.findById(id);
-  res.render("listings/show.ejs", { listing });
-});
+app.get(
+  "/listings/:id",
+  wrapAsync(async (req, res) => {
+    let { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw new ExpressError(404, "Invalid Listing ID");
+    }
+
+    const listing = await Listing.findById(id);
+    if (!req.body.listing) {
+      throw new ExpressError(404, "Listing not found");
+    }
+    res.render("listings/show.ejs", { listing });
+  })
+);
 
 //Edit route
 // Get request to edit form
-app.get("/listings/:id/edit", async (req, res) => {
-  let { id } = req.params;
-  let listing = await Listing.findById(id);
-  res.render("listings/edit.ejs", { listing });
-});
+app.get(
+  "/listings/:id/edit",
+  wrapAsync(async (req, res) => {
+    let { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw new ExpressError(404, "Invalid Listing ID");
+    }
+    let listing = await Listing.findById(id);
+    if (!req.body.listing) {
+      throw new ExpressError(404, "Listing not found");
+    }
+    res.render("listings/edit.ejs", { listing });
+  })
+);
 
 //Handling edit form data
-app.put("/listings/:id", async (req, res) => {
-  let { id } = req.params;
-  let updatedListing = await Listing.findByIdAndUpdate(
-    id,
-    { ...req.body.listing }, // spread create copy of object
-    {
-      new: true,
+app.put(
+  "/listings/:id",
+  wrapAsync(async (req, res) => {
+    let { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw new ExpressError(404, "Invalid Listing ID");
     }
-  ); // shortcut of destructuring --> req.body.listing
 
-  res.redirect("/listings");
-});
+    let updatedListing = await Listing.findByIdAndUpdate(
+      id,
+      { ...req.body.listing }, // spread create copy of object
+      {
+        new: true,
+      }
+    ); // shortcut of destructuring --> req.body.listing
+    if (!updatedListing) {
+      throw new ExpressError(404, "Listing not found");
+    }
 
-app.delete("/listings/:id", async (req, res) => {
-  let { id } = req.params;
-  let deletedListing = await Listing.findByIdAndDelete(id);
-  console.log("❌Listing deleted from dB");
-  res.redirect("/listings");
-});
+    res.redirect("/listings");
+  })
+);
+
+app.delete(
+  "/listings/:id",
+  wrapAsync(async (req, res) => {
+    let { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw new ExpressError(404, "Invalid Listing ID");
+    }
+    let deletedListing = await Listing.findByIdAndDelete(id);
+    if (!deletedListing) {
+      throw new ExpressError(404, "Listing not found");
+    }
+    console.log("❌Listing deleted from dB");
+    res.redirect("/listings");
+  })
+);
 
 app.get("/", (req, res) => {
   res.send("Hi! i am root");
+});
+
+app.all(/.*/, (req, res, next) => {
+  next(new ExpressError(404, "Page not Found"));
+});
+
+// Custom error handler middleware
+app.use((err, req, res, next) => {
+  let { statusCode = 500, message = "Something went wrong!" } = err;
+  if (statusCode == 404) {
+    return res.status(statusCode).render("error.ejs", { err });
+  }
+  res.status(statusCode).send(message);
 });
 
 app.listen(8080, () => {

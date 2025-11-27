@@ -17,14 +17,24 @@ const listingSchema = new Schema(
           ? v
           : "https://images.pexels.com/photos/34629974/pexels-photo-34629974.jpeg",
     },
-    price: Number,
-    location: String,
-    country: String,
+    price: {
+      type: Number,
+      required: true,
+      min: 0,
+    },
+    location: {
+      type: String,
+      required: true,
+    },
+    country: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,
   }
-);
+);  
 
 const Listing = mongoose.model("Listing", listingSchema);
 module.exports = Listing;
