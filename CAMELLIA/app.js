@@ -67,7 +67,7 @@ app.get(
     }
 
     const listing = await Listing.findById(id);
-    if (!req.body.listing) {
+    if (!listing) {
       throw new ExpressError(404, "Listing not found");
     }
     res.render("listings/show.ejs", { listing });
@@ -84,7 +84,7 @@ app.get(
       throw new ExpressError(404, "Invalid Listing ID");
     }
     let listing = await Listing.findById(id);
-    if (!req.body.listing) {
+    if (!listing) {
       throw new ExpressError(404, "Listing not found");
     }
     res.render("listings/edit.ejs", { listing });
@@ -135,6 +135,8 @@ app.get("/", (req, res) => {
   res.send("Hi! i am root");
 });
 
+
+//For all request for handling page not found
 app.all(/.*/, (req, res, next) => {
   next(new ExpressError(404, "Page not Found"));
 });

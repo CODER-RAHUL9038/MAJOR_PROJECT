@@ -1,32 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Error <%= err.statusCode %></title>
-  <style>
-    body {
-      background: #b0e0c9;
-      font-family: Arial, sans-serif;
-      padding: 40px;
-      text-align: center;
-    }
-    .box {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      width: 400px;
-      margin: auto;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
-    }
-    h1 {
-      color: #b71c1c;
-    }
-  </style>
-</head>
-<body>
-  <div class="box">
-    <h1>Error <%= err.statusCode %></h1>
-    <p><%= err.message %></p>
+<% extraCSS = '<link rel="stylesheet" href="/css/error.css" />' %> <%
+layout("/layouts/boilerplate") -%>
+
+<div class="error-page">
+  <div class="container">
+    <div class="error-code"><%= err.statusCode %></div>
+
+    <p class="message"><%= err.message %></p>
+
+    <a href="/listings" class="btn">Go Back Home</a>
   </div>
-</body>
-</html>
+</div>
