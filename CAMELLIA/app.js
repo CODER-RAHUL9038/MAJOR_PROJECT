@@ -8,6 +8,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
+const { listingSchema } = require("./schema.js");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -27,6 +28,19 @@ main()
 async function main() {
   await mongoose.connect(MONGO_URL);
 }
+
+//Joi schema server side validation
+const validateListing = (req, res, next) => {
+  const { error } = listingSchema.validate(req.body);
+  if (error) {
+    let errMsg = error.details.map((el) => el.message).join(",");
+    console.log(errMsg);
+    throw new ExpressError(400, errMsg);
+  } else {
+    next();
+  }
+};
+
 //Index Route
 app.get(
   "/listings",
@@ -46,10 +60,8 @@ app.get("/listings/new", (req, res) => {
 
 app.post(
   "/listings",
+  validateListing,
   wrapAsync(async (req, res, next) => {
-    if (!req.body.listing) {
-      throw new ExpressError(400, "Send valid data to create a listing");
-    }
     let newListing = await new Listing(req.body.listing); // shorter syntax of creating new listing when passing the entire form body
     await newListing.save();
     console.log("✅New Listing Created in dB");
@@ -94,6 +106,7 @@ app.get(
 //Handling edit form data
 app.put(
   "/listings/:id",
+  validateListing,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -107,9 +120,6 @@ app.put(
         new: true,
       }
     ); // shortcut of destructuring --> req.body.listing
-    if (!updatedListing) {
-      throw new ExpressError(404, "Listing not found");
-    }
 
     res.redirect("/listings");
   })
@@ -135,7 +145,6 @@ app.get("/", (req, res) => {
   res.send("Hi! i am root");
 });
 
-
 //For all request for handling page not found
 app.all(/.*/, (req, res, next) => {
   next(new ExpressError(404, "Page not Found"));
@@ -144,10 +153,10 @@ app.all(/.*/, (req, res, next) => {
 // Custom error handler middleware
 app.use((err, req, res, next) => {
   let { statusCode = 500, message = "Something went wrong!" } = err;
-  if (statusCode == 404) {
-    return res.status(statusCode).render("error.ejs", { err });
-  }
-  res.status(statusCode).send(message);
+  // if (statusCode == 404) {
+
+  // }
+  res.status(statusCode).render("error.ejs", { err });
 });
 
 app.listen(8080, () => {
