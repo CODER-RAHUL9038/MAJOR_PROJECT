@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const Review = require("../models/review.js");
+
 const Schema = mongoose.Schema;
 
 const listingSchema = new Schema(
@@ -30,11 +32,18 @@ const listingSchema = new Schema(
       type: String,
       required: true,
     },
+    reviews: [
+      // used array of id since multiple reviews can exists
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Review", //reference to the Review model
+      },
+    ],
   },
   {
     timestamps: true,
   }
-);  
+);
 
 const Listing = mongoose.model("Listing", listingSchema);
 module.exports = Listing;

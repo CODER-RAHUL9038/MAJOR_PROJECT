@@ -9,6 +9,7 @@ const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
 const { listingSchema } = require("./schema.js");
+const Review = require("./models/review.js");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -138,6 +139,32 @@ app.delete(
     }
     console.log("❌Listing deleted from dB");
     res.redirect("/listings");
+  })
+);
+
+//Listings Review
+//Post route
+
+app.post(
+  "/listings/:id/reviews",
+  wrapAsync(async (req, res, next) => {
+    let { id } = req.params;
+    //validating if id exists
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw new ExpressError(404, "Invalid Listing ID");
+    }
+    //finding listing
+    let listing = await Listing.findById(id);
+    //Creating new review using dynamic object key
+    let newReview = new Review(req.body.review);
+    //Pushing newly created review in the listing reviews array
+    listing.reviews.push(newReview);
+    //savin first reviews then listing
+    await newReview.save();
+    await listing.save();
+    console.log("new Review Saved", newReview);
+    //redirecting to the same page
+    res.redirect(`/listings/${listing.id}`);
   })
 );
 
