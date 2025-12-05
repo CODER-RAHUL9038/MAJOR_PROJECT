@@ -3,7 +3,7 @@
 <div class="row justify-content-center">
   <div class="col-10 col-md-8 mt-4">
     <h3><b><%= listing.title %></b></h3>
-    <div class="card col-md-8 mt-4">
+    <div class="listing-card col-md-8 mt-4">
       <img
         src="<%= listing.image  %> "
         class="card-img-top show-img"
@@ -30,16 +30,22 @@
     </div>
   </div>
 
+  <!-- Review  -->
   <div class="col-10 col-md-8 mt-4">
     <hr />
     <h4>Leave a Review</h4>
-    <form class="mb-3" method="post" action="/listings/<%= listing.id %>/reviews">
-      <div class="my-3 row ">
+    <form
+      class="mb-3 needs-validation"
+      novalidate
+      method="post"
+      action="/listings/<%= listing._id %>/reviews"
+    >
+      <div class="my-3 row">
         <label class="form-label" for="rating">Rating</label>
         <div class="col-7">
           <input
             type="range"
-            class="form-range"  
+            class="form-range"
             name="review[rating]"
             id="rating"
             min="1"
@@ -50,14 +56,36 @@
       <div class="my-3">
         <label class="form-label" for="comment">Comment</label>
         <textarea
+          required
           class="form-control"
           name="review[comment]"
           id="comment"
           cols="30"
           rows="5"
         ></textarea>
+        <!-- <div class="valid-feedback">looks good!</div> -->
+        <div class="invalid-feedback">Please comment!</div>
       </div>
       <button class="btn btn-outline-dark">Submit</button>
     </form>
+    <hr />
+    <p><b>All Reviews</b></p>
+
+    <div class="row ">
+      <% for( let review of listing.reviews ) { %>
+      <div class="col-md-5 mb-3">
+        <div class="card p-2" >
+          <div class="card-body">
+            <h5 class="card-title">Username</h5>
+            <p class="card-text"><%= review.comment %></p>
+            <p class="card-text"><%= review.rating %> star</p>  
+          </div>
+          <form method="post" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+            <button class="btn btn-sm btn-dark my-2">Delete</button>
+          </form>
+        </div>
+      </div>
+      <% } %>
+    </div>
   </div>
 </div>

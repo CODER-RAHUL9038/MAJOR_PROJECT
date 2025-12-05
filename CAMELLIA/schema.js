@@ -1,12 +1,20 @@
 const Joi = require("joi");
 
 module.exports.listingSchema = Joi.object({
+  //here listing is wrapper as served in form as listing[title] and etc..
   listing: Joi.object({
-    title: Joi.string().required(),
+    title: Joi.string().required(), // .required because title is required
     description: Joi.string().required(),
     location: Joi.string().required(),
     country: Joi.string().required(),
     price: Joi.number().required(),
     image: Joi.string().allow("", null),
-  }),
-}).required();
+  }).required(),
+});
+// The last .required() means:listing must be present
+module.exports.reviewSchema = Joi.object({
+  review: Joi.object({
+    comment: Joi.string().required(),
+    rating: Joi.number().min(1).max(5).required(),
+  }).required(),
+});

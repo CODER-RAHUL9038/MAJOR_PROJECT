@@ -8,8 +8,9 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
-const { listingSchema } = require("./schema.js");
+const { listingSchema, reviewSchema } = require("./schema.js");
 const Review = require("./models/review.js");
+const review = require("./models/review.js");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -33,6 +34,17 @@ async function main() {
 //Joi schema server side validation
 const validateListing = (req, res, next) => {
   const { error } = listingSchema.validate(req.body);
+  if (error) {
+    let errMsg = error.details.map((el) => el.message).join(",");
+    console.log(errMsg);
+    throw new ExpressError(400, errMsg);
+  } else {
+    next();
+  }
+};
+const validateReview = async (req, res, next) => {
+  const { error } = reviewSchema.validate(req.body);
+
   if (error) {
     let errMsg = error.details.map((el) => el.message).join(",");
     console.log(errMsg);
@@ -79,7 +91,7 @@ app.get(
       throw new ExpressError(404, "Invalid Listing ID");
     }
 
-    const listing = await Listing.findById(id);
+    const listing = await Listing.findById(id).populate("reviews");
     if (!listing) {
       throw new ExpressError(404, "Listing not found");
     }
@@ -147,6 +159,7 @@ app.delete(
 
 app.post(
   "/listings/:id/reviews",
+  validateReview,
   wrapAsync(async (req, res, next) => {
     let { id } = req.params;
     //validating if id exists
@@ -165,6 +178,17 @@ app.post(
     console.log("new Review Saved", newReview);
     //redirecting to the same page
     res.redirect(`/listings/${listing.id}`);
+  })
+);
+
+//Delete Review Route
+app.delete(
+  "/listings/:id/reviews/:reviewId",
+  wrapAsync(async (req, res, next) => {
+    let { id, reviewId } = req.params;
+    await Listing.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+    await Review.findByIdAndDelete(reviewId);
+    res.redirect(`/listings/${id}`);
   })
 );
 
