@@ -10,7 +10,7 @@ const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
 const { listingSchema, reviewSchema } = require("./schema.js");
 const Review = require("./models/review.js");
-const review = require("./models/review.js");
+
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -31,7 +31,7 @@ async function main() {
   await mongoose.connect(MONGO_URL);
 }
 
-//Joi schema server side validation
+//Joi schema server side validation for listings
 const validateListing = (req, res, next) => {
   const { error } = listingSchema.validate(req.body);
   if (error) {
@@ -42,6 +42,8 @@ const validateListing = (req, res, next) => {
     next();
   }
 };
+
+//Joi schema server side validation for reviews
 const validateReview = async (req, res, next) => {
   const { error } = reviewSchema.validate(req.body);
 
@@ -53,6 +55,9 @@ const validateReview = async (req, res, next) => {
     next();
   }
 };
+
+// middleware to handle the review deletion after the listings is deleted
+
 
 //Index Route
 app.get(
