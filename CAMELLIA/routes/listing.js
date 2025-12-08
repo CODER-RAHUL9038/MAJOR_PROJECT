@@ -42,7 +42,7 @@ router.post(
   wrapAsync(async (req, res, next) => {
     let newListing = await new Listing(req.body.listing); // shorter syntax of creating new listing when passing the entire form body
     await newListing.save();
-    console.log("✅New Listing Created in dB");
+    req.flash("success", "New listing Created!")
     res.redirect("/listings");
   })
 );

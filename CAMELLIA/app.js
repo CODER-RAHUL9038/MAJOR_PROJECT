@@ -7,6 +7,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
+const flash = require("connect-flash");
 
 // Routes
 const listings = require("./routes/listing.js");
@@ -33,11 +34,28 @@ app.use(express.static(path.join(__dirname, "public")));
 const sessionOptions = {
   secret: "secretcode",
   resave: false,
-  saveUninitialzed: true,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+    maxAge: 7 * 24 * 60 * 60 * 1000, // in milisecond
+  },
 };
 
 app.get("/", (req, res) => {
   res.send("Hi! i am root");
+});
+
+//session middleware
+app.use(session(sessionOptions));
+
+//flash middleware
+app.use(flash());
+
+app.use((req, res, next) => {
+  // means req.local.message
+  res.locals.success = req.flash("success"); // res.locals.success make success msg available to all ejs
+  next();
 });
 
 // Routers
