@@ -55,6 +55,7 @@ app.use(flash());
 app.use((req, res, next) => {
   // means req.local.message
   res.locals.success = req.flash("success"); // res.locals.success make success msg available to all ejs
+  res.locals.error = req.flash("error");
   next();
 });
 
@@ -70,9 +71,7 @@ app.all(/.*/, (req, res, next) => {
 // Custom error handler middleware
 app.use((err, req, res, next) => {
   let { statusCode = 500, message = "Something went wrong!" } = err;
-  // if (statusCode == 404) {
 
-  // }
   res.status(statusCode).render("error.ejs", { err });
 });
 

@@ -7,10 +7,9 @@ const Listing = require("../models/listing.js");
 const { reviewSchema } = require("../schema.js");
 const ExpressError = require("../utils/ExpressError.js");
 
-
-
 //Joi schema server side validation for reviews
 const validateReview = async (req, res, next) => {
+  //error provided by joi
   const { error } = reviewSchema.validate(req.body);
 
   if (error) {
@@ -43,6 +42,7 @@ router.post(
     await listing.save();
     console.log("new Review Saved", newReview);
     //redirecting to the same page
+    req.flash("success", " Review Created!");
     res.redirect(`/listings/${listing.id}`);
   })
 );
@@ -54,6 +54,7 @@ router.delete(
     let { id, reviewId } = req.params;
     await Listing.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
     await Review.findByIdAndDelete(reviewId);
+    req.flash("success", " Review Deleted!");
     res.redirect(`/listings/${id}`);
   })
 );

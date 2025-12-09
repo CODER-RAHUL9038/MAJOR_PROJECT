@@ -42,7 +42,7 @@ router.post(
   wrapAsync(async (req, res, next) => {
     let newListing = await new Listing(req.body.listing); // shorter syntax of creating new listing when passing the entire form body
     await newListing.save();
-    req.flash("success", "New listing Created!")
+    req.flash("success", "New listing Created!");
     res.redirect("/listings");
   })
 );
@@ -57,9 +57,12 @@ router.get(
     }
 
     const listing = await Listing.findById(id).populate("reviews");
+
     if (!listing) {
-      throw new ExpressError(404, "Listing not found");
+      req.flash("error", "Listing does not exists ");
+      return res.redirect("/listings");
     }
+
     res.render("listings/show.ejs", { listing });
   })
 );
@@ -98,7 +101,7 @@ router.put(
         new: true,
       }
     ); // shortcut of destructuring --> req.body.listing
-
+    req.flash("success", "Listing Updated!");
     res.redirect("/listings");
   })
 );
@@ -114,11 +117,9 @@ router.delete(
     if (!deletedListing) {
       throw new ExpressError(404, "Listing not found");
     }
-    console.log("❌Listing deleted from dB");
+    req.flash("success", " Listing Deleted!");
     res.redirect("/listings");
   })
 );
-
-
 
 module.exports = router;

@@ -18,6 +18,9 @@ body {
 .nav-logo {
   height: 2.5rem;
 }
+.navbar-collapse {
+  background-color: white !important; /* semi-transparent white */
+}
 
 /* Footer*/
 .f-info-links a {
