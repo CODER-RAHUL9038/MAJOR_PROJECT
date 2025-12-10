@@ -8,6 +8,9 @@ const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
 const flash = require("connect-flash");
+const passport = require("passport");
+const localstrategy = require("passport-local");
+const User = require("./models/user.js");
 
 // Routes
 const listings = require("./routes/listing.js");
@@ -51,6 +54,8 @@ app.use(session(sessionOptions));
 
 //flash middleware
 app.use(flash());
+
+ 
 
 app.use((req, res, next) => {
   // means req.local.message
