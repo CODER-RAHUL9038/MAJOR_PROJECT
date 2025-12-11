@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const router = express.Router();
 const User = require("../models/user.js");
 const wrapAsync = require("../utils/wrapAsync.js");
-const ExpressError = require("../utils/ExpressError.js");
+const passport = require("passport");
 
 router.get("/signup", (req, res) => {
   res.render("user/signup.ejs");
@@ -28,6 +28,22 @@ router.post(
       res.redirect("/signup");
     }
   })
+);
+
+router.get("/login", (req, res) => {
+  res.render("user/login.ejs");
+});
+
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    failureRedirect: "/login",
+    failureFlash: true,
+  }),
+  async (req, res) => {
+    req.flash("success", "Welcome back to Camellia! You are logged in");
+    res.redirect("/listings");
+  }
 );
 
 module.exports = router;

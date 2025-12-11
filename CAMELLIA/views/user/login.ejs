@@ -2,9 +2,10 @@
 <br />
 <div class="row justify-content-center">
   <div class="col-6">
-    <h3>Create an Account</h3><br>
-    <form method="post" action="/signup" novalidate class="needs-validation ">
-      <div class=" my-3">
+    <h3>Log In to Camellia</h3>
+    <br>
+    <form method="post" action="/login" novalidate class="needs-validation ">
+      <div class="my-3 ">
         <label for="username" class="form-label">Username</label>
         <input
           class="form-control"
@@ -16,18 +17,7 @@
 
         <div class="invalid-feedback">Enter Username!</div>
       </div>
-      <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input
-          class="form-control"
-          type="email"
-          name="email"
-          required
-          id="email"
-        />
 
-        <div class="invalid-feedback">Enter email!</div>
-      </div>
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
         <input
@@ -40,7 +30,7 @@
 
         <div class="invalid-feedback">Enter Password!</div>
       </div>
-      <button class="btn btn-success mt-3">SignUp</button>
+      <button class="btn btn-success mt-3">Login</button>
     </form>
   </div>
 </div>
