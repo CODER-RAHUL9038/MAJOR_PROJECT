@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const passportLocalMongoose = require("passport-local-mongoose");
 
-const User = new Schema({
+const userSchema = new Schema({
   email: {
     type: String,
     required: true,
@@ -10,6 +10,6 @@ const User = new Schema({
 });
 
 // Addes username hasting and salting.
-User.plugin(passportLocalMongoose);
+userSchema.plugin(passportLocalMongoose);
 
-module.exports = mongoose.model("User", User);
+module.exports = mongoose.model("User", userSchema);

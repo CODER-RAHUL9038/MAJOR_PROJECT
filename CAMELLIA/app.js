@@ -9,12 +9,13 @@ const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
-const localstrategy = require("passport-local");
+const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 
 // Routes
-const listings = require("./routes/listing.js");
-const reviews = require("./routes/review.js");
+const listingRouter = require("./routes/listingRouter.js");
+const reviewRouter = require("./routes/reviewRouter.js");
+const userRouter = require("./routes/userRouter.js");
 main()
   .then((res) => {
     console.log("✅Connected to MongoDB");
@@ -55,8 +56,13 @@ app.use(session(sessionOptions));
 //flash middleware
 app.use(flash());
 
- 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
+// middleware to flash message
 app.use((req, res, next) => {
   // means req.local.message
   res.locals.success = req.flash("success"); // res.locals.success make success msg available to all ejs
@@ -65,8 +71,9 @@ app.use((req, res, next) => {
 });
 
 // Routers
-app.use("/listings", listings);
-app.use("/listings/:id/reviews", reviews);
+app.use("/listings", listingRouter);
+app.use("/listings/:id/reviews", reviewRouter);
+app.use("/", userRouter);
 
 //For all request for handling page not found
 app.all(/.*/, (req, res, next) => {
