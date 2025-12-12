@@ -35,6 +35,7 @@ router.get("/new", isLoggedIn, (req, res) => {
 // Post route
 router.post(
   "/",
+  isLoggedIn,
   validateListing,
   wrapAsync(async (req, res) => {
     let newListing = await new Listing(req.body.listing); // shorter syntax of creating new listing when passing the entire form body
@@ -68,6 +69,7 @@ router.get(
 // Get request to edit form
 router.get(
   "/:id/edit",
+  isLoggedIn,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -81,9 +83,10 @@ router.get(
   })
 );
 
-//Handling edit form data
+//Update Route
 router.put(
   "/:id",
+  isLoggedIn,
   validateListing,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
@@ -103,8 +106,10 @@ router.put(
   })
 );
 
+// Delete Route
 router.delete(
   "/:id",
+  isLoggedIn,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     if (!mongoose.Types.ObjectId.isValid(id)) {

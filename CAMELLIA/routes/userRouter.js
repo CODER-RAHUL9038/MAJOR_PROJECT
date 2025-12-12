@@ -13,16 +13,15 @@ router.post(
   wrapAsync(async (req, res) => {
     try {
       let { username, email, password } = req.body;
-      let newUser = new User({
+      const newUser = new User({
         email,
         username,
       });
       let regUser = await User.register(newUser, password);
-      console.log(regUser);
+
       req.flash("success", "Welcome to Camellia");
       res.redirect("/listings");
     } catch (error) {
-      console.log(error.message);
       req.flash("error", error.message);
       res.redirect("/signup");
     }
