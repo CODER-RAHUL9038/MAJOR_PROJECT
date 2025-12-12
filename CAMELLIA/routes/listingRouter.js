@@ -4,19 +4,17 @@ const wrapAsync = require("../utils/wrapAsync.js");
 const { listingSchema } = require("../schema.js");
 const ExpressError = require("../utils/ExpressError.js");
 const Listing = require("../models/listing.js");
-const methodOverride = require("method-override");
 const mongoose = require("mongoose");
+const { isLoggedIn } = require("../middleware.js");
 
 //Joi schema server side validation for listings
 const validateListing = (req, res, next) => {
   const { error } = listingSchema.validate(req.body);
   if (error) {
     let errMsg = error.details.map((el) => el.message).join(",");
-    console.log(errMsg);
     throw new ExpressError(400, errMsg);
-  } else {
-    next();
   }
+  next();
 };
 
 //Index Route
@@ -28,18 +26,17 @@ router.get(
   })
 );
 
-//Create route
+//New route
 //Handling new listing request
-router.get("/new", (req, res) => {
+router.get("/new", isLoggedIn, (req, res) => {
   res.render("listings/new.ejs");
 });
 
-//Handling form data from new
-
+// Post route
 router.post(
   "/",
   validateListing,
-  wrapAsync(async (req, res, next) => {
+  wrapAsync(async (req, res) => {
     let newListing = await new Listing(req.body.listing); // shorter syntax of creating new listing when passing the entire form body
     await newListing.save();
     req.flash("success", "New listing Created!");
