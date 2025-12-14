@@ -44,4 +44,14 @@ router.post(
   }
 );
 
+router.get("/logout", (req, res) => {
+  req.logout((err) => {
+    if (err) {
+      next(err);
+    }
+    req.flash("success", "Logout Successfully");
+    res.redirect("/listings");
+  });
+});
+
 module.exports = router;

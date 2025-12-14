@@ -67,6 +67,7 @@ app.use((req, res, next) => {
   // means req.local.message
   res.locals.success = req.flash("success"); // res.locals.success make success msg available to all ejs
   res.locals.error = req.flash("error");
+  res.locals.currUser = req.user;
   next();
 });
 
