@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require("../models/user.js");
 const wrapAsync = require("../utils/wrapAsync.js");
 const passport = require("passport");
+const { saveRedirectUrl } = require("../middleware.js");
 
 router.get("/signup", (req, res) => {
   res.render("user/signup.ejs");
@@ -17,10 +18,14 @@ router.post(
         email,
         username,
       });
-      let regUser = await User.register(newUser, password);
-
-      req.flash("success", "Welcome to Camellia");
-      res.redirect("/listings");
+      let registeredUser = await User.register(newUser, password);
+      req.login(registeredUser, (error) => {
+        if (error) {
+          return next(err);
+        }
+        req.flash("success", "Welcome to Camellia");
+        res.redirect("/listings");
+      });
     } catch (error) {
       req.flash("error", error.message);
       res.redirect("/signup");
@@ -34,13 +39,15 @@ router.get("/login", (req, res) => {
 
 router.post(
   "/login",
+  saveRedirectUrl,
   passport.authenticate("local", {
     failureRedirect: "/login",
     failureFlash: true,
   }),
   async (req, res) => {
-    req.flash("success", "Welcome back to Camellia! You are logged in");
-    res.redirect("/listings");
+    req.flash("success", "Welcome back to Camellia!");
+    let redirectUrl = res.locals.redirectUrl || "/listings";
+    res.redirect(redirectUrl);
   }
 );
 

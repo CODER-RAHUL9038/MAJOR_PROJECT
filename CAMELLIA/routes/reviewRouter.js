@@ -40,7 +40,7 @@ router.post(
     //savin first reviews then listing
     await newReview.save();
     await listing.save();
-    console.log("new Review Saved", newReview);
+
     //redirecting to the same page
     req.flash("success", " Review Created!");
     res.redirect(`/listings/${listing.id}`);
