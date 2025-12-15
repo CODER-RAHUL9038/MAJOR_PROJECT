@@ -9,8 +9,13 @@ const reviewSchema = new Schema(
       min: 1,
       max: 5,
     },
+    author: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
   },
+
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Review",reviewSchema)
+module.exports = mongoose.model("Review", reviewSchema);
