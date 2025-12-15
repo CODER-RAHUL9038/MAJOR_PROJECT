@@ -5,17 +5,7 @@ const { listingSchema } = require("../schema.js");
 const ExpressError = require("../utils/ExpressError.js");
 const Listing = require("../models/listing.js");
 const mongoose = require("mongoose");
-const { isLoggedIn } = require("../middleware.js");
-
-//Joi schema server side validation for listings
-const validateListing = (req, res, next) => {
-  const { error } = listingSchema.validate(req.body);
-  if (error) {
-    let errMsg = error.details.map((el) => el.message).join(",");
-    throw new ExpressError(400, errMsg);
-  }
-  next();
-};
+const { isLoggedIn, isOwner, validateListing } = require("../middleware.js");
 
 //Index Route
 router.get(
@@ -72,6 +62,7 @@ router.get(
 // Get request to edit form
 router.get(
   "/:id/edit",
+  isOwner,
   isLoggedIn,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
@@ -90,13 +81,13 @@ router.get(
 router.put(
   "/:id",
   isLoggedIn,
+  isOwner,
   validateListing,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     if (!mongoose.Types.ObjectId.isValid(id)) {
       throw new ExpressError(404, "Invalid Listing ID");
     }
-
     let updatedListing = await Listing.findByIdAndUpdate(
       id,
       { ...req.body.listing }, // spread create copy of object
@@ -112,6 +103,7 @@ router.put(
 // Delete Route
 router.delete(
   "/:id",
+  isOwner,
   isLoggedIn,
   wrapAsync(async (req, res) => {
     let { id } = req.params;

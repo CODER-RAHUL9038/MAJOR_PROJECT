@@ -4,22 +4,8 @@ const router = express.Router({ mergeParams: true });
 const Review = require("../models/review.js");
 const wrapAsync = require("../utils/wrapAsync.js");
 const Listing = require("../models/listing.js");
-const { reviewSchema } = require("../schema.js");
+const { validateReview } = require("../middleware.js");
 const ExpressError = require("../utils/ExpressError.js");
-
-//Joi schema server side validation for reviews
-const validateReview = async (req, res, next) => {
-  //error provided by joi
-  const { error } = reviewSchema.validate(req.body);
-
-  if (error) {
-    let errMsg = error.details.map((el) => el.message).join(",");
-    console.log(errMsg);
-    throw new ExpressError(400, errMsg);
-  } else {
-    next();
-  }
-};
 
 router.post(
   "/",

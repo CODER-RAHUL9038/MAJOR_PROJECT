@@ -22,13 +22,17 @@
     </div>
 
     <div class="show-btns d-flex gap-5 mb-4">
-      <form action="/listings/<%= listing._id %>/edit">
+      
+        
+       <form action="/listings/<%= listing._id %>/edit">
         <button class="btn btn-danger">Edit</button>
       </form>
 
       <form method="post" action="/listings/<%= listing._id %>?_method=DELETE">
         <button class="btn btn-dark">Delete</button>
       </form>
+      
+      
     </div>
   </div>
 
