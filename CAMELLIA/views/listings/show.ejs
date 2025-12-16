@@ -92,7 +92,7 @@
             <p class="card-text"><%= review.rating %> star</p>
           </div>
           
-           <% if (review.author._id.equals(currUser._id)) { %>
+           <% if (review.author._id.equals(currUser && currUser._id)) { %>
             <form
             method="post"
             action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE"
