@@ -7,6 +7,11 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  username: {
+    type: String,
+    lowercase: true,
+    trim: true,
+  },
 });
 
 // Addes username hasting and salting.

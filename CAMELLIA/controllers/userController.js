@@ -20,7 +20,15 @@ module.exports.signup = async (req, res) => {
       res.redirect("/listings");
     });
   } catch (error) {
-    req.flash("error", error.message);
+    let message = "Signup failed. Please try again.";
+    console.log(error.name);
+
+    if (error.name === "UserExistsError") {
+      message = "This username is not available.";
+    } else {
+      message = error.message; // fallback
+    }
+    req.flash("error", message);
     res.redirect("/signup");
   }
 };
