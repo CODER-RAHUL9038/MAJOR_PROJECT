@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -67,7 +71,7 @@ app.use((req, res, next) => {
   // means req.local.message
   res.locals.success = req.flash("success"); // res.locals.success make success msg available to all ejs
   res.locals.error = req.flash("error");
-  res.locals.currUser = req.user; //used in navbar 
+  res.locals.currUser = req.user; //used in navbar
   next();
 });
 

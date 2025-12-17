@@ -5,7 +5,13 @@
   <div class="col-8">
     <h3>Create a New Listing</h3>
     <br />
-    <form method="post" action="/listings" novalidate class="needs-validation">
+    <form
+      method="post"
+      action="/listings"
+      novalidate
+      class="needs-validation"
+      enctype="multipart/form-data"
+    >
       <div class="mb-3">
         <label for="title" class="form-label">Title</label>
         <input
@@ -51,10 +57,11 @@
           <div class="invalid-feedback">Enter Country</div>
         </div>
       </div>
+
       <div class="mb-3 col">
-        <label for="image" class="form-label">Image</label>
+        <label for="image" class="form-label">Upload image</label>
         <input
-          type="text"
+          type="file"
           class="form-control"
           name="listing[image]"
           placeholder="Enter image"
