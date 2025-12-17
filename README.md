@@ -20,7 +20,7 @@ Currently, this repository contains the **CAMELLIA** project.
 
 ## 💻 Tech Stack
 
-- **Frontend:** React, HTML, CSS, JavaScript  
+- **Frontend:** EJS, HTML, CSS, JavaScript  
 - **Backend:** Node.js, Express.js  
 - **Database:** MongoDB  
 
