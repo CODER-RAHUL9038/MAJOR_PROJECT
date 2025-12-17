@@ -1,3 +1,4 @@
+const { cloudinary } = require("../cloudConfig.js");
 const Listing = require("../models/listing.js");
 const mongoose = require("mongoose");
 
@@ -54,21 +55,38 @@ module.exports.editListingForm = async (req, res) => {
   if (!listing) {
     throw new ExpressError(404, "Listing not found");
   }
+  // let originalImageUrl;
+  // if (listing.image?.url) {
+  //   originalImageUrl = listing.image.url;
+  //   originalImageUrl = originalImageUrl.replace(
+  //     "/upload",
+  //     "/upload/c_scale,h_200,w_200"
+  //   );
+  // }
   res.render("listings/edit.ejs", { listing });
 };
 
 module.exports.editListing = async (req, res) => {
   let { id } = req.params;
+
   if (!mongoose.Types.ObjectId.isValid(id)) {
     throw new ExpressError(404, "Invalid Listing ID");
   }
-  let updatedListing = await Listing.findByIdAndUpdate(
-    id,
-    { ...req.body.listing }, // spread create copy of object
-    {
-      new: true,
+
+  const listing = await Listing.findById(id);
+
+  // Update text fields first rom req.body
+  listing.set(req.body.listing);
+
+  if (req.file) {
+    if (listing.image && listing.image.filename) {
+      await cloudinary.uploader.destroy(listing.image.filename);
     }
-  ); // shortcut of destructuring --> req.body.listing
+    let url = req.file.path;
+    let filename = req.file.filename;
+    listing.image = { filename, url };
+    await listing.save();
+  }
   req.flash("success", "Listing Updated!");
   res.redirect("/listings");
 };

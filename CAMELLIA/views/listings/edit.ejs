@@ -5,6 +5,7 @@
   <div class="col-8">
     <h3>Edit Listing</h3>
     <form
+      enctype="multipart/form-data"
       method="post"
       class="needs-validation"
       novalidate
@@ -38,14 +39,24 @@
         <div class="invalid-feedback">Please enter description</div>
       </div>
       <div class="mb-3">
-        <label for="image" class="form-label">Image</label>
+        <label for="current-image" class="form-label">Image Preview</label
+        ><br />
+        <img
+          class="img-fluid"
+          style="width: 250px; height: 130px; object-fit: cover"
+          id="current-image"
+          src="<%= listing.image.url %>"
+          alt="listing-image"
+          name="listing[image]"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="image" class="form-label">Upload new image</label>
         <input
           class="form-control"
-          type="text"
+          type="file"
           name="listing[image]"
-          value="<%= listing.image %>"
           placeholder="Enter image"
-          required
         />
       </div>
       <div class="row">
