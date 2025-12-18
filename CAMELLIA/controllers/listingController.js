@@ -55,14 +55,7 @@ module.exports.editListingForm = async (req, res) => {
   if (!listing) {
     throw new ExpressError(404, "Listing not found");
   }
-  // let originalImageUrl;
-  // if (listing.image?.url) {
-  //   originalImageUrl = listing.image.url;
-  //   originalImageUrl = originalImageUrl.replace(
-  //     "/upload",
-  //     "/upload/c_scale,h_200,w_200"
-  //   );
-  // }
+ 
   res.render("listings/edit.ejs", { listing });
 };
 

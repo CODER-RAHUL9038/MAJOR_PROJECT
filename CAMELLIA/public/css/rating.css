@@ -253,3 +253,8 @@
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
+
+.starability-result {
+  transform: scale(0.7);   /* adjust: 0.75 / 0.7 if needed */
+  transform-origin: left center;
+}

@@ -90,10 +90,47 @@ body {
   transform: none;
   box-shadow: none;
 }
-/* .show-btns{
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-  text-align: center;
 
-} */
+/* Review Card */
+.review-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 14px;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Username */
+.review-card h5 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #111827;
+}
+
+/* Static stars */
+.review-card .starability-result {
+  transform: scale(0.75);
+  transform-origin: left center;
+  margin: 2px 0 6px;
+}
+
+/* Review text */
+.review-card .card-text {
+  font-size: 14px;
+  line-height: 1.55;
+  color: #374151;
+}
+
+/* Delete button */
+.review-card .btn {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+}

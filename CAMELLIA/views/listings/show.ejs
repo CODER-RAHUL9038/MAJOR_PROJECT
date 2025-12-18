@@ -114,11 +114,11 @@
     <div class="row">
       <% for( let review of listing.reviews ) { %>
       <div class="col-md-5 mb-3">
-        <div class="card h-100 p-2">
+        <div class="card review-card h-100 p-2">
           <div class="card-body">
             <h5 class="card-title">@<i><%= review.author.username %></i></h5>
             <p
-              class="starability-result card-text my-3"
+              class="starability-result card-text my-2"
               data-rating="<%= review.rating %>"
             ></p>
             <p class="card-text mb-2"><%= review.comment %></p>
@@ -136,5 +136,18 @@
       </div>
       <% } %>
     </div>
+    <h2>Where you’ll be</h2>
+    <div
+      id="map"
+      class="my-4"
+      style="height: 400px; width: 100%; border-radius: 12px"
+    ></div>
   </div>
 </div>
+
+<!-- 2️⃣ Inject backend data into JS -->
+<script>
+  const MAPTILER_KEY = "<%= process.env.MAPTILER_KEY %>";
+  const coords = [88.3639, 22.5726]; // [lng, lat]
+</script>
+<script src="/js/map.js"></script>
