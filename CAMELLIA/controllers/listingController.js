@@ -15,7 +15,7 @@ module.exports.createLisiting = async (req, res) => {
   let url = req.file.path;
   let filename = req.file.filename;
 
-  let newListing = new Listing(req.body.listing); // shorter syntax of creating new listing when passing the entire form body
+  let newListing = new Listing(req.body.listing); 
   newListing.owner = req.user._id;
   newListing.image = { url, filename };
   await newListing.save();
