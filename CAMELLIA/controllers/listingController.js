@@ -1,6 +1,8 @@
 const { cloudinary } = require("../cloudConfig.js");
 const Listing = require("../models/listing.js");
 const mongoose = require("mongoose");
+const axios = require("axios");
+const ExpressError = require("../utils/ExpressError.js");
 
 module.exports.index = async (req, res) => {
   const allListings = await Listing.find().sort({ createdAt: -1 }); //latest listing will stack first
@@ -11,15 +13,59 @@ module.exports.renderNewForm = (req, res) => {
   res.render("listings/new.ejs");
 };
 
-module.exports.createLisiting = async (req, res) => {
-  let url = req.file.path;
-  let filename = req.file.filename;
+//CREATE LISTING
+module.exports.createListing = async (req, res) => {
+  const url = req.file.path;
+  const filename = req.file.filename;
 
-  let newListing = new Listing(req.body.listing); 
+  const newListing = new Listing(req.body.listing);
   newListing.owner = req.user._id;
   newListing.image = { url, filename };
+
+  // 1️⃣ Clean location (remove house numbers anywhere)
+  const locationText = req.body.listing.location;
+  const cleanedLocation = locationText.replace(
+    /\b\d+[A-Za-z\-\/]*\b,?\s*/g,
+    ""
+  );
+  const finalLocation = cleanedLocation.replace(/,\s*,/g, ",").trim();
+
+  // 2️⃣ Geocode
+  const response = await axios.get(
+    `https://api.maptiler.com/geocoding/${encodeURIComponent(
+      finalLocation
+    )}.json`,
+    {
+      params: {
+        key: process.env.MAPTILER_KEY,
+        limit: 1,
+        types: "address",
+      },
+    }
+  );
+
+  // 3️⃣ Validate result FIRST
+  if (!response.data.features.length) {
+    req.flash(
+      "error",
+      "Address not found. Please remove house number or enter a nearby landmark."
+    );
+    return res.redirect("/listings/new");
+  }
+
+  // 4️⃣ Extract coordinates
+  const feature = response.data.features[0];
+  const coordinates = feature.geometry.coordinates; // [lng, lat]
+
+  newListing.geometry = {
+    type: "Point",
+    coordinates,
+  };
+
+  // 5️⃣ Save
   await newListing.save();
-  req.flash("success", "New listing Created!");
+
+  req.flash("success", "New listing created!");
   res.redirect("/listings");
 };
 
@@ -46,6 +92,7 @@ module.exports.showListings = async (req, res) => {
   res.render("listings/show.ejs", { listing });
 };
 
+// RENDER EDIT LISTNG FORM
 module.exports.editListingForm = async (req, res) => {
   let { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -55,10 +102,11 @@ module.exports.editListingForm = async (req, res) => {
   if (!listing) {
     throw new ExpressError(404, "Listing not found");
   }
- 
+
   res.render("listings/edit.ejs", { listing });
 };
 
+//EDIT LISTING
 module.exports.editListing = async (req, res) => {
   let { id } = req.params;
 
@@ -69,8 +117,50 @@ module.exports.editListing = async (req, res) => {
   const listing = await Listing.findById(id);
 
   // Update text fields first rom req.body
+  //First storing present location before saving new listing location
+  const oldLocation = listing.location;
+
   listing.set(req.body.listing);
 
+  if (req.body.listing.location && req.body.listing.location !== oldLocation) {
+    // 1️⃣ Clean location (remove house numbers anywhere)
+    const locationText = req.body.listing.location;
+    const cleanedLocation = locationText.replace(
+      /\b\d+[A-Za-z\-\/]*\b,?\s*/g,
+      ""
+    );
+    const finalLocation = cleanedLocation.replace(/,\s*,/g, ",").trim();
+
+    // 2️⃣ Geocode
+    const response = await axios.get(
+      `https://api.maptiler.com/geocoding/${encodeURIComponent(
+        finalLocation
+      )}.json`,
+      {
+        params: {
+          key: process.env.MAPTILER_KEY,
+          limit: 1,
+          types: "address",
+        },
+      }
+    );
+
+    // 3️⃣ Validate result FIRST
+    if (!response.data.features.length) {
+      req.flash("error", "Address not found. Please try a nearby landmark.");
+      return res.redirect("/listings/new");
+    }
+
+    // 4️⃣ Extract coordinates
+    const feature = response.data.features[0];
+    const coordinates = feature.geometry.coordinates; // [lng, lat]
+
+    listing.geometry = {
+      type: "Point",
+      coordinates,
+    };
+  }
+  //Image logic
   if (req.file) {
     if (listing.image && listing.image.filename) {
       await cloudinary.uploader.destroy(listing.image.filename);
@@ -80,6 +170,7 @@ module.exports.editListing = async (req, res) => {
     listing.image = { filename, url };
     await listing.save();
   }
+  await listing.save();
   req.flash("success", "Listing Updated!");
   res.redirect("/listings");
 };

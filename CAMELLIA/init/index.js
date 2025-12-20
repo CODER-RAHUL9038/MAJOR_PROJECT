@@ -1,7 +1,11 @@
+require("dotenv").config({ path: "../.env" });
+
+
 const mongoose = require("mongoose");
 const initData = require("./data.js");
 const Listing = require("../models/listing.js");
 const MONGO_URL = "mongodb://127.0.0.1:27017/camellia";
+const axios = require("axios");
 
 main()
   .then((res) => {
@@ -22,6 +26,31 @@ const initDb = async () => {
   }));
   await Listing.insertMany(initData.data);
   console.log("✅Data initialised");
+  const listings = await Listing.find({});
+  for (let listing of listings) {
+    const res = await axios.get(
+      `https://api.maptiler.com/geocoding/${encodeURIComponent(
+        listing.location
+      )}.json`,
+      {
+        params: {
+          key: process.env.MAPTILER_KEY,
+          limit: 1,
+        },
+      }
+    );
+
+    const coords = res.data.features[0].geometry.coordinates;
+
+    listing.geometry = {
+      type: "Point",
+      coordinates: coords,
+    };
+
+    await listing.save();
+  }
+
+  console.log("Old listings updated");
 };
 
 initDb();

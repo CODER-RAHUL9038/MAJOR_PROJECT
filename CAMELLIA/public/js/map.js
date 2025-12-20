@@ -6,7 +6,7 @@ const map = new maptilersdk.Map({
   center: coords,
   zoom: 12,
   projection: "globe", //enable globe projection
-  
 });
 
-new maptilersdk.Marker().setLngLat(coords).addTo(map);
+
+new maptilersdk.Marker({ color: "ff385c" }).setLngLat(coords).addTo(map);

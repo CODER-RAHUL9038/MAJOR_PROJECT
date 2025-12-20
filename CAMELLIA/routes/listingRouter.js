@@ -16,7 +16,7 @@ router
     isLoggedIn,
     validateListing,
     upload.single("listing[image]"),
-    wrapAsync(listingController.createLisiting)
+    wrapAsync(listingController.createListing)
   );
 
 //New route

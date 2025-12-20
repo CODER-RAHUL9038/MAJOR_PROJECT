@@ -147,7 +147,9 @@
 
 <!-- 2️⃣ Inject backend data into JS -->
 <script>
-  const MAPTILER_KEY = "<%= process.env.MAPTILER_KEY %>";
-  const coords = [88.3639, 22.5726]; // [lng, lat]
+
+    const MAPTILER_KEY = "<%= process.env.MAPTILER_KEY %>";
+  //Ignore syntax error. Since js don't understand ejs syntax
+    const coords = <%- JSON.stringify(listing.geometry.coordinates) %>;
 </script>
 <script src="/js/map.js"></script>
