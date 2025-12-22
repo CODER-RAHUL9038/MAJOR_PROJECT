@@ -1,8 +1,170 @@
 <% layout("/layouts/boilerplate") -%>
+<style>
+  #filters::-webkit-scrollbar {
+    display: none;
+  }
 
-<h3 class="my-3 listing-title">All Listings</h3>
+  .filter {
+    min-width: 50px;
+    opacity: 0.7;
+    cursor: pointer;
+  }
+
+  .filter:hover {
+    opacity: 1;
+  }
+
+  .filter i {
+    font-size: 1rem;
+  }
+  .filter p {
+    font-size: 0.75rem;
+  }
+  .arrow-btn {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+
+<div class="container-fluid border-bottom">
+  <div class="row align-items-center">
+    <!-- LEFT ARROW -->
+    <div class="col-auto">
+      <button class="btn btn-light arrow-btn" id="scrollLeft">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+    </div>
+    <!-- Filters  -->
+    <div
+      id="filters"
+      class="d-flex flex-nowrap overflow-auto py-2 gap-2 gap-md-4 col col-6 col-lg-7"
+    >
+      <a
+        href="/listings?category=trending"
+        class="text-decoration-none text-dark"
+      >
+        <div class="filter text-center">
+          <i class="fa-solid fa-fire"></i>
+          <p class="mb-0">Trending</p>
+        </div>
+      </a>
+
+      <a href="/listings?category=rooms" class="text-decoration-none text-dark">
+        <div class="filter text-center">
+          <i class="fa-solid fa-bed"></i>
+          <p class="mb-0">Rooms</p>
+        </div>
+      </a>
+
+      <a href="/listings?category=city" class="text-decoration-none text-dark">
+        <div class="filter text-center">
+          <i class="fa-solid fa-city"></i>
+          <p class="mb-0">Cities</p>
+        </div>
+      </a>
+
+      <a
+        href="/listings?category=mountain"
+        class="text-decoration-none text-dark"
+      >
+        <div class="filter text-center">
+          <i class="fa-solid fa-mountain"></i>
+          <p class="mb-0">Mountain</p>
+        </div>
+      </a>
+
+      <a
+        href="/listings?category=castle"
+        class="text-decoration-none text-dark"
+      >
+        <div class="filter text-center">
+          <i class="fa-brands fa-fort-awesome"></i>
+          <p class="mb-0">Castles</p>
+        </div>
+      </a>
+
+      <a href="/listings?category=pools" class="text-decoration-none text-dark">
+        <div class="filter text-center">
+          <i class="fa-solid fa-person-swimming"></i>
+          <p class="mb-0">Pools</p>
+        </div>
+      </a>
+
+      <a
+        href="/listings?category=camping"
+        class="text-decoration-none text-dark"
+      >
+        <div class="filter text-center">
+          <i class="fa-solid fa-campground"></i>
+          <p class="mb-0">Camping</p>
+        </div>
+      </a>
+
+      <a href="/listings?category=farm" class="text-decoration-none text-dark">
+        <div class="filter text-center">
+          <i class="fa-solid fa-tractor"></i>
+          <p class="mb-0">Farms</p>
+        </div>
+      </a>
+
+      <a
+        href="/listings?category=arctic"
+        class="text-decoration-none text-dark"
+      >
+        <div class="filter text-center">
+          <i class="fa-solid fa-snowman"></i>
+          <p class="mb-0">Arctic</p>
+        </div>
+      </a>
+
+      <a
+        href="/listings?category=forest"
+        class="text-decoration-none text-dark"
+      >
+        <div class="filter text-center">
+          <i class="fa-solid fa-tree"></i>
+          <p class="mb-0">Forest</p>
+        </div>
+      </a>
+
+      <a href="/listings?category=beach" class="text-decoration-none text-dark">
+        <div class="filter text-center">
+          <i class="fa-solid fa-umbrella-beach"></i>
+          <p class="mb-0">Beach</p>
+        </div>
+      </a>
+
+      <a
+        href="/listings?category=heritage"
+        class="text-decoration-none text-dark"
+      >
+        <div class="filter text-center">
+          <i class="fa-solid fa-synagogue"></i>
+          <p class="mb-0">Heritage</p>
+        </div>
+      </a>
+    </div>
+
+    <!-- RIGHT ARROW -->
+    <div class="col-auto">
+      <button class="btn btn-light arrow-btn" id="scrollRight">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <!-- RESERVED SPACE FOR TAX SWITCH -->
+    <div class="col-3 text-end">
+      <!-- Tax switch will be added here later -->
+    </div>
+  </div>
+</div>
+
 <div
-  class="row justify-content-center row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1"
+  class="row justify-content-center row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1 mt-3"
 >
   <% for(let listing of allListings) { %>
   <a href="/listings/<%= listing._id %>" class="listing-link">
@@ -10,11 +172,11 @@
       <img
         loading="lazy"
         src="<%= listing.image.url %>"
-        class="card-img-top"
+        class="card-img-top mb-2"
         alt="listing-image"
       />
       <div class="card-body">
-        <p class="card-text">
+        <p class="card-text ms-3">
           <b><%= listing.title %></b> <br />
           &#8377;<%= listing.price.toLocaleString("en-IN") %>/night
         </p>
@@ -24,3 +186,14 @@
 
   <% } %>
 </div>
+
+<script>
+  const filters = document.getElementById("filters");
+  document.getElementById("scrollLeft").addEventListener("click", () => {
+    filters.scrollBy({ left: -200, top: 0, behavior: "smooth" });
+  });
+
+  document.getElementById("scrollRight").addEventListener("click", () => {
+    filters.scrollBy({ left: 200, top: 0, behavior: "smooth" });
+  });
+</script>

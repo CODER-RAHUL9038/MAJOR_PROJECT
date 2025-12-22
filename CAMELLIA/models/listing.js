@@ -8,6 +8,7 @@ const listingSchema = new Schema(
     title: {
       type: String,
       required: true,
+      maxlength: 50,
     },
     description: String,
     image: {
@@ -48,6 +49,24 @@ const listingSchema = new Schema(
         type: [Number], // [lng, lat]
         // required: true,
       },
+    },
+    category: {
+      type: String,
+      enum: [
+        "trending",
+        "rooms",
+        "city",
+        "mountain",
+        "castle",
+        "pool",
+        "camping",
+        "farm",
+        "arctic",
+        "forest",
+        "beach",
+        "heritage",
+      ],
+      required: true,
     },
   },
   {
