@@ -5,9 +5,33 @@ const axios = require("axios");
 const ExpressError = require("../utils/ExpressError.js");
 
 module.exports.index = async (req, res) => {
-  const allListings = await Listing.find().sort({ createdAt: -1 }); //latest listing will stack first
-  res.render("listings/index.ejs", { allListings });
+  const perPage = 12;
+  const page = parseInt(req.query.page) || 1;
+
+  // 1️⃣ Decide filter FIRST
+  let filter = {};
+  if (req.query.category) {
+    filter.category = req.query.category;
+  }
+
+  // 2️⃣ Fetch filtered listings with pagination
+  const listings = await Listing.find(filter)
+    .sort({ createdAt: -1 })
+    .skip((page - 1) * perPage)
+    .limit(perPage);
+
+  // 3️⃣ Count filtered listings (IMPORTANT)
+  const totalListings = await Listing.countDocuments(filter);
+
+  // 4️⃣ Render once
+  res.render("listings/index", {
+    listings,
+    currentPage: page,
+    totalPages: Math.ceil(totalListings / perPage),
+    category: req.query.category || null,
+  });
 };
+
 
 module.exports.renderNewForm = (req, res) => {
   res.render("listings/new.ejs");
@@ -64,7 +88,6 @@ module.exports.createListing = async (req, res) => {
 
   // 5️⃣ Save
   await newListing.save();
-
   req.flash("success", "New listing created!");
   res.redirect("/listings");
 };

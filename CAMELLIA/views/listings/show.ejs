@@ -10,15 +10,16 @@
         alt="listing_image"
       />
       <div class="card-body mt-3">
-        <p class="card-text">
-          Owned by <i><%= listing.owner.username %></i> <br />
+        <p class="card-text mb-2">
+          <i> Listing Owner - <%= listing.owner.username %></i> <br />
         </p>
-        <p class="card-text"><%= listing.description %> <br /></p>
-        <p class="card-text">
+        <p class="card-text mb-2"><%= listing.description %> <br /></p>
+        <p class="card-text mb-2">
           <%= listing.price.toLocaleString("en-IN") %> <br />
         </p>
-        <p class="card-text"><%= listing.location %> <br /></p>
-        <p class="card-text"><%= listing.country %></p>
+        <p class="card-text mb-2"><%= listing.location %> <br /></p>
+        <p class="card-text mb-2"><%= listing.country %></p>
+        <p class="card-text mb-2"><%= listing.category %></p>
       </div>
     </div>
 

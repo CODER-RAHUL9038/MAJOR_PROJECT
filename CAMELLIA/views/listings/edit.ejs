@@ -86,17 +86,43 @@
           <div class="invalid-feedback">Please enter country</div>
         </div>
       </div>
-      <div class="mb-3">
-        <label for="location" class="form-label">Location</label>
-        <input
-          required
-          class="form-control"
-          type="text"
-          value="<%= listing.location %>"
-          name="listing[location]"
-          placeholder="Enter location"
-        />
-        <div class="invalid-feedback">Please enter location</div>
+      <div class="row">
+        <div class="mb-3 col col-md-5">
+          <label for="location" class="form-label">Location</label>
+          <input
+            required
+            class="form-control"
+            type="text"
+            name="listing[location]"
+            placeholder="Kolkata, West Bengal"
+            value="<%= listing.location %>"
+          />
+          <div class="invalid-feedback">Enter location</div>
+        </div>
+        <div class="mb-3col col-md-7">
+          <label for="select" class="form-label">Category</label>
+          <select
+            class="form-select"
+            id="select"
+            aria-label="select category"
+            required
+            name="listing[category]"
+          >
+            <option value="" selected><%= listing.category %></option>
+            <option value="trending">Trending</option>
+            <option value="rooms">Rooms</option>
+            <option value="city">City</option>
+            <option value="mountain">Mountain</option>
+            <option value="castle">Castle</option>
+            <option value="pool">Pool</option>
+            <option value="camping">Camping</option>
+            <option value="farm">Farm</option>
+            <option value="arctic">Arctic</option>
+            <option value="forest">Forest</option>
+            <option value="beach">Beach</option>
+            <option value="heritage">Heritage</option>
+          </select>
+        </div>
       </div>
       <button class="btn btn-danger my-3">Save</button>
     </form>

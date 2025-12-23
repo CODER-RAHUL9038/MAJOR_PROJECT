@@ -4,20 +4,24 @@
     display: none;
   }
 
-  .filter {
-    min-width: 50px;
+  .filter,
+  .reset {
+    min-width: 10px;
     opacity: 0.7;
     cursor: pointer;
   }
 
-  .filter:hover {
+  .filter:hover,
+  .reset:hover {
     opacity: 1;
   }
 
-  .filter i {
+  .filter i,
+  .reset i {
     font-size: 1rem;
   }
-  .filter p {
+  .filter p,
+  .reset p {
     font-size: 0.75rem;
   }
   .arrow-btn {
@@ -33,7 +37,7 @@
 <div class="container-fluid border-bottom">
   <div class="row align-items-center">
     <!-- LEFT ARROW -->
-    <div class="col-auto">
+    <div class="col-auto ">
       <button class="btn btn-light arrow-btn" id="scrollLeft">
         <i class="fa-solid fa-chevron-left"></i>
       </button>
@@ -41,7 +45,7 @@
     <!-- Filters  -->
     <div
       id="filters"
-      class="d-flex flex-nowrap overflow-auto py-2 gap-2 gap-md-4 col col-6 col-lg-7"
+      class="d-flex flex-nowrap overflow-auto py-2 gap-2 gap-md-4 col col-6 col-lg-8"
     >
       <a
         href="/listings?category=trending"
@@ -155,10 +159,16 @@
         <i class="fa-solid fa-chevron-right"></i>
       </button>
     </div>
+    
 
-    <!-- RESERVED SPACE FOR TAX SWITCH -->
-    <div class="col-3 text-end">
-      <!-- Tax switch will be added here later -->
+    <!-- RESET BUTTON (after arrows) -->
+    <div class="col-auto ">
+      <a href="/listings" class="text-decoration-none text-dark">
+        <div class="text-center reset">
+          <i class="fa-solid fa-rotate-left"></i>
+          <p class="mb-0">Reset</p>
+        </div>
+      </a>
     </div>
   </div>
 </div>
@@ -166,12 +176,12 @@
 <div
   class="row justify-content-center row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1 mt-3"
 >
-  <% for(let listing of allListings) { %>
+  <% for(let listing of listings) { %>
   <a href="/listings/<%= listing._id %>" class="listing-link">
     <div class="card listing-card col">
       <img
         loading="lazy"
-        src="<%= listing.image.url %>"
+        src="<%= listing.image.url + '?w=600&auto=format&fit=crop&q=60' %>"
         class="card-img-top mb-2"
         alt="listing-image"
       />
@@ -185,6 +195,44 @@
   </a>
 
   <% } %>
+</div>
+
+<!-- PAGINATION LOGIC USED ON INDEX  ROUTE -->
+<div
+  class="row justify-content-center row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1 mt-3"
+>
+  <div class="d-flex justify-content-center align-items-center my-4">
+    <!-- Previous page -->
+    <% if (currentPage > 1) { %>
+    <a
+      href="/listings?page=<%= currentPage - 1 %>"
+      class="btn btn-outline-secondary me-3"
+    >
+      Prev
+    </a>
+    <% } else { %>
+    <span></span>
+    <% } %>
+    <!-- Page numbers -->
+    <div class="d-flex gap-2">
+      <% for (let i = 1; i <= totalPages; i++) { %>
+      <a
+        href="/listings?page=<%= i %><%= category ? `&category=${category}` : '' %>"
+        class="btn btn-sm <%= currentPage === i ? 'btn-dark' : 'btn-outline-dark' %>"
+      >
+        <%= i %>
+      </a>
+      <% } %>
+    </div>
+    <% if (currentPage < totalPages) { %>
+    <a
+      href="/listings?page=<%= currentPage + 1 %>"
+      class="btn btn-outline-secondary ms-3"
+    >
+      Next
+    </a>
+    <% } %>
+  </div>
 </div>
 
 <script>
