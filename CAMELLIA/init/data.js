@@ -12,7 +12,6 @@ const sampleListings = [
     location: "Malibu",
     country: "United States",
   },
-
   {
     title: "Modern Loft in Downtown",
     category: "city",
@@ -26,7 +25,6 @@ const sampleListings = [
     location: "New York City",
     country: "United States",
   },
-
   {
     title: "Mountain Retreat",
     category: "mountain",
@@ -40,7 +38,6 @@ const sampleListings = [
     location: "Aspen",
     country: "United States",
   },
-
   {
     title: "Historic Villa in Tuscany",
     category: "heritage",
@@ -54,7 +51,6 @@ const sampleListings = [
     location: "Florence",
     country: "Italy",
   },
-
   {
     title: "Secluded Treehouse Getaway",
     category: "forest",
@@ -67,7 +63,6 @@ const sampleListings = [
     location: "Portland",
     country: "United States",
   },
-
   {
     title: "Beachfront Paradise",
     category: "beach",
@@ -81,7 +76,6 @@ const sampleListings = [
     location: "Cancun",
     country: "Mexico",
   },
-
   {
     title: "Rustic Cabin by the Lake",
     category: "camping",
@@ -94,7 +88,6 @@ const sampleListings = [
     location: "Lake Tahoe",
     country: "United States",
   },
-
   {
     title: "Luxury Penthouse with City Views",
     category: "city",
@@ -107,7 +100,6 @@ const sampleListings = [
     location: "Los Angeles",
     country: "United States",
   },
-
   {
     title: "Ski-In/Ski-Out Chalet",
     category: "mountain",
@@ -120,7 +112,6 @@ const sampleListings = [
     location: "Verbier",
     country: "Switzerland",
   },
-
   {
     title: "Safari Lodge in the Serengeti",
     category: "forest",
@@ -133,7 +124,6 @@ const sampleListings = [
     location: "Serengeti National Park",
     country: "Tanzania",
   },
-
   {
     title: "Historic Canal House",
     category: "heritage",
@@ -146,7 +136,6 @@ const sampleListings = [
     location: "Amsterdam",
     country: "Netherlands",
   },
-
   {
     title: "Private Island Retreat",
     category: "trending",
@@ -160,6 +149,8 @@ const sampleListings = [
     country: "Fiji",
   },
 
+  /* ===== FIXED CASTLE IMAGES ===== */
+
   {
     title: "Historic Castle in Scotland",
     category: "castle",
@@ -172,59 +163,61 @@ const sampleListings = [
     location: "Scottish Highlands",
     country: "United Kingdom",
   },
-
   {
-    title: "Desert Oasis in Dubai",
-    category: "pool",
-    description: "Luxury oasis with a private pool in the desert.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1518684079-3c830dcef090",
-    },
-    price: 5000,
-    location: "Dubai",
-    country: "United Arab Emirates",
-  },
-
-  {
-    title: "Rustic Log Cabin in Montana",
-    category: "farm",
-    description: "Cozy log cabin surrounded by nature.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1586375300773-8384e3e4916f",
-    },
-    price: 1100,
-    location: "Montana",
-    country: "United States",
-  },
-
-  {
-    title: "Modern Apartment in Tokyo",
-    category: "city",
-    description: "Explore Tokyo from this modern apartment.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1480796927426-f609979314bd",
-    },
-    price: 2000,
-    location: "Tokyo",
-    country: "Japan",
-  }, // 🔥 MORE SAMPLE DATA
-
-  {
-    title: "Glass Igloo Stay in Arctic Circle",
-    category: "arctic",
+    title: "Ancient Castle Stay in Europe",
+    category: "castle",
     description:
-      "Sleep under the Northern Lights in a heated glass igloo in the Arctic Circle.",
+      "Stay inside a medieval castle surrounded by history and legends.",
     image: {
       filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1519681393784-d120267933ba",
+      url: "https://images.unsplash.com/photo-1529655683826-aba9b3e77383",
     },
-    price: 4500,
-    location: "Lapland",
-    country: "Finland",
+    price: 4200,
+    location: "Bavaria",
+    country: "Germany",
   },
+  {
+    title: "French Countryside Castle",
+    category: "castle",
+    description: "Stay in a historic countryside castle.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1505843513577-22bb7d21e455",
+    },
+    price: 3800,
+    location: "Loire Valley",
+    country: "France",
+  },
+
+  /* ===== FIXED ROOM IMAGES ===== */
+
+  {
+    title: "Minimal Private Room",
+    category: "rooms",
+    description: "Clean private room for solo travelers.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1505691938895-1758d7feb511",
+    },
+    price: 500,
+    location: "Pune",
+    country: "India",
+  },
+  {
+    title: "City Budget Room Near Metro",
+    category: "rooms",
+    description:
+      "Affordable private room near metro station, ideal for solo travelers.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c",
+    },
+    price: 600,
+    location: "Delhi",
+    country: "India",
+  },
+
+  /* ===== REST UNCHANGED ===== */
 
   {
     title: "Royal Palace Stay",
@@ -239,7 +232,6 @@ const sampleListings = [
     location: "Jaipur",
     country: "India",
   },
-
   {
     title: "Luxury Pool Villa in Udaipur",
     category: "pool",
@@ -253,49 +245,6 @@ const sampleListings = [
     location: "Udaipur",
     country: "India",
   },
-
-  {
-    title: "Forest Cabin Escape",
-    category: "forest",
-    description:
-      "Disconnect from the world in this quiet wooden cabin deep in the forest.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
-    },
-    price: 950,
-    location: "Black Forest",
-    country: "Germany",
-  },
-
-  {
-    title: "Traditional Farm Stay",
-    category: "farm",
-    description:
-      "Live the village life with fresh food, open fields, and peaceful nights.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1590080877777-6be3e29fa70b",
-    },
-    price: 700,
-    location: "Punjab",
-    country: "India",
-  },
-
-  {
-    title: "City Budget Room Near Metro",
-    category: "rooms",
-    description:
-      "Affordable private room near metro station, ideal for solo travelers.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1551776235-dde6d4829808",
-    },
-    price: 600,
-    location: "Delhi",
-    country: "India",
-  },
-
   {
     title: "Hilltop Camping Experience",
     category: "camping",
@@ -309,35 +258,6 @@ const sampleListings = [
     location: "Bir Billing",
     country: "India",
   },
-
-  {
-    title: "Trending Skyline Apartment",
-    category: "trending",
-    description:
-      "One of the most booked skyline apartments with stunning night views.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267",
-    },
-    price: 2100,
-    location: "Singapore",
-    country: "Singapore",
-  },
-
-  {
-    title: "Ancient Castle Stay in Europe",
-    category: "castle",
-    description:
-      "Stay inside a medieval castle surrounded by history and legends.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1563720227542-6f46bfa4c9e0",
-    },
-    price: 4200,
-    location: "Bavaria",
-    country: "Germany",
-  },
-
   {
     title: "Beach Hut in Andaman",
     category: "beach",
@@ -349,341 +269,6 @@ const sampleListings = [
     },
     price: 1400,
     location: "Havelock Island",
-    country: "India",
-  },
-  // ===== TRENDING =====
-  {
-    title: "Trending Luxury Studio",
-    category: "trending",
-    description: "Highly booked luxury studio with skyline views.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688",
-    },
-    price: 2200,
-    location: "Dubai",
-    country: "United Arab Emirates",
-  },
-  {
-    title: "Trending Beach Condo",
-    category: "trending",
-    description: "Popular beachfront condo loved by travelers.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
-    },
-    price: 2100,
-    location: "Goa",
-    country: "India",
-  },
-  {
-    title: "Trending City Loft",
-    category: "trending",
-    description: "Most wished-for city loft this season.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1527030280862-64139fba04ca",
-    },
-    price: 1900,
-    location: "Berlin",
-    country: "Germany",
-  },
-
-  // ===== ROOMS =====
-  {
-    title: "Minimal Private Room",
-    category: "rooms",
-    description: "Clean private room for solo travelers.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1551776235-dde6d4829808",
-    },
-    price: 500,
-    location: "Pune",
-    country: "India",
-  },
-  {
-    title: "Comfort Room Near Airport",
-    category: "rooms",
-    description: "Comfortable room near international airport.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0",
-    },
-    price: 700,
-    location: "Mumbai",
-    country: "India",
-  },
-  {
-    title: "Shared Room in City Center",
-    category: "rooms",
-    description: "Budget shared room in the city center.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c",
-    },
-    price: 400,
-    location: "Bangkok",
-    country: "Thailand",
-  },
-
-  // ===== CITY =====
-  {
-    title: "Central City Apartment",
-    category: "city",
-    description: "Apartment in the heart of the city.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267",
-    },
-    price: 1800,
-    location: "Paris",
-    country: "France",
-  },
-  {
-    title: "High-Rise City View Flat",
-    category: "city",
-    description: "High-rise flat with city skyline view.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00",
-    },
-    price: 2000,
-    location: "Hong Kong",
-    country: "China",
-  },
-
-  // ===== MOUNTAIN =====
-  {
-    title: "Himalayan Mountain Cabin",
-    category: "mountain",
-    description: "Quiet cabin with Himalayan mountain views.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1549880338-65ddcdfd017b",
-    },
-    price: 1200,
-    location: "Manali",
-    country: "India",
-  },
-  {
-    title: "Alpine Wooden Chalet",
-    category: "mountain",
-    description: "Classic alpine chalet surrounded by peaks.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1502784444187-359ac186c5bb",
-    },
-    price: 2800,
-    location: "Zermatt",
-    country: "Switzerland",
-  },
-
-  // ===== CASTLE =====
-  {
-    title: "French Countryside Castle",
-    category: "castle",
-    description: "Stay in a historic countryside castle.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1563720227542-6f46bfa4c9e0",
-    },
-    price: 3800,
-    location: "Loire Valley",
-    country: "France",
-  },
-  {
-    title: "Royal Desert Fort",
-    category: "castle",
-    description: "Ancient desert fort converted into luxury stay.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da",
-    },
-    price: 3200,
-    location: "Jaisalmer",
-    country: "India",
-  },
-
-  // ===== POOL =====
-  {
-    title: "Private Pool Villa",
-    category: "pool",
-    description: "Villa with private swimming pool.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b",
-    },
-    price: 3500,
-    location: "Bali",
-    country: "Indonesia",
-  },
-  {
-    title: "Infinity Pool Retreat",
-    category: "pool",
-    description: "Luxury retreat with infinity pool.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb",
-    },
-    price: 4200,
-    location: "Phuket",
-    country: "Thailand",
-  },
-
-  // ===== CAMPING =====
-  {
-    title: "Forest Camping Site",
-    category: "camping",
-    description: "Tent camping inside dense forest.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429",
-    },
-    price: 450,
-    location: "Coorg",
-    country: "India",
-  },
-  {
-    title: "Lakeside Camping",
-    category: "camping",
-    description: "Camping by a peaceful lake.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1508873699372-7aeab60b44c6",
-    },
-    price: 550,
-    location: "Rishikesh",
-    country: "India",
-  },
-
-  // ===== FARM =====
-  {
-    title: "Organic Farm Stay",
-    category: "farm",
-    description: "Organic farm stay with fresh food.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1590080877777-6be3e29fa70b",
-    },
-    price: 650,
-    location: "Nashik",
-    country: "India",
-  },
-  {
-    title: "Countryside Farmhouse",
-    category: "farm",
-    description: "Relaxing farmhouse surrounded by fields.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
-    },
-    price: 800,
-    location: "Tuscany",
-    country: "Italy",
-  },
-
-  // ===== ARCTIC =====
-  {
-    title: "Snow Lodge Experience",
-    category: "arctic",
-    description: "Stay inside a snow lodge in Arctic winter.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1519681393784-d120267933ba",
-    },
-    price: 4800,
-    location: "Lapland",
-    country: "Finland",
-  },
-  {
-    title: "Northern Lights Cabin",
-    category: "arctic",
-    description: "Cabin perfect for watching auroras.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1482192596544-9eb780fc7f66",
-    },
-    price: 5200,
-    location: "Tromsø",
-    country: "Norway",
-  },
-
-  // ===== FOREST =====
-  {
-    title: "Rainforest Tree Cabin",
-    category: "forest",
-    description: "Tree cabin inside tropical rainforest.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
-    },
-    price: 900,
-    location: "Kerala",
-    country: "India",
-  },
-  {
-    title: "Forest Lodge Escape",
-    category: "forest",
-    description: "Wooden lodge deep inside forest.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1470165301023-58dab8118cc9",
-    },
-    price: 1100,
-    location: "Amazon",
-    country: "Brazil",
-  },
-
-  // ===== BEACH =====
-  {
-    title: "Sunset Beach Villa",
-    category: "beach",
-    description: "Villa facing golden sunset beach.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
-    },
-    price: 2300,
-    location: "Maldives",
-    country: "Maldives",
-  },
-  {
-    title: "Coastal Cottage Stay",
-    category: "beach",
-    description: "Quiet coastal cottage near sea.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2",
-    },
-    price: 1600,
-    location: "Gokarna",
-    country: "India",
-  },
-
-  // ===== HERITAGE =====
-  {
-    title: "Ancient Haveli Stay",
-    category: "heritage",
-    description: "Traditional haveli with royal interiors.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1585543805890-6051f7829f98",
-    },
-    price: 2600,
-    location: "Udaipur",
-    country: "India",
-  },
-  {
-    title: "Colonial Heritage Home",
-    category: "heritage",
-    description: "Colonial-era heritage bungalow.",
-    image: {
-      filename: "listingimage",
-      url: "https://images.unsplash.com/photo-1602088113235-229c19758e9f",
-    },
-    price: 2100,
-    location: "Pondicherry",
     country: "India",
   },
 ];

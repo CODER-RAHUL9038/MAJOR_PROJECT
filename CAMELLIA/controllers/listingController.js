@@ -32,7 +32,6 @@ module.exports.index = async (req, res) => {
   });
 };
 
-
 module.exports.renderNewForm = (req, res) => {
   res.render("listings/new.ejs");
 };
@@ -195,7 +194,7 @@ module.exports.editListing = async (req, res) => {
   }
   await listing.save();
   req.flash("success", "Listing Updated!");
-  res.redirect("/listings");
+  res.redirect(`/listings/${listing._id}`);
 };
 
 module.exports.deleteListing = async (req, res) => {

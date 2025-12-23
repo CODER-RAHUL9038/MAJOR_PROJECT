@@ -1,6 +1,5 @@
 require("dotenv").config({ path: "../.env" });
 
-
 const mongoose = require("mongoose");
 const initData = require("./data.js");
 const Listing = require("../models/listing.js");
@@ -36,6 +35,7 @@ const initDb = async () => {
         params: {
           key: process.env.MAPTILER_KEY,
           limit: 1,
+          types: "address",
         },
       }
     );

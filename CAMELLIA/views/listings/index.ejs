@@ -4,11 +4,11 @@
     display: none;
   }
 
-  .filter,
-  .reset {
-    min-width: 10px;
+  .filter{
+    min-width: 45px;
     opacity: 0.7;
     cursor: pointer;
+    
   }
 
   .filter:hover,
@@ -37,7 +37,7 @@
 <div class="container-fluid border-bottom">
   <div class="row align-items-center">
     <!-- LEFT ARROW -->
-    <div class="col-auto ">
+    <div class="col-auto  d-none d-md-block">
       <button class="btn btn-light arrow-btn" id="scrollLeft">
         <i class="fa-solid fa-chevron-left"></i>
       </button>
@@ -45,7 +45,7 @@
     <!-- Filters  -->
     <div
       id="filters"
-      class="d-flex flex-nowrap overflow-auto py-2 gap-2 gap-md-4 col col-6 col-lg-8"
+      class="d-flex flex-nowrap overflow-auto py-2 gap-2 gap-md-4 col col-9 col-lg-6"
     >
       <a
         href="/listings?category=trending"
@@ -154,7 +154,7 @@
     </div>
 
     <!-- RIGHT ARROW -->
-    <div class="col-auto">
+    <div class="col-auto d-none d-md-block">
       <button class="btn btn-light arrow-btn" id="scrollRight">
         <i class="fa-solid fa-chevron-right"></i>
       </button>
@@ -162,10 +162,10 @@
     
 
     <!-- RESET BUTTON (after arrows) -->
-    <div class="col-auto ">
+    <div class="col-auto ms-2">
       <a href="/listings" class="text-decoration-none text-dark">
         <div class="text-center reset">
-          <i class="fa-solid fa-rotate-left"></i>
+          <i class="fa-solid fa-filter"></i>
           <p class="mb-0">Reset</p>
         </div>
       </a>
