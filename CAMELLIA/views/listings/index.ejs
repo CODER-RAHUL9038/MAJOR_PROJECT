@@ -1,43 +1,9 @@
 <% layout("/layouts/boilerplate") -%>
-<style>
-  #filters::-webkit-scrollbar {
-    display: none;
-  }
-
-  .filter{
-    min-width: 45px;
-    opacity: 0.7;
-    cursor: pointer;
-    
-  }
-
-  .filter:hover,
-  .reset:hover {
-    opacity: 1;
-  }
-
-  .filter i,
-  .reset i {
-    font-size: 1rem;
-  }
-  .filter p,
-  .reset p {
-    font-size: 0.75rem;
-  }
-  .arrow-btn {
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-</style>
 
 <div class="container-fluid border-bottom">
   <div class="row align-items-center">
     <!-- LEFT ARROW -->
-    <div class="col-auto  d-none d-md-block">
+    <div class="col-auto">
       <button class="btn btn-light arrow-btn" id="scrollLeft">
         <i class="fa-solid fa-chevron-left"></i>
       </button>
@@ -45,7 +11,7 @@
     <!-- Filters  -->
     <div
       id="filters"
-      class="d-flex flex-nowrap overflow-auto py-2 gap-2 gap-md-4 col col-9 col-lg-6"
+      class="d-flex flex-nowrap overflow-auto py-2 gap-2 gap-md-4 col col-7 col-lg-6 mx-2"
     >
       <a
         href="/listings?category=trending"
@@ -154,21 +120,10 @@
     </div>
 
     <!-- RIGHT ARROW -->
-    <div class="col-auto d-none d-md-block">
+    <div class="col-auto ">
       <button class="btn btn-light arrow-btn" id="scrollRight">
         <i class="fa-solid fa-chevron-right"></i>
       </button>
-    </div>
-    
-
-    <!-- RESET BUTTON (after arrows) -->
-    <div class="col-auto ms-2">
-      <a href="/listings" class="text-decoration-none text-dark">
-        <div class="text-center reset">
-          <i class="fa-solid fa-filter"></i>
-          <p class="mb-0">Reset</p>
-        </div>
-      </a>
     </div>
   </div>
 </div>
@@ -234,14 +189,4 @@
     <% } %>
   </div>
 </div>
-
-<script>
-  const filters = document.getElementById("filters");
-  document.getElementById("scrollLeft").addEventListener("click", () => {
-    filters.scrollBy({ left: -200, top: 0, behavior: "smooth" });
-  });
-
-  document.getElementById("scrollRight").addEventListener("click", () => {
-    filters.scrollBy({ left: 200, top: 0, behavior: "smooth" });
-  });
-</script>
+<script src="/js/index.js"></script>

@@ -18,8 +18,19 @@ body {
 .nav-logo {
   height: 2.5rem;
 }
-.navbar-collapse {
-  background-color: white !important; /* semi-transparent white */
+
+@media (max-width: 767.98px) {
+  .navbar-collapse {
+    height: 12rem;
+    background-color: ghostwhite !important;
+    border-radius: 0 0 16px 16px;
+    padding: 1rem 1.25rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.navbar-collapse.collapse {
+  transition: height 0.3s ease, opacity 0.25s ease;
 }
 
 /* Footer*/
@@ -41,7 +52,7 @@ body {
 }
 .f-info {
   display: flex;
-  height: 8rem;
+  height: 10rem;
   background-color: #ebebeb;
   flex-wrap: wrap;
   justify-content: center;
@@ -51,7 +62,13 @@ body {
 .fa-copyright {
   margin-right: 0.25rem;
 }
-
+.footer-credit {
+  font-family: "Playfair Display", serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  color: #555;
+}
 /* cards */
 .listing-card {
   border: none !important;
@@ -133,4 +150,38 @@ body {
   font-size: 12px;
   padding: 4px 10px;
   border-radius: 999px;
+}
+
+/* INDEX PAGE */
+/* Desktop: hide scrollbar */
+#filters::-webkit-scrollbar {
+  display: none;
+}
+
+.filter {
+  min-width: 10px;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.filter:hover,
+.reset:hover {
+  opacity: 1;
+}
+
+.filter i,
+.reset i {
+  font-size: 1rem;
+}
+.filter p,
+.reset p {
+  font-size: 0.75rem;
+}
+.arrow-btn {
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

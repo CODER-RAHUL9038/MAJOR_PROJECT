@@ -1,8 +1,12 @@
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
-  <div class="container-fluid">
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top ">
+  <div class="container-fluid  ">
     <a class="navbar-brand" href="/listings">
       <img class="nav-logo" src="/images/shortlogo.png" alt="Camellia Logo" />
     </a>
+    <div class="navbar-nav ms-auto me-4">
+      <a class="nav-link" href="/listings">Explore</a>
+    </div>
+
     <button
       class="navbar-toggler"
       type="button"
@@ -15,9 +19,6 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link" href="/listings">Explore</a>
-      </div>
       <div class="navbar-nav ms-auto">
         <a class="nav-link" href="/listings/new">Airbnb your home</a>
         <% if (!currUser) { %>
@@ -28,6 +29,19 @@
         <% } %> <% if (currUser) { %>
         <a class="nav-link mb-3" href="/logout">Logout</a>
         <% } %>
+        <div>
+          <form class="d-flex  " role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
