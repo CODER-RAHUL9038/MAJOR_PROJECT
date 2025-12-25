@@ -3,14 +3,18 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: #ebebeb;
+  background: linear-gradient(135deg, #f4fbf8 0%, #eef7f3 45%, #e6f3ee 100%);
 }
+
 .container {
   flex: 1;
 }
 
 .navbar {
   height: 4rem;
-  background-color: white;
+
+  background: linear-gradient(135deg, #4ab083 0%, #eef7f3 45%, #2fc68d 100%);
 }
 .nav-link {
   color: #222222 !important;
@@ -22,7 +26,9 @@ body {
 @media (max-width: 767.98px) {
   .navbar-collapse {
     height: 12rem;
-    background-color: ghostwhite !important;
+
+    background: linear-gradient(135deg, #f4fbf8 0%, #eef7f3 45%, #e6f3ee 100%);
+
     border-radius: 0 0 16px 16px;
     padding: 1rem 1.25rem;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
@@ -53,7 +59,10 @@ body {
 .f-info {
   display: flex;
   height: 10rem;
-  background-color: #ebebeb;
+
+ background: linear-gradient(135deg, #4ab083 0%, #eef7f3 45%, #2fc68d 100%);
+
+  color: #1f2933; /* dark text */
   flex-wrap: wrap;
   justify-content: center;
   align-content: space-evenly;
@@ -73,6 +82,8 @@ body {
 .listing-card {
   border: none !important;
   margin-bottom: 2rem;
+  background-color: #ebebeb;
+  background: linear-gradient(135deg, #f4fbf8 0%, #eef7f3 45%, #e6f3ee 100%);
 }
 .card-img-top {
   border-radius: 1rem !important;
@@ -82,6 +93,8 @@ body {
 }
 .card-body {
   padding: 0 !important;
+  background-color: #ebebeb;
+  background: linear-gradient(135deg, #f4fbf8 0%, #eef7f3 45%, #e6f3ee 100%);
 }
 .card-text {
   font-weight: 400;
