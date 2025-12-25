@@ -120,13 +120,32 @@
     </div>
 
     <!-- RIGHT ARROW -->
-    <div class="col-auto ">
+    <div class="col-auto">
       <button class="btn btn-light arrow-btn" id="scrollRight">
         <i class="fa-solid fa-chevron-right"></i>
       </button>
     </div>
   </div>
 </div>
+
+<!-- ERROR MESSAGE FOR SEARCH  -->
+<div class="row justify-content-center">
+  <div class="col   col-10">
+    <% if (!hasResults) { %>
+<div class="alert alert-info text-center mt-4">
+  No results found <% if (search) { %> for "<strong><%= search %></strong>" <% }
+  %>
+</div>
+<% } %>
+  </div>
+</div>
+
+<!-- ERROR CLEAR FILTER -->
+<% if (!hasResults) { %>
+<div class="text-center">
+  <a href="/listings" class="btn btn-outline-secondary mt-2"> Clear filters </a>
+</div>
+<% } %>
 
 <div
   class="row justify-content-center row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1 mt-3"

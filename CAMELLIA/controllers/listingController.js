@@ -6,12 +6,24 @@ const ExpressError = require("../utils/ExpressError.js");
 
 module.exports.index = async (req, res) => {
   const perPage = 12;
+  let { search, category } = req.query;
   const page = parseInt(req.query.page) || 1;
 
-  // 1️⃣ Decide filter FIRST
+  // 1️ Decide filter FIRST
   let filter = {};
-  if (req.query.category) {
-    filter.category = req.query.category;
+  if (category) {
+    filter.category = category;
+  }
+
+  //SEARCH LOGIC
+  if (search) {
+    filter.$or = [
+      { title: { $regex: search, $options: "i" } },
+      { description: { $regex: search, $options: "i" } },
+      { category: { $regex: search, $options: "i" } },
+      { location: { $regex: search, $options: "i" } },
+      { country: { $regex: search, $options: "i" } },
+    ];
   }
 
   // 2️⃣ Fetch filtered listings with pagination
@@ -23,12 +35,15 @@ module.exports.index = async (req, res) => {
   // 3️⃣ Count filtered listings (IMPORTANT)
   const totalListings = await Listing.countDocuments(filter);
 
+  const hasResults = listings.length > 0;
   // 4️⃣ Render once
   res.render("listings/index", {
     listings,
     currentPage: page,
     totalPages: Math.ceil(totalListings / perPage),
-    category: req.query.category || null,
+    category: category || null,
+    search: search || null,
+    hasResults,
   });
 };
 

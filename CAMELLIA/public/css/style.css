@@ -23,12 +23,15 @@ body {
   height: 2.5rem;
 }
 
+.search-btn,
+.search-input {
+  border-radius: 25px !important;
+}
+
 @media (max-width: 767.98px) {
   .navbar-collapse {
     height: 12rem;
-
     background: linear-gradient(135deg, #f4fbf8 0%, #eef7f3 45%, #e6f3ee 100%);
-
     border-radius: 0 0 16px 16px;
     padding: 1rem 1.25rem;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
@@ -60,7 +63,7 @@ body {
   display: flex;
   height: 10rem;
 
- background: linear-gradient(135deg, #4ab083 0%, #eef7f3 45%, #2fc68d 100%);
+  background: linear-gradient(135deg, #4ab083 0%, #eef1f7 45%, #3f97e9 100%);
 
   color: #1f2933; /* dark text */
   flex-wrap: wrap;
