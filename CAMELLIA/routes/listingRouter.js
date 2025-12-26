@@ -22,6 +22,9 @@ router
 //New route
 router.get("/new", isLoggedIn, listingController.renderNewForm);
 
+router.get("/privacy", listingController.privacy);
+router.get("/terms", listingController.terms);
+
 router
   .route("/:id")
   .put(

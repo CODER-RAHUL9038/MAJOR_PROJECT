@@ -16,10 +16,12 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 
+
 // Routes
 const listingRouter = require("./routes/listingRouter.js");
 const reviewRouter = require("./routes/reviewRouter.js");
 const userRouter = require("./routes/userRouter.js");
+
 main()
   .then((res) => {
     console.log("✅Connected to MongoDB");
@@ -79,6 +81,7 @@ app.use((req, res, next) => {
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
+
 
 //For all request for handling page not found
 app.all(/.*/, (req, res, next) => {

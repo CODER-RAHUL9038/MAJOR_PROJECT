@@ -224,3 +224,10 @@ module.exports.deleteListing = async (req, res) => {
   req.flash("success", " Listing Deleted!");
   res.redirect("/listings");
 };
+
+module.exports.privacy = (req, res) => {
+  res.render("legal/privacy");
+};
+module.exports.terms = (req, res) => {
+  res.render("legal/terms");
+};
