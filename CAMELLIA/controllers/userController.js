@@ -21,7 +21,7 @@ module.exports.signup = async (req, res) => {
     });
   } catch (error) {
     let message = "Signup failed. Please try again.";
-    console.log(error.name);
+    
 
     if (error.name === "UserExistsError") {
       message = "This username is not available.";

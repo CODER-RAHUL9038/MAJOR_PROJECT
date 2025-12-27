@@ -6,7 +6,7 @@ const Review = require("../models/review.js");
 // new review
 module.exports.createReview = async (req, res) => {
   let { id } = req.params;
-  console.log(id);
+  
   //validating if id exists
   if (!mongoose.Types.ObjectId.isValid(id)) {
     throw new ExpressError(404, "Invalid Listing ID");

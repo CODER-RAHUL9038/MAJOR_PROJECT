@@ -1,9 +1,11 @@
-require("dotenv").config({ path: "../.env" });
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config({ path: "../.env" });
+}
 
+const dbUrl = process.env.ATLASDB_URL;
 const mongoose = require("mongoose");
 const initData = require("./data.js");
 const Listing = require("../models/listing.js");
-const MONGO_URL = "mongodb://127.0.0.1:27017/camellia";
 const axios = require("axios");
 
 main()
@@ -11,10 +13,10 @@ main()
     console.log("✅Connected to MongoDB");
   })
   .catch((err) => {
-    console.log("❌Error connecting to Db");
+    console.log("❌Error connecting to Db", err);
   });
 async function main() {
-  await mongoose.connect(MONGO_URL);
+  await mongoose.connect(dbUrl);
 }
 
 const initDb = async () => {

@@ -5,17 +5,18 @@ if (process.env.NODE_ENV !== "production") {
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const MONGO_URL = "mongodb://127.0.0.1:27017/camellia";
+const dbUrl = process.env.ATLASDB_URL;
 const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
+const MongoStore = require("connect-mongo").default;
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
-
+const port = process.env.PORT || 8080;
 
 // Routes
 const listingRouter = require("./routes/listingRouter.js");
@@ -23,14 +24,17 @@ const reviewRouter = require("./routes/reviewRouter.js");
 const userRouter = require("./routes/userRouter.js");
 
 main()
-  .then((res) => {
+  .then(() => {
     console.log("✅Connected to MongoDB");
+    app.listen(port, () => {
+      console.log(`Server running on port ${port}`);
+    });
   })
   .catch((err) => {
-    console.log("❌Error connecting to Db");
+    console.log("❌Error connecting to Db", err);
   });
 async function main() {
-  await mongoose.connect(MONGO_URL);
+  await mongoose.connect(dbUrl);
 }
 
 app.set("view engine", "ejs");
@@ -41,8 +45,22 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 
+//SESSION DATA STORED IN MONGODB ALTAS
+const store = MongoStore.create({
+  mongoUrl: dbUrl,
+  crypto: {
+    secret: process.env.SESSION_SECRET,
+  },
+  touchAfter: 24 * 3600,
+});
+
+store.on("error", () => {
+  console.log("❌ Session Store Error", error);
+});
+
 const sessionOptions = {
-  secret: "secretcode",
+  store,
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -51,10 +69,6 @@ const sessionOptions = {
     maxAge: 7 * 24 * 60 * 60 * 1000, // in milisecond
   },
 };
-
-// app.get("/", (req, res) => {
-//   res.send("Hi! i am root");
-// });
 
 //session middleware
 app.use(session(sessionOptions));
@@ -82,7 +96,6 @@ app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
 
-
 //For all request for handling page not found
 app.all(/.*/, (req, res, next) => {
   next(new ExpressError(404, "Page not Found"));
@@ -93,8 +106,4 @@ app.use((err, req, res, next) => {
   let { statusCode = 500, message = "Something went wrong!" } = err;
 
   res.status(statusCode).render("error.ejs", { err });
-});
-
-app.listen(8080, () => {
-  console.log("✅Listening on Port - 8080");
 });
