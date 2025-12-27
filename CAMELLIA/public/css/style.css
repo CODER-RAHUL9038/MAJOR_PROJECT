@@ -31,7 +31,7 @@ body {
 @media (max-width: 767.98px) {
   .navbar-collapse {
     height: 12rem;
-    background: linear-gradient(135deg, #f4fbf8 0%, #eef7f3 45%, #e6f3ee 100%);
+    background: linear-gradient(135deg, #4ab083 0%, #eef7f3 45%, #2fc68d 100%);
     border-radius: 0 0 16px 16px;
     padding: 1rem 1.25rem;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
@@ -160,7 +160,6 @@ body {
   line-height: 1.55;
   color: #374151;
 }
-
 
 /* Delete button */
 .review-card .btn {
