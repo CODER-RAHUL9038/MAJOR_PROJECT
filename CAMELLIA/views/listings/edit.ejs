@@ -46,7 +46,7 @@
           class="img-fluid"
           style="width: 250px; height: 130px; object-fit: cover"
           id="current-image"
-          src="<%= listing.image.url %>"
+          src="<%= listing.image.url + '?w=600&auto=format&fit=crop&q=60' %>"
           alt="listing-image"
           name="listing[image]"
         />
