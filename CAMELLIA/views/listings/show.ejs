@@ -44,7 +44,12 @@
         <button class="btn btn-danger">Edit</button>
       </form>
 
-      <form method="post" action="/listings/<%= listing._id %>?_method=DELETE">
+      <form
+        data-btn-text="Deleting..."
+        method="post"
+        action="/listings/<%= listing._id %>?_method=DELETE"
+        onsubmit="disableBtn(this)"
+      >
         <button class="btn btn-dark">Delete</button>
       </form>
       <% } %>
@@ -57,10 +62,12 @@
     <hr />
     <h4>Leave a Review</h4>
     <form
+      data-btn-text="Adding"
       class="mb-3 needs-validation"
       novalidate
       method="post"
       action="/listings/<%= listing._id %>/reviews"
+      onsubmit="disableBtn(this)"
     >
       <div class="my-3 row">
         <div class="col-7">
@@ -115,11 +122,12 @@
           id="comment"
           cols="30"
           rows="5"
+          placeholder="Please comment!"
         ></textarea>
         <!-- <div class="valid-feedback">looks good!</div> -->
         <div class="invalid-feedback">Please comment!</div>
       </div>
-      <button class="btn btn-dark">Submit</button>
+      <button class="btn btn-dark">Add</button>
     </form>
     <% } %> <% if (listing.reviews && listing.reviews.length > 0) { %>
     <hr />
@@ -141,7 +149,9 @@
 
           <% if (review.author._id.equals(currUser && currUser._id)) { %>
           <form
+            data-btn-text="Deleting"
             method="post"
+            onsubmit="disableBtn(this)"
             action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE"
           >
             <button class="btn btn-sm btn-dark my-2">Delete</button>
@@ -166,5 +176,15 @@
     const MAPTILER_KEY = "<%= process.env.MAPTILER_KEY %>";
   //Ignore syntax error. Since js don't understand ejs syntax
     const coords = <%- JSON.stringify(listing.geometry.coordinates) %>;
+
+
+
+  function  disableBtn(form){
+    const btn  = form.querySelector("button")
+   const text = form.dataset.btnText || "Processing...";
+
+    btn.disabled = true
+    btn.innerText = text
+  }
 </script>
 <script src="/js/map.js"></script>

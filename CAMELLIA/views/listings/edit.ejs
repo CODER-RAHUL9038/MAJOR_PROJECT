@@ -10,6 +10,7 @@
       class="needs-validation"
       novalidate
       action="/listings/<%= listing._id %>?_method=PUT"
+      onsubmit="handleSubmit(event,this)"
     >
       <div class="mb-3">
         <label for="title" class="form-label">Title</label>
@@ -128,3 +129,15 @@
     </form>
   </div>
 </div>
+
+<script>
+  function handleSubmit(e, form) {
+    if (!form.checkValidity()) {
+      return; // ❌ invalid → do nothing
+    }
+
+    const btn = form.querySelector("button");
+    btn.disabled = true;
+    btn.innerText = "Saving...";
+  }
+</script>
