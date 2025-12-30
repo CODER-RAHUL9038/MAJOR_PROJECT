@@ -74,11 +74,13 @@ const listingSchema = new Schema(
   }
 );
 
+//Post middleware to execute review deletion before listing model is created
 listingSchema.post("findOneAndDelete", async (listing) => {
   if (listing) {
     await Review.deleteMany({ _id: { $in: listing.reviews } });
   }
 });
 
+//Model
 const Listing = mongoose.model("Listing", listingSchema);
 module.exports = Listing;

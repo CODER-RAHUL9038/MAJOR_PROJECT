@@ -107,7 +107,7 @@ app.all(/.*/, (req, res, next) => {
 });
 
 // Custom error handler middleware
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   let { statusCode = 500, message = "Something went wrong!" } = err;
 
   res.status(statusCode).render("error.ejs", { err });
