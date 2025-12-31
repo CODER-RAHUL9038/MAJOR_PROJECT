@@ -1,6 +1,9 @@
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
+// App is behind a reverse proxy (Render).
+// Trust proxy headers to get correct protocol (https) for sessions & OAuth.
+app.set("trust proxy", 1);
 
 const express = require("express");
 const app = express();
