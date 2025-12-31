@@ -108,7 +108,9 @@
         </div>
       </div>
 
-      <button class="btn btn-success add-btn my-3">Add</button>
+      <button class="btn btn-success add-btn my-3" data-btn-text="Adding...">
+        Add
+      </button>
     </form>
   </div>
 </div>
@@ -120,7 +122,8 @@
     }
 
     const btn = form.querySelector("button");
+    const text = btn.dataset.btnText;
     btn.disabled = true;
-    btn.innerText = "Adding...";
+    btn.innerText = text;
   }
 </script>

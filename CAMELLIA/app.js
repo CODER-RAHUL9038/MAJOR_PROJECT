@@ -17,6 +17,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 const port = process.env.PORT || 8080;
+require("./config/passport.js");
 
 // Routes
 const listingRouter = require("./routes/listingRouter.js");

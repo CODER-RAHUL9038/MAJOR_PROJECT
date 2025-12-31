@@ -1,4 +1,4 @@
-const { cloudinary } = require("../cloudConfig.js");
+const { cloudinary } = require("../config/cloudConfig.js");
 const Listing = require("../models/listing.js");
 const mongoose = require("mongoose");
 const axios = require("axios");

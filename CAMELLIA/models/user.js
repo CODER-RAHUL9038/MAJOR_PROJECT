@@ -12,6 +12,14 @@ const userSchema = new Schema({
     lowercase: true,
     trim: true,
   },
+  // OAuth fields (safe to add)
+  googleId: {
+    type: String,
+    unique: true,
+    sparse: true, // 🔥 IMPORTANT
+  },
+
+  avatar: String,
 });
 
 // Addes username hasting and salting.

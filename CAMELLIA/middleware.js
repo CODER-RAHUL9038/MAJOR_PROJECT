@@ -21,7 +21,6 @@ module.exports.validateReview = async (req, res, next) => {
 
   if (error) {
     let errMsg = error.details.map((el) => el.message).join(",");
-    console.log(errMsg);
     throw new ExpressError(400, errMsg);
   } else {
     next();
