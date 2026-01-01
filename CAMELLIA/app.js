@@ -1,9 +1,6 @@
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
-// App is behind a reverse proxy (Render).
-// Trust proxy headers to get correct protocol (https) for sessions & OAuth.
-app.set("trust proxy", 1);
 
 const express = require("express");
 const app = express();
@@ -21,6 +18,10 @@ const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 const port = process.env.PORT || 8080;
 require("./config/passport.js");
+
+// App is behind a reverse proxy (Render).
+// Trust proxy headers to get correct protocol (https) for sessions & OAuth.
+app.set("trust proxy", 1);
 
 // Routes
 const listingRouter = require("./routes/listingRouter.js");
