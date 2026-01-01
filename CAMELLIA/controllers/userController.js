@@ -21,7 +21,6 @@ module.exports.signup = async (req, res) => {
     });
   } catch (error) {
     let message = "Signup failed. Please try again.";
-    
 
     if (error.name === "UserExistsError") {
       message = "This username is not available.";
@@ -37,7 +36,7 @@ module.exports.loginForm = (req, res) => {
   res.render("user/login.ejs");
 };
 
-module.exports.login = async (req, res) => {
+module.exports.login = (req, res) => {
   req.flash("success", "Welcome back to Camellia!");
   let redirectUrl = res.locals.redirectUrl || "/listings";
   res.redirect(redirectUrl);

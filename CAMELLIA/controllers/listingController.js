@@ -217,10 +217,19 @@ module.exports.deleteListing = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     throw new ExpressError(404, "Invalid Listing ID");
   }
-  let deletedListing = await Listing.findByIdAndDelete(id);
-  if (!deletedListing) {
+  let listing = await Listing.findById(id);
+  if (!listing) {
     throw new ExpressError(404, "Listing not found");
   }
+  if (listing.image && listing.image.filename) {
+    try {
+      await cloudinary.uploader.destroy(listing.image.filename);
+    } catch (error) {
+      console.log("Cloudinary delete failed:", err.message);
+    }
+  }
+  await listing.deleteOne();
+
   req.flash("success", " Listing Deleted!");
   res.redirect("/listings");
 };

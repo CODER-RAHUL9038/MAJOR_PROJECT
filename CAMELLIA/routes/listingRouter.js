@@ -8,6 +8,7 @@ const multer = require("multer");
 const { storage } = require("../config/cloudConfig.js");
 const upload = multer({ storage });
 
+
 //Using router.route
 router
   .route("/")
