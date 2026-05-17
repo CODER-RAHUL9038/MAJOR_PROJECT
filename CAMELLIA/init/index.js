@@ -9,7 +9,7 @@ const Listing = require("../models/listing.js");
 const axios = require("axios");
 
 main()
-  .then((res) => {
+  .then(() => {
     console.log("✅Connected to MongoDB");
   })
   .catch((err) => {
@@ -31,7 +31,7 @@ const initDb = async () => {
   for (let listing of listings) {
     const res = await axios.get(
       `https://api.maptiler.com/geocoding/${encodeURIComponent(
-        listing.location
+        listing.location,
       )}.json`,
       {
         params: {
@@ -39,7 +39,7 @@ const initDb = async () => {
           limit: 1,
           types: "address",
         },
-      }
+      },
     );
 
     const coords = res.data.features[0].geometry.coordinates;

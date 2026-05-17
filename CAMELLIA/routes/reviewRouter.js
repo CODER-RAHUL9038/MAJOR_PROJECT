@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router({ mergeParams: true });
 const wrapAsync = require("../utils/wrapAsync.js");
 const reviewController = require("../controllers/reviewController.js");
+const ExpressError = require("../utils/ExpressError.js");
 
 // Server Side validator
 const {
@@ -9,14 +10,13 @@ const {
   isLoggedIn,
   isReviewAuthor,
 } = require("../middleware.js");
-const ExpressError = require("../utils/ExpressError.js");
 
 // New review
 router.post(
   "/",
   isLoggedIn,
   validateReview,
-  wrapAsync(reviewController.createReview)
+  wrapAsync(reviewController.createReview),
 );
 
 //Delete Review Route
@@ -24,7 +24,7 @@ router.delete(
   "/:reviewId",
   isLoggedIn,
   isReviewAuthor,
-  wrapAsync(reviewController.deleteReview)
+  wrapAsync(reviewController.deleteReview),
 );
 
 module.exports = router;

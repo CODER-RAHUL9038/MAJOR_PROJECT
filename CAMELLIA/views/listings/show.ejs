@@ -139,7 +139,7 @@
       <div class="col-md-5 mb-3">
         <div class="card review-card h-100 p-2">
           <div class="card-body p-2">
-            <h5 class="card-title">@<i><%= review.author.username %></i></h5>
+            <h5 class="card-title">@<i><%= review.author ? review.author.username : "Anonymous" %></i></h5>
             <p
               class="starability-result card-text my-2"
               data-rating="<%= review.rating %>"
@@ -147,7 +147,7 @@
             <p class="card-text mb-2"><%= review.comment %></p>
           </div>
 
-          <% if (review.author._id.equals(currUser && currUser._id)) { %>
+          <% if (review.author && currUser && review.author._id.equals(currUser._id)) { %>
           <form
             data-btn-text="Deleting"
             method="post"
