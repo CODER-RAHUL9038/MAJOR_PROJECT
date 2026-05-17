@@ -1,101 +1,91 @@
-You are a senior frontend debugging engineer specializing in infinite request/render loop issues.
+You are a senior UI/UX engineer specializing in premium authentication page design.
 
-My Camellia app is now continuously sending requests after implementing the avatar/profile system.
+My Google login button UI is visually broken on the login page.
 
-CURRENT ISSUE:
-- Browser continuously sends requests
-- Network tab keeps firing requests endlessly
-- UI becomes unstable/sluggish
-- Likely infinite frontend loop
+CURRENT ISSUES:
+1. Google logo is oversized
+2. Button layout is broken/misaligned
+3. Divider line overlaps the button
+4. Icon and text are not centered properly
+5. Spacing hierarchy looks inconsistent
+6. Button proportions are broken
+7. Overall auth card lacks premium polish
+
+GOAL:
+Create a CLEAN PREMIUM Airbnb-style authentication UI.
 
 IMPORTANT:
-DO NOT redesign the app.
-DO NOT rewrite authentication.
-DO NOT rewrite frontend architecture.
-
-ONLY debug and stop the infinite request/render loop professionally.
-
-CURRENT CONTEXT:
-Recent changes include:
-- dynamic avatar rendering
-- Google profile image support
-- navbar avatar logic
-- filter/toggle scripts
-- responsive redesign
-
-LIKELY ROOT CAUSES TO CHECK:
-
-1. AVATAR IMAGE LOOP
-Check for:
-- img.onerror recursion
-- invalid fallback logic
-- broken avatar URL retry loop
-
-Example issue:
-img.onerror → sets another invalid src → infinite loop
-
-2. REPEATED FETCH CALLS
-Check:
-- fetch() inside render loops
-- recursive API calls
-- repeated polling
-- useEffect-style repeated logic patterns
-
-3. EVENT LISTENER DUPLICATION
-Check:
-- listeners attached repeatedly
-- scripts running multiple times
-- nested DOMContentLoaded handlers
-
-4. AUTO RELOAD / REDIRECT LOOP
-Check:
-- redirect recursion
-- auth redirect loops
-- repeated location.reload()
-- repeated res.redirect()
-
-5. FILTER / TOGGLE SCRIPT LOOP
-Check:
-- category filter JS
-- tax toggle logic
-- DOM mutation causing rerenders
-
-6. DEBUG NETWORK TAB
-Identify:
-- which exact request repeats continuously
-- image request?
-- route request?
-- API request?
-- auth request?
-
-7. FIX AVATAR SAFELY
-If avatar image fails:
-- fallback ONLY ONCE
-- prevent recursive image retries
-
-Safe pattern:
-- remove onerror after first fallback
-- use default placeholder safely
-
-8. PERFORMANCE FIX
-Ensure:
-- scripts initialize only once
-- no recursive rendering
-- no duplicate listeners
-
-9. OUTPUT FORMAT
-Provide:
-- exact root cause
-- exact frontend fix
-- exact avatar fix
-- exact JS corrections
-- production-safe solution
-
-10. MOST IMPORTANT
-Stop the infinite request loop WITHOUT breaking:
-- avatar system
-- filters
-- toggle
-- auth
+DO NOT break:
+- Google OAuth functionality
+- existing routes
+- form submission
+- Passport.js auth
 - responsiveness
-- existing UI
+- backend logic
+
+ONLY fix the UI/UX professionally.
+
+TASKS:
+
+1. FIX GOOGLE BUTTON
+The button should:
+- have proper height
+- align icon and text perfectly
+- keep Google logo properly sized
+- use clean flex alignment
+- maintain proper spacing
+
+2. FIX GOOGLE ICON
+- Reduce icon size
+- Prevent stretching
+- Maintain aspect ratio
+- Align vertically with text
+
+3. FIX DIVIDER SECTION
+The "OR" divider should:
+- stay centered
+- not overlap the Google button
+- maintain proper spacing above/below
+
+4. IMPROVE AUTH CARD
+Create:
+- cleaner spacing
+- modern shadows
+- premium typography
+- balanced padding
+- polished hierarchy
+
+5. RESPONSIVENESS
+Ensure:
+- login card scales correctly
+- buttons remain aligned
+- no overlap on mobile
+- touch-friendly spacing
+
+6. PREMIUM UI STYLE
+Target feel:
+- Airbnb-inspired
+- modern
+- elegant
+- minimal
+- production-grade
+
+7. CHECK FOR
+- broken flex alignment
+- incorrect image dimensions
+- fixed heights
+- overflow issues
+- line-height issues
+- justify-content problems
+
+8. OUTPUT FORMAT
+Provide:
+- exact CSS fixes
+- exact HTML structure corrections
+- flexbox alignment improvements
+- production-ready responsive solution
+
+9. MOST IMPORTANT
+Do NOT redesign the auth flow.
+
+ONLY professionally fix the Google login button UI and authentication card layout.
