@@ -39,28 +39,24 @@ h1, h2, h3, .premium-heading {
   color: var(--accent);
 }
 
-.container {
-  flex: 1;
-  padding-top: 10rem; /* Space for fixed navbar (5rem) and filters (approx 5rem) */
-}
-
+/* CLEAN STICKY STACK ARCHITECTURE */
 .navbar {
-  min-height: 5rem;
-  background-color: var(--glass-bg);
+  height: 5rem;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+  background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-soft);
-  position: fixed; /* Changed from sticky to fixed for better stability */
-  width: 100%;
-  top: 0;
-  z-index: 1100;
-  transition: var(--transition-smooth);
   display: flex;
   align-items: center;
+  transition: var(--transition-smooth);
 }
 
 .nav-logo {
-  height: 40px; /* Fixed height to prevent oversized logo */
+  height: 40px;
   width: auto;
   object-fit: contain;
   transition: var(--transition-fast);
@@ -86,8 +82,9 @@ h1, h2, h3, .premium-heading {
   display: flex;
   justify-content: center;
   width: 100%;
-  max-width: 400px;
-  pointer-events: none; /* Let clicks pass through container */
+  max-width: 380px;
+  pointer-events: none;
+  z-index: 10;
 }
 
 .search-form {
@@ -97,10 +94,10 @@ h1, h2, h3, .premium-heading {
   background: #fff;
   border: 1px solid var(--border-soft);
   border-radius: 500px;
-  padding: 8px 12px 8px 24px;
+  padding: 6px 8px 6px 20px;
   box-shadow: var(--shadow-sm);
   transition: var(--transition-smooth);
-  pointer-events: auto; /* Re-enable clicks for form */
+  pointer-events: auto;
 }
 
 .search-form:hover {
@@ -120,7 +117,7 @@ h1, h2, h3, .premium-heading {
 }
 
 .search-btn-premium {
-  background: var(--primary); /* Airbnb signature red or your primary green */
+  background: var(--primary);
   color: white;
   border: none;
   width: 32px;
@@ -142,18 +139,26 @@ h1, h2, h3, .premium-heading {
   transform: scale(1.05);
 }
 
-/* FILTERS REDESIGN */
 .filters-wrapper {
-  background-color: var(--glass-bg);
+  height: 4.5rem;
+  width: 100%;
+  position: sticky;
+  top: 5rem; /* Sticks exactly under the 5rem navbar */
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  padding: 0.75rem 0 0 0;
   border-bottom: 1px solid var(--border-soft);
-  position: sticky;
-  top: 5rem; /* Exactly below the 5rem navbar */
-  z-index: 1000;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem; /* Natural margin to push content down */
   transition: var(--transition-smooth);
-  margin-bottom: 2rem; /* Add margin to prevent overlapping the content below */
+}
+
+/* Ensure content container respects flow */
+.container {
+  flex: 1;
+  width: 100%;
 }
 
 #filters {
