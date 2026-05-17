@@ -1,24 +1,22 @@
-You are a senior responsive frontend debugging engineer.
+You are a senior responsive UI/UX engineer specializing in premium mobile-first Airbnb-style interfaces.
 
-My MOBILE listing grid layout is now severely broken after UI redesign.
+My desktop layout is now mostly polished.
 
-IMPORTANT:
-Desktop layout is working.
-ONLY fix the mobile card/grid responsiveness professionally.
+The remaining problem is MOBILE RESPONSIVENESS and MOBILE UI SCALING.
 
 CURRENT MOBILE ISSUES:
-1. Listing cards collapsed/disappeared
-2. Only price text is visible
-3. Card image containers are broken
-4. Grid sizing/layout collapsed
-5. Pagination overlaps content
-6. Card heights are incorrect
-7. Footer spacing/layout broken
-8. Bootstrap row/column behavior may be overridden
-9. Mobile widths/heights are broken
+1. Filter section height is TOO LARGE
+2. Filter bar consumes excessive vertical space
+3. Icons/text are oversized on small devices
+4. Pagination UI is too large
+5. Overall mobile UI feels zoomed and bulky
+6. Too much spacing/padding on mobile
+7. Mobile layout lacks compact hierarchy
+8. Cards/content become pushed too far down
+9. Mobile proportions feel unbalanced
 
 GOAL:
-Restore a PROFESSIONAL Airbnb-style mobile listings layout.
+Create a COMPACT PREMIUM MOBILE EXPERIENCE similar to Airbnb mobile UI.
 
 IMPORTANT:
 DO NOT break:
@@ -26,81 +24,97 @@ DO NOT break:
 - filter functionality
 - sticky header
 - EJS rendering
+- JavaScript event listeners
 - routes
 - backend logic
-- JavaScript behavior
 
-ONLY fix mobile responsive layout.
-
-LIKELY ROOT CAUSES:
-Check for:
-- fixed heights
-- height: 100%
-- min-height conflicts
-- flexbox collapse
-- grid overrides
-- Bootstrap column overrides
-- overflow hidden issues
-- incorrect image container sizing
-- absolute positioning
-- width constraints
-- mobile media query conflicts
+ONLY optimize MOBILE responsiveness and scaling professionally.
 
 TASKS:
 
-1. FIX MOBILE LISTING CARDS
-Cards should:
-- display fully
-- maintain proper image aspect ratio
-- have proper spacing
-- stack naturally vertically
-- use responsive heights
+1. COMPACT MOBILE FILTER BAR
+On small devices:
+- reduce filter bar height
+- reduce icon sizes
+- reduce text sizes
+- reduce vertical padding
+- reduce gaps between filter items
+- maintain horizontal scrolling
+- preserve touch usability
 
-2. FIX CARD IMAGES
-Ensure:
-- images display correctly
-- object-fit works properly
-- containers maintain aspect ratio
-- no collapsing
+Target:
+Slim modern Airbnb-style mobile filters.
 
-3. FIX RESPONSIVE GRID
-On mobile:
-- single-column layout
-- proper spacing between cards
-- no overflow
-- clean margins/padding
+2. FIX MOBILE FILTER ITEM SIZING
+Filter items should:
+- be compact
+- evenly aligned
+- visually balanced
+- not consume excessive height
 
-4. FIX PAGINATION
-- prevent overlap
-- proper spacing above footer
-- responsive alignment
+3. COMPACT MOBILE PAGINATION
+Pagination should:
+- become smaller on mobile
+- reduce button size
+- reduce padding/margins
+- avoid oversized circles/buttons
+- remain touch-friendly
 
-5. FIX FOOTER SPACING
-- proper mobile padding
-- no collapsed layout
-- correct spacing hierarchy
+4. REDUCE MOBILE UI SCALE
+Globally optimize:
+- typography scaling
+- spacing hierarchy
+- button sizing
+- section padding
+- card spacing
+
+5. CREATE TRUE MOBILE PROPORTIONS
+The mobile UI should feel:
+- compact
+- modern
+- premium
+- efficient
+- clean
+- breathable
+- Airbnb-inspired
+
+NOT:
+- oversized
+- bulky
+- stretched
+- desktop-scaled
 
 6. RESPONSIVE BREAKPOINTS
-Create proper behavior for:
-- mobile (<576px)
-- tablet
-- desktop
+Optimize specifically for:
+- 320px
+- 356px
+- 375px
+- 425px
 
-7. MAINTAIN PREMIUM UI
+7. CHECK FOR
+- excessive rem values
+- fixed heights
+- oversized padding
+- desktop spacing leaking into mobile
+- oversized flex gaps
+- incorrect min-heights
+
+8. MAINTAIN PREMIUM STYLE
 Keep:
-- premium card styling
+- glassmorphism
 - shadows
-- hover effects
-- modern Airbnb aesthetic
+- hover polish
+- smooth scrolling
+- premium aesthetics
 
-8. OUTPUT FORMAT
+9. OUTPUT FORMAT
 Provide:
 - exact responsive CSS fixes
-- media query fixes
-- explain what caused collapse
-- production-safe responsive solution
+- media queries
+- explain which elements were oversized
+- production-ready compact mobile refinements
 
 MOST IMPORTANT:
 Desktop layout should remain untouched.
 
-ONLY repair the mobile responsive card/grid system professionally.
+ONLY refine MOBILE sizing, scaling, spacing, and proportions professionally.

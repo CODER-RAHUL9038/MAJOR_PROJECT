@@ -545,14 +545,14 @@ h1, h2, h3, .premium-heading {
 /* RESPONSIVE BREAKPOINTS & MOBILE FIXES */
 @media (max-width: 991.98px) {
   .search-container {
-    max-width: 320px;
+    max-width: 300px;
   }
 }
 
 @media (max-width: 767.98px) {
   .navbar {
-    height: auto;
-    padding: 1rem 0;
+    height: 4rem; /* More compact header */
+    padding: 0;
   }
   
   .navbar-brand {
@@ -560,24 +560,33 @@ h1, h2, h3, .premium-heading {
   }
 
   .nav-logo {
-    height: 32px;
+    height: 30px;
   }
 
   .search-container {
-    display: none; /* Hide premium search on mobile as per design */
+    display: none;
   }
 
   .filters-wrapper {
-    height: auto;
-    padding: 0.75rem 0;
+    height: 4.2rem;
+    padding-top: 0.3rem;
   }
 
   #filters {
-    gap: 1.5rem;
+    gap: 1.2rem; /* Tighter gap */
+  }
+
+  .filter {
+    padding-bottom: 6px;
   }
 
   .filter i {
-    font-size: 1.2rem;
+    font-size: 1.1rem; /* Smaller icons */
+    margin-bottom: 0.3rem;
+  }
+
+  .filter p {
+    font-size: 0.65rem; /* Smaller text */
   }
 
   .tax-toggle-premium {
@@ -586,12 +595,12 @@ h1, h2, h3, .premium-heading {
 
   /* FIX COLLAPSED CARDS ON MOBILE */
   .listing-card {
-    margin-bottom: 2rem;
-    height: auto !important; /* Prevent collapse */
+    margin-bottom: 1.5rem;
+    height: auto !important;
   }
 
   .card-img-container {
-    aspect-ratio: 4/3; /* Better for mobile viewing */
+    aspect-ratio: 4/3;
     height: auto !important;
   }
 
@@ -600,27 +609,64 @@ h1, h2, h3, .premium-heading {
     position: relative !important;
   }
 
+  .card-title-premium {
+    font-size: 0.9rem;
+  }
+
+  .card-price-premium {
+    font-size: 0.85rem;
+  }
+
   .pagination-container {
-    margin: 2rem 0;
+    margin: 1.5rem 0;
+    gap: 0.5rem;
+  }
+
+  .btn-pagination {
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .pagination-container .btn.rounded-circle {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 0.8rem;
   }
 }
 
 @media (max-width: 575.98px) {
   .container-fluid {
-    padding-left: 1.5rem !important;
-    padding-right: 1.5rem !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
   }
 
-  .card-title-premium {
-    font-size: 1rem;
+  .navbar {
+    height: 3.5rem;
+  }
+
+  .nav-logo {
+    height: 28px;
+  }
+
+  .filters-wrapper {
+    height: 3.8rem;
   }
 
   .footer {
-    padding: 2rem 0;
+    padding: 1.5rem 0;
   }
 
   .f-info-socials a {
-    font-size: 1.25rem;
-    margin: 0 0.5rem;
+    font-size: 1.1rem;
+    margin: 0 0.4rem;
+  }
+
+  .f-info-brand {
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+  }
+
+  .footer-credit {
+    font-size: 0.75rem;
   }
 }
