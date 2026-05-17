@@ -332,9 +332,19 @@ h1, h2, h3, .premium-heading {
   margin-right: 0;
 }
 
-.f-info-socials a:hover {
-  color: var(--primary);
-  transform: translateY(-2px);
+.f-info-socials a.fb-hover:hover {
+  color: #1877F2;
+  transform: translateY(-3px);
+}
+
+.f-info-socials a.ig-hover:hover {
+  color: #E4405F;
+  transform: translateY(-3px);
+}
+
+.f-info-socials a.li-hover:hover {
+  color: #0A66C2;
+  transform: translateY(-3px);
 }
 
 .footer-credit {
@@ -433,15 +443,8 @@ h1, h2, h3, .premium-heading {
 .tax-info {
   display: none;
   font-style: normal;
-  font-size: 0.8rem;
-  font-weight: 600;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-#flexSwitchCheckDefault:checked ~ label + .tax-info,
-.tax-toggle-premium input:checked ~ .tax-info {
-    opacity: 1;
+  font-size: 0.85rem;
+  font-weight: 700;
 }
 
 .listing-link {

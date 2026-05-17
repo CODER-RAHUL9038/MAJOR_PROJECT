@@ -1,117 +1,66 @@
-You are a senior full-stack frontend engineer.
-
-I want to implement REAL dynamic tax toggle functionality for my Airbnb-style listings page.
-
-CURRENT BEHAVIOR:
-Right now when the toggle is enabled:
-- only "+18% GST" text appears
-- the actual listing price does NOT change
-
-I want COMPLETE WORKING LOGIC like Airbnb pricing toggles.
+Add my real social media profile links into the Camellia footer and social sections professionally.
 
 IMPORTANT:
 DO NOT break:
-- existing listing cards
-- EJS rendering
-- routes
-- pagination
-- filtering
+- existing footer layout
 - responsiveness
-- existing UI design
-- card structure
-- backend logic unless necessary
+- EJS rendering
+- styling
+- existing functionality
 
-STACK:
-- Node.js
-- Express
-- MongoDB
-- EJS
-- Vanilla JS
-- Bootstrap
+ONLY integrate the real links cleanly and professionally.
 
-GOAL:
-Implement a fully working "Display total before taxes" toggle.
+SOCIAL LINKS:
 
-REQUIRED BEHAVIOR:
+Facebook:
+https://www.facebook.com/profile.php?id=100014990682633
 
-1. DEFAULT STATE
-- Listing prices are shown WITHOUT GST
-Example:
-₹1000/night
+LinkedIn:
+https://www.linkedin.com/in/rahulshaw-dev/
 
-2. WHEN TOGGLE ENABLED
-- Add 18% GST dynamically
-- Update displayed price LIVE
-- Preserve original base price internally
+Instagram:
+https://www.instagram.com/rahul_the_conqueror_of_misery/
 
-Example:
-Original:
-₹1000/night
+TASKS:
 
-After toggle ON:
-₹1180/night
+1. UPDATE FOOTER SOCIAL ICONS
+- Make each icon clickable
+- Open links in new tab using:
+target="_blank"
 
-3. WHEN TOGGLE DISABLED
-- Revert back to original base price
+- Add:
+rel="noopener noreferrer"
 
-4. IMPORTANT REQUIREMENTS
-- Price calculation must work for ALL listings
-- Should update instantly without page reload
-- Toggle state should persist while browsing/pagination if possible
-- Avoid recalculating wrong values repeatedly
-- Preserve formatting and UI styling
+2. ADD HOVER EFFECTS
+Create premium hover effects:
+- smooth transitions
+- slight lift animation
+- subtle glow/shadow
+- platform-colored hover accents
 
-5. IMPLEMENTATION REQUIREMENTS
-Use:
-- data attributes OR
-- hidden original price values
+3. KEEP PREMIUM UI
+Maintain:
+- modern Airbnb-inspired design
+- clean spacing
+- elegant alignment
+- responsive layout
 
-DO NOT:
-- parse already modified prices repeatedly
-- stack tax multiple times
-- hardcode values manually
+4. MOBILE RESPONSIVENESS
+Ensure:
+- icons remain properly aligned
+- touch-friendly spacing
+- no overflow issues
 
-6. UI REQUIREMENTS
-When toggle ON:
-- smoothly animate price change
-- optionally show:
-  "incl. GST"
+5. ACCESSIBILITY
+Add:
+- aria-labels
+- proper semantic anchor tags
 
-When OFF:
-- return to clean base price display
-
-7. GST LOGIC
-Tax rate:
-18%
-
-Formula:
-finalPrice = basePrice + (basePrice * 0.18)
-
-OR:
-finalPrice = basePrice * 1.18
-
-Round properly for INR display.
-
-8. RESPONSIVENESS
-Ensure functionality works across:
-- desktop
-- tablet
-- mobile
-
-9. OUTPUT FORMAT
+6. OUTPUT FORMAT
 Provide:
-- exact EJS modifications
-- exact HTML/data-attribute setup
-- exact JavaScript implementation
-- exact CSS improvements if needed
-- production-ready clean solution
+- exact HTML/EJS code
+- exact CSS refinements
+- production-ready implementation
 
-10. MOST IMPORTANT
-The original listing price should remain the SOURCE OF TRUTH.
-
-Do NOT calculate tax on already-taxed prices.
-
-The toggle should always:
-BASE PRICE ↔ GST INCLUDED PRICE
-
-cleanly and accurately.
+MOST IMPORTANT:
+Keep the footer elegant, minimal, and premium while integrating the real social links professionally.

@@ -18,22 +18,26 @@ if (scrollRight) {
 const taxSwitch = document.getElementById("flexSwitchCheckDefault");
 if (taxSwitch) {
   taxSwitch.addEventListener("change", () => {
-    let taxInfo = document.getElementsByClassName("tax-info");
-    let priceValues = document.getElementsByClassName("price-value");
-
-    for (let i = 0; i < priceValues.length; i++) {
-      let basePrice = parseFloat(priceValues[i].getAttribute("data-base-price"));
+    const cards = document.querySelectorAll(".listing-card");
+    
+    cards.forEach(card => {
+      const priceElement = card.querySelector(".price-value");
+      const taxInfo = card.querySelector(".tax-info");
       
-      if (taxSwitch.checked) {
-        // Show price with 18% GST
-        let totalPrice = basePrice * 1.18;
-        priceValues[i].innerText = Math.round(totalPrice).toLocaleString("en-IN");
-        if (taxInfo[i]) taxInfo[i].style.display = "inline";
-      } else {
-        // Restore base price
-        priceValues[i].innerText = basePrice.toLocaleString("en-IN");
-        if (taxInfo[i]) taxInfo[i].style.display = "none";
+      if (priceElement && taxInfo) {
+        const basePrice = parseFloat(priceElement.getAttribute("data-base-price"));
+        
+        if (taxSwitch.checked) {
+          // Show price with 18% GST
+          const totalPrice = basePrice * 1.18;
+          priceElement.innerText = Math.round(totalPrice).toLocaleString("en-IN");
+          taxInfo.style.display = "inline";
+        } else {
+          // Restore base price
+          priceElement.innerText = basePrice.toLocaleString("en-IN");
+          taxInfo.style.display = "none";
+        }
       }
-    }
+    });
   });
 }
