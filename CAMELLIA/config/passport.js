@@ -11,12 +11,18 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
+        console.log("--- GOOGLE PROFILE DEBUG ---");
+        console.log("Profile ID:", profile.id);
+        console.log("Photos:", JSON.stringify(profile.photos));
+        
         let user = await User.findOne({ googleId: profile.id });
 
-        if (!user) {
-          // Extract profile image if available
-          let profilePic = profile.photos && profile.photos.length > 0 ? profile.photos[0].value : undefined;
+        // Extract profile image URL
+        let profilePic = profile.photos && profile.photos.length > 0 
+          ? profile.photos[0].value.replace("s96-c", "s400-c") // Get higher res image
+          : "https://res.cloudinary.com/dmue96vxb/image/upload/v1703612502/default_avatar_p3f2zv.png";
           
+        if (!user) {
           user = new User({
             googleId: profile.id,
             email: profile.emails[0].value,
@@ -28,16 +34,21 @@ passport.use(
             }
           });
           await user.save();
+          console.log("New User Created with Avatar:", profilePic);
         } else {
-          // OPTIONAL: Update avatar if it changed on Google
-          if (profile.photos && profile.photos.length > 0 && user.avatar.url !== profile.photos[0].value) {
-            user.avatar.url = profile.photos[0].value;
-            await user.save();
-          }
+          // Force update the avatar URL to ensure it's correct
+          user.avatar = {
+            url: profilePic,
+            filename: "google_avatar"
+          };
+          user.authProvider = "google"; // Ensure provider is set
+          await user.save();
+          console.log("Existing User Updated with Avatar:", profilePic);
         }
 
         return done(null, user);
       } catch (err) {
+        console.error("Google Auth Error:", err);
         return done(err, null);
       }
     }

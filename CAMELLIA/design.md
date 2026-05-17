@@ -1,137 +1,131 @@
-You are a senior full-stack authentication and profile-system engineer.
+You partially implemented the avatar system correctly, but the avatar image is STILL not rendering in the navbar.
 
-I want to implement REAL dynamic user profile avatar support in my Airbnb-style Camellia project.
-
-CURRENT STACK:
-- Node.js
-- Express
-- MongoDB
-- EJS
-- Passport.js
-- express-session
-- Google OAuth
-- Local Authentication (email/password)
-- Session-based auth
-
-CURRENT SITUATION:
-- Google OAuth login already works
-- User sessions work
-- Current user is available in EJS
-- But the UI still shows a static/default avatar icon
-- Google profile image is NOT being used yet
-
-GOAL:
-When a user logs in using Google OAuth:
-- automatically use their Google profile picture everywhere in the UI
-
-Later:
-I will implement full profile creation/editing for both:
-- Google-auth users
-- Local-auth users
-
-So the architecture should be scalable and future-proof.
+CURRENT ISSUE:
+The <img> element appears broken and only shows partial alt text ("Us..."), meaning:
+- the image src is invalid OR undefined
+- OR the avatar object structure is inconsistent
+- OR EJS is resolving the wrong property path
 
 IMPORTANT:
-DO NOT break:
-- existing authentication
-- sessions
-- Passport.js flow
-- Google OAuth
-- local auth
-- EJS rendering
-- existing navbar/profile dropdown
+DO NOT redesign the system again.
 
-ONLY implement profile avatar support professionally.
+We now need PURE DEBUGGING and FIXING.
 
-REQUIRED FEATURES:
+CURRENT CONTEXT:
+- Google OAuth works
+- Session auth works
+- User exists
+- Avatar data is supposedly stored
+- Navbar is rendering an <img>
+- But the image URL is broken/undefined
 
-1. GOOGLE PROFILE IMAGE SUPPORT
-When user logs in with Google:
-- fetch Google avatar/profile image
-- save it properly in DB
-- display it dynamically in navbar/profile sections
+LIKELY ROOT CAUSES TO CHECK:
 
-Example:
-Instead of static icon:
-show real Google avatar image
+1. DATABASE STRUCTURE MISMATCH
+Some users may still have:
+avatar: "string-url"
 
-2. DATABASE STRUCTURE
-Implement scalable user schema structure:
+while newer users have:
+avatar: {
+  url: "...",
+  filename: "..."
+}
 
-Possible fields:
-- profileImage
-- authProvider
-- googleId
-- avatarType
-- etc.
+2. EJS PATH ISSUE
+Possible issue:
+currUser.avatar.url
 
-Architecture must support:
-- future custom uploaded avatars
-- local auth users later
-- profile editing later
+when actual value may be:
+currUser.avatar
+OR
+currUser.profileImage
+OR undefined
 
-3. LOCAL AUTH FALLBACK
-For users using email/password:
-- if no profile image exists
-- show elegant default avatar placeholder
+3. GOOGLE PROFILE IMAGE ISSUE
+Google image may not actually be saved in DB.
 
-4. EJS INTEGRATION
-Update navbar/profile UI:
-- dynamically render user avatar
-- fallback safely if image missing
-- keep premium modern UI
+4. SERIALIZATION ISSUE
+Passport session serialization may not include updated avatar field.
 
-5. SESSION INTEGRATION
-Ensure:
-- req.user contains avatar info
-- currentUser in EJS works properly
-- avatar persists across pages
+5. CURRENT USER MIDDLEWARE ISSUE
+res.locals.currUser may not contain fresh avatar data.
 
-6. GOOGLE STRATEGY UPDATE
+TASKS:
+
+1. DEBUG EXACT DATA STRUCTURE
+FIRST:
+Add temporary console logs to inspect:
+
+- req.user
+- res.locals.currUser
+- avatar field structure
+
+Check:
+Is avatar:
+- string?
+- object?
+- undefined?
+
+2. FIX EJS RENDERING SAFELY
+Create ROBUST fallback logic:
+
+Handle ALL cases safely:
+- object avatar
+- string avatar
+- missing avatar
+- broken avatar
+
+Example logic:
+- if avatar.url exists → use it
+- else if avatar is string → use it
+- else → use default fallback avatar
+
+3. VERIFY GOOGLE STRATEGY
+Ensure Google strategy actually saves:
+profile.photos[0].value
+
+into MongoDB correctly.
+
+4. VERIFY SESSION SERIALIZATION
+Ensure latest avatar data exists after login:
+- serializeUser
+- deserializeUser
+
+5. VERIFY MIDDLEWARE
+Check:
+res.locals.currUser = req.user
+
+Ensure avatar data survives correctly.
+
+6. TEST WITH EXISTING USERS
+Handle old DB records safely.
+
 If needed:
-- extract profile image from Google OAuth response
-- save it in MongoDB during login/signup
+auto-migrate old avatar strings into object format.
 
-7. SECURITY + CLEAN CODE
-- sanitize image URLs
-- avoid broken images
-- handle missing avatar safely
-- production-ready implementation
+7. IMAGE URL VALIDATION
+Check:
+- URL is not undefined
+- URL is not null
+- URL is accessible
+- No broken Google image URL
 
-8. FUTURE-PROOF ARCHITECTURE
-VERY IMPORTANT:
-The structure should later support:
-- custom uploaded profile pictures
-- profile edit page
-- bio/about section
-- user dashboard
-- profile settings
-- both Google + local users
+8. NAVBAR FIX
+Ensure:
+<img src="VALID_URL">
 
-DO NOT create temporary hacky logic.
+actually renders properly.
 
-Create proper scalable architecture.
-
-9. UI REQUIREMENTS
-Avatar should:
-- be circular
-- responsive
-- premium modern style
-- properly aligned in navbar
-- elegant fallback state
-
-10. OUTPUT FORMAT
+9. OUTPUT FORMAT
 Provide:
-- exact MongoDB schema updates
-- exact Passport Google strategy updates
-- exact EJS updates
-- exact middleware/session updates
-- exact CSS styling
-- production-ready implementation
+- exact debug steps
+- exact console logs to add
+- exact EJS fix
+- exact schema fix if needed
+- exact Passport/session fix
+- production-ready debugging solution
 
-11. MOST IMPORTANT
-Current requirement:
-Google-auth users should immediately show their REAL Google profile image dynamically throughout the app.
+10. MOST IMPORTANT
+Do NOT create another architecture redesign.
 
-Future requirement:
-Architecture should seamlessly support full profile systems later.
+ONLY debug why the image URL is not rendering and fix the existing system properly.

@@ -1,0 +1,30 @@
+          <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown">
+              <div class="user-avatar-container">
+                <% 
+                  // PROFESSIONAL ROBUST AVATAR LOGIC
+                  const defaultAvatar = "https://res.cloudinary.com/dmue96vxb/image/upload/v1703612502/default_avatar_p3f2zv.png";
+                  let finalUrl = defaultAvatar;
+                  
+                  if (currUser && currUser.avatar) {
+                    if (typeof currUser.avatar === 'string' && currUser.avatar.trim() !== "") {
+                      finalUrl = currUser.avatar;
+                    } else if (typeof currUser.avatar === 'object' && currUser.avatar.url && currUser.avatar.url.trim() !== "") {
+                      finalUrl = currUser.avatar.url;
+                    }
+                  }
+                %>
+                <img src="<%= finalUrl %>" 
+                     alt="User" 
+                     class="user-nav-avatar" 
+                     onerror="this.src='https://res.cloudinary.com/dmue96vxb/image/upload/v1703612502/default_avatar_p3f2zv.png';">
+              </div>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2 p-2 rounded-4">
+              <li class="px-3 py-2 border-bottom mb-2">
+                <span class="d-block fw-bold small text-truncate" style="max-width: 150px;"><%= currUser.username %></span>
+                <span class="d-block text-secondary smaller text-truncate" style="max-width: 150px; font-size: 0.75rem;"><%= currUser.email %></span>
+              </li>
+              <li><a class="dropdown-item rounded-3" href="/logout">Logout</a></li>
+            </ul>
+          </div>

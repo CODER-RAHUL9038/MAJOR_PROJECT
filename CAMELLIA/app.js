@@ -89,6 +89,15 @@ passport.deserializeUser(User.deserializeUser());
 
 // middleware to flash message
 app.use((req, res, next) => {
+  // DEBUG LOGS - REMOVE LATER
+  if (req.user) {
+    console.log("--- USER DEBUG ---");
+    console.log("Username:", req.user.username);
+    console.log("Avatar type:", typeof req.user.avatar);
+    console.log("Avatar value:", JSON.stringify(req.user.avatar));
+    console.log("------------------");
+  }
+  
   // means req.local.message
   res.locals.success = req.flash("success"); // res.locals.success make success msg available to all ejs
   res.locals.error = req.flash("error");

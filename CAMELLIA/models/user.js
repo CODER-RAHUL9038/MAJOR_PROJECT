@@ -17,12 +17,11 @@ const userSchema = new Schema({
   avatar: {
     url: {
       type: String,
-      default: "https://res.cloudinary.com/dmue96vxb/image/upload/v1703612502/default_avatar_p3f2zv.png" // Professional default placeholder
+      default: "https://res.cloudinary.com/dmue96vxb/image/upload/v1703612502/default_avatar_p3f2zv.png"
     },
     filename: String,
   },
   
-  // Future-proofing for Profile System
   bio: {
     type: String,
     maxlength: 250,
@@ -33,7 +32,6 @@ const userSchema = new Schema({
     default: "local"
   },
 
-  // OAuth fields
   googleId: {
     type: String,
     unique: true,
@@ -41,7 +39,22 @@ const userSchema = new Schema({
   },
 }, { timestamps: true });
 
-// Adds username, hashing, and salting
+// SAFE DATA HANDLING: Ensure avatar always returns an object with a url
+userSchema.set('toObject', { virtuals: true });
+userSchema.set('toJSON', { virtuals: true });
+
+// Pre-save middleware to handle old data format if any
+userSchema.pre('save', function(next) {
+  if (typeof this.avatar === 'string') {
+    const oldAvatar = this.avatar;
+    this.avatar = {
+      url: oldAvatar || "https://res.cloudinary.com/dmue96vxb/image/upload/v1703612502/default_avatar_p3f2zv.png",
+      filename: "converted_avatar"
+    };
+  }
+  next();
+});
+
 userSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model("User", userSchema);
