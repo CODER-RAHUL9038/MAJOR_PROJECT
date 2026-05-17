@@ -1,91 +1,98 @@
-You are a senior UI/UX engineer specializing in premium authentication page design.
+You are a senior EJS + Express frontend debugging engineer.
 
-My Google login button UI is visually broken on the login page.
+My Google OAuth avatar system is now saving correctly in MongoDB.
 
-CURRENT ISSUES:
-1. Google logo is oversized
-2. Button layout is broken/misaligned
-3. Divider line overlaps the button
-4. Icon and text are not centered properly
-5. Spacing hierarchy looks inconsistent
-6. Button proportions are broken
-7. Overall auth card lacks premium polish
+Confirmed working:
+- Google OAuth login works
+- Avatar URL is stored correctly
+- MongoDB save succeeds
+- Session auth works
 
-GOAL:
-Create a CLEAN PREMIUM Airbnb-style authentication UI.
+BUT the avatar image is still broken in the navbar.
+
+CURRENT SYMPTOM:
+The avatar circle shows broken image text like:
+"Pr..."
+
+This means the browser is likely receiving:
+src="[object Object]"
+
+instead of the actual image URL.
 
 IMPORTANT:
-DO NOT break:
-- Google OAuth functionality
-- existing routes
-- form submission
-- Passport.js auth
-- responsiveness
-- backend logic
+DO NOT redesign the auth system.
+DO NOT rewrite Passport.js.
+DO NOT change backend auth logic unnecessarily.
 
-ONLY fix the UI/UX professionally.
+ONLY fix the frontend avatar rendering professionally.
+
+LIKELY ROOT CAUSE:
+The EJS template is rendering:
+currUser.avatar
+
+instead of:
+currUser.avatar.url
+
+because avatar is now an OBJECT.
 
 TASKS:
 
-1. FIX GOOGLE BUTTON
-The button should:
-- have proper height
-- align icon and text perfectly
-- keep Google logo properly sized
-- use clean flex alignment
-- maintain proper spacing
+1. DEBUG EJS NAVBAR
+Inspect:
+views/includes/navbar.ejs
 
-2. FIX GOOGLE ICON
-- Reduce icon size
-- Prevent stretching
-- Maintain aspect ratio
-- Align vertically with text
+Find all avatar rendering code.
 
-3. FIX DIVIDER SECTION
-The "OR" divider should:
-- stay centered
-- not overlap the Google button
-- maintain proper spacing above/below
+2. FIX IMAGE SRC
+Ensure image uses:
+currUser.avatar.url
 
-4. IMPROVE AUTH CARD
-Create:
-- cleaner spacing
-- modern shadows
-- premium typography
-- balanced padding
-- polished hierarchy
+NOT:
+currUser.avatar
 
-5. RESPONSIVENESS
-Ensure:
-- login card scales correctly
-- buttons remain aligned
-- no overlap on mobile
-- touch-friendly spacing
+3. HANDLE BOTH OLD + NEW FORMATS
+Support:
+- old string avatar
+- new avatar object
+- missing avatar
 
-6. PREMIUM UI STYLE
-Target feel:
-- Airbnb-inspired
-- modern
-- elegant
-- minimal
-- production-grade
+4. CREATE SAFE AVATAR VARIABLE
+Create robust EJS logic like:
 
-7. CHECK FOR
-- broken flex alignment
-- incorrect image dimensions
-- fixed heights
-- overflow issues
-- line-height issues
-- justify-content problems
+- if avatar is object → use avatar.url
+- if avatar is string → use avatar
+- else use fallback placeholder
+
+5. VERIFY FINAL IMG TAG
+Ensure final HTML becomes:
+
+<img src="ACTUAL_IMAGE_URL">
+
+and NEVER:
+- undefined
+- [object Object]
+- empty string
+
+6. ADD FALLBACK IMAGE
+If avatar missing:
+use professional placeholder avatar.
+
+7. PREVENT IMAGE ERROR LOOP
+If using onerror fallback:
+prevent infinite recursion.
 
 8. OUTPUT FORMAT
 Provide:
-- exact CSS fixes
-- exact HTML structure corrections
-- flexbox alignment improvements
-- production-ready responsive solution
+- exact EJS fix
+- exact avatar variable logic
+- corrected img tag
+- production-safe implementation
 
 9. MOST IMPORTANT
-Do NOT redesign the auth flow.
+ONLY fix avatar rendering.
 
-ONLY professionally fix the Google login button UI and authentication card layout.
+Do NOT redesign:
+- auth
+- navbar
+- dropdown
+- session system

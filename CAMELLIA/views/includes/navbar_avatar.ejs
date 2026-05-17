@@ -2,17 +2,20 @@
             <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown">
               <div class="user-avatar-container">
                 <% 
-                  // ULTRA-ROBUST AVATAR RESOLUTION
+                  // FINAL POLISHED AVATAR RESOLUTION
                   const fallback = "https://res.cloudinary.com/dmue96vxb/image/upload/v1703612502/default_avatar_p3f2zv.png";
                   let src = fallback;
                   
-                  if (currUser) {
-                    if (currUser.avatar) {
-                      if (typeof currUser.avatar === 'string' && currUser.avatar.length > 5) {
-                        src = currUser.avatar;
-                      } else if (currUser.avatar.url && typeof currUser.avatar.url === 'string' && currUser.avatar.url.length > 5) {
-                        src = currUser.avatar.url;
-                      }
+                  if (currUser && currUser.avatar) {
+                    const avatar = currUser.avatar;
+                    if (typeof avatar === 'string' && avatar.includes('http')) {
+                      src = avatar;
+                    } else if (typeof avatar === 'object') {
+                      // Check if it's the new structured object
+                      if (avatar.url && typeof avatar.url === 'string' && avatar.url.includes('http')) {
+                        src = avatar.url;
+                      } 
+                      // Fallback for cases where object exists but url is missing or empty
                     }
                   }
                 %>
