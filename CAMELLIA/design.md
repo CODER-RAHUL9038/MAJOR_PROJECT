@@ -1,109 +1,137 @@
-You are a senior full-stack frontend engineer.
+You are a senior full-stack authentication and profile-system engineer.
 
-I want to add a FULLY WORKING "Clear Filters" feature to my Airbnb-style Camellia listings page.
+I want to implement REAL dynamic user profile avatar support in my Airbnb-style Camellia project.
+
+CURRENT STACK:
+- Node.js
+- Express
+- MongoDB
+- EJS
+- Passport.js
+- express-session
+- Google OAuth
+- Local Authentication (email/password)
+- Session-based auth
+
+CURRENT SITUATION:
+- Google OAuth login already works
+- User sessions work
+- Current user is available in EJS
+- But the UI still shows a static/default avatar icon
+- Google profile image is NOT being used yet
+
+GOAL:
+When a user logs in using Google OAuth:
+- automatically use their Google profile picture everywhere in the UI
+
+Later:
+I will implement full profile creation/editing for both:
+- Google-auth users
+- Local-auth users
+
+So the architecture should be scalable and future-proof.
 
 IMPORTANT:
 DO NOT break:
-- existing filters
-- category filtering
-- search functionality
-- pagination
-- toggle functionality
+- existing authentication
+- sessions
+- Passport.js flow
+- Google OAuth
+- local auth
 - EJS rendering
-- routes
-- responsive design
-- sticky header
-- backend logic
+- existing navbar/profile dropdown
 
-ONLY implement a professional clear/reset filters system.
+ONLY implement profile avatar support professionally.
 
-CURRENT FEATURES:
-- Category filters already work
-- Query parameters are used
-- Listings filter dynamically
-- Search exists
-- Tax toggle exists
+REQUIRED FEATURES:
 
-GOAL:
-Add a professional Airbnb-style "Clear Filters" button that COMPLETELY resets the page state.
+1. GOOGLE PROFILE IMAGE SUPPORT
+When user logs in with Google:
+- fetch Google avatar/profile image
+- save it properly in DB
+- display it dynamically in navbar/profile sections
 
-REQUIRED BEHAVIOR:
-
-1. CLEAR FILTER BUTTON
-Add:
-- modern "Clear Filters" button
-OR
-- subtle reset icon/button
-
-Placement:
-- near filters/search area
-- visually integrated into filter bar
-
-2. WHEN CLICKED
-The button should:
-- remove active category filter
-- clear search input
-- reset tax toggle
-- remove query params
-- restore ALL listings
-- reset pagination if needed
-
-3. URL CLEANUP
 Example:
+Instead of static icon:
+show real Google avatar image
 
-Before:
-/listings?category=beach&search=goa
+2. DATABASE STRUCTURE
+Implement scalable user schema structure:
 
-After clear:
-/listings
+Possible fields:
+- profileImage
+- authProvider
+- googleId
+- avatarType
+- etc.
 
-4. ACTIVE STATE RESET
-- remove active filter highlighting
-- restore default UI state
-- reset toggle visuals
+Architecture must support:
+- future custom uploaded avatars
+- local auth users later
+- profile editing later
 
-5. UI REQUIREMENTS
-Design should feel:
-- modern
-- minimal
-- premium
-- Airbnb-inspired
+3. LOCAL AUTH FALLBACK
+For users using email/password:
+- if no profile image exists
+- show elegant default avatar placeholder
 
-Add:
-- hover animation
-- subtle transitions
-- elegant icon if needed
+4. EJS INTEGRATION
+Update navbar/profile UI:
+- dynamically render user avatar
+- fallback safely if image missing
+- keep premium modern UI
 
-6. RESPONSIVENESS
+5. SESSION INTEGRATION
 Ensure:
-- works on mobile
-- touch friendly
-- no layout breaking
+- req.user contains avatar info
+- currentUser in EJS works properly
+- avatar persists across pages
 
-7. IMPLEMENTATION REQUIREMENTS
-Use:
-- clean query param handling
-- proper DOM reset logic
-- safe URL manipulation
+6. GOOGLE STRATEGY UPDATE
+If needed:
+- extract profile image from Google OAuth response
+- save it in MongoDB during login/signup
 
-DO NOT:
-- reload unnecessarily
-- break existing event listeners
-- hardcode categories
+7. SECURITY + CLEAN CODE
+- sanitize image URLs
+- avoid broken images
+- handle missing avatar safely
+- production-ready implementation
 
-8. OPTIONAL ENHANCEMENT
-Show:
-"Filters Applied"
+8. FUTURE-PROOF ARCHITECTURE
+VERY IMPORTANT:
+The structure should later support:
+- custom uploaded profile pictures
+- profile edit page
+- bio/about section
+- user dashboard
+- profile settings
+- both Google + local users
 
-when filters are active,
-and hide it when cleared.
+DO NOT create temporary hacky logic.
 
-9. OUTPUT FORMAT
+Create proper scalable architecture.
+
+9. UI REQUIREMENTS
+Avatar should:
+- be circular
+- responsive
+- premium modern style
+- properly aligned in navbar
+- elegant fallback state
+
+10. OUTPUT FORMAT
 Provide:
-- exact EJS/HTML additions
-- exact JavaScript logic
+- exact MongoDB schema updates
+- exact Passport Google strategy updates
+- exact EJS updates
+- exact middleware/session updates
 - exact CSS styling
 - production-ready implementation
 
-10. MOST IMPORTANT
-The "Clear Filters" button must FULLY reset the page state cleanly and reliably like a professional booking platform.
+11. MOST IMPORTANT
+Current requirement:
+Google-auth users should immediately show their REAL Google profile image dynamically throughout the app.
+
+Future requirement:
+Architecture should seamlessly support full profile systems later.

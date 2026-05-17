@@ -10,18 +10,36 @@ passport.use(
       callbackURL: "/auth/google/callback",
     },
     async (accessToken, refreshToken, profile, done) => {
-      let user = await User.findOne({ googleId: profile.id });
+      try {
+        let user = await User.findOne({ googleId: profile.id });
 
-      if (!user) {
-        user = new User({
-          googleId: profile.id,
-          email: profile.emails[0].value,
-          username: profile.displayName,
-        });
-        await user.save();
+        if (!user) {
+          // Extract profile image if available
+          let profilePic = profile.photos && profile.photos.length > 0 ? profile.photos[0].value : undefined;
+          
+          user = new User({
+            googleId: profile.id,
+            email: profile.emails[0].value,
+            username: profile.displayName,
+            authProvider: "google",
+            avatar: {
+              url: profilePic,
+              filename: "google_avatar"
+            }
+          });
+          await user.save();
+        } else {
+          // OPTIONAL: Update avatar if it changed on Google
+          if (profile.photos && profile.photos.length > 0 && user.avatar.url !== profile.photos[0].value) {
+            user.avatar.url = profile.photos[0].value;
+            await user.save();
+          }
+        }
+
+        return done(null, user);
+      } catch (err) {
+        return done(err, null);
       }
-
-      return done(null, user);
     }
   )
 );
