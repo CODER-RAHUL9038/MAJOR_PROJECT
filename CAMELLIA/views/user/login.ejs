@@ -1,49 +1,56 @@
 <% layout("/layouts/boilerplate") -%>
-<br />
 
-<div class="row justify-content-center">
-  <div class="col-9 col-md-6">
-    <h3>Log In to Camellia</h3>
-    <br />
-    <form method="post" action="/login" novalidate class="needs-validation">
-      <div class="my-3">
-        <label for="username" class="form-label">Username</label>
-        <input
-          class="form-control"
-          type="text"
-          name="username"
-          required
-          id="username"
-        />
+<div class="row justify-content-center mt-5">
+  <div class="col-12 col-md-6 col-lg-5">
+    <div class="card shadow-lg border-0 p-4 rounded-4">
+      <h2 class="premium-heading text-center mb-4">Welcome Back</h2>
+      
+      <form method="post" action="/login" novalidate class="needs-validation">
+        <div class="mb-3">
+          <label for="username" class="form-label fw-bold">Username</label>
+          <input
+            class="form-control rounded-pill px-3 py-2 border-secondary-subtle shadow-sm"
+            type="text"
+            name="username"
+            required
+            id="username"
+            placeholder="Enter your username"
+          />
+          <div class="invalid-feedback">Please enter your username!</div>
+        </div>
 
-        <div class="invalid-feedback">Enter Username!</div>
+        <div class="mb-4">
+          <label for="password" class="form-label fw-bold">Password</label>
+          <input
+            class="form-control rounded-pill px-3 py-2 border-secondary-subtle shadow-sm"
+            type="password"
+            name="password"
+            required
+            id="password"
+            placeholder="Enter your password"
+          />
+          <div class="invalid-feedback">Please enter your password!</div>
+        </div>
+        
+        <button class="btn btn-dark w-100 py-2 rounded-pill fw-bold mb-3 shadow-sm">Login</button>
+      </form>
+
+      <div class="text-center my-3 text-muted small position-relative">
+        <hr>
+        <span class="bg-white px-3 position-absolute top-50 start-50 translate-middle">OR</span>
       </div>
 
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input
-          class="form-control"
-          type="password"
-          name="password"
-          required
-          id="password"
+      <a href="/auth/google" class="google-login-btn rounded-pill border-secondary-subtle shadow-sm">
+        <img
+          src="https://developers.google.com/identity/images/g-logo.png"
+          alt="Google logo"
         />
+        <span>Continue with Google</span>
+      </a>
 
-        <div class="invalid-feedback">Enter Password!</div>
-      </div>
-      <button class="btn btn-success mt-3 w-100">Login</button>
-    </form>
-
-    <!-- DIVIDER -->
-    <div class="text-center my-3 text-muted">OR</div>
-
-    <!-- GOOGLE  BUTTON -->
-    <a href="/auth/google" class="google-login-btn mb-3">
-      <img
-        src="https://developers.google.com/identity/images/g-logo.png"
-        alt="Google logo"
-      />
-      <span>Continue with Google</span>
-    </a>
+      <p class="text-center mt-4 mb-0 text-secondary">
+        Don't have an account? <a href="/SignUp" class="text-primary fw-bold text-decoration-none">Sign up</a>
+      </p>
+    </div>
   </div>
 </div>

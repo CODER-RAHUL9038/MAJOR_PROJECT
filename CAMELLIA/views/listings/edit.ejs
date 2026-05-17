@@ -1,146 +1,156 @@
 <% layout("/layouts/boilerplate") -%>
 
-<br />
-<div class="row justify-content-center">
-  <div class="col-8">
-    <h3>Edit Listing</h3>
-    <form
-      enctype="multipart/form-data"
-      method="post"
-      class="needs-validation"
-      novalidate
-      action="/listings/<%= listing._id %>?_method=PUT"
-      onsubmit="handleSubmit(event,this)"
-    >
-      <div class="mb-3">
-        <label for="title" class="form-label">Title</label>
-        <input
-          class="form-control"
-          required
-          type="text"
-          name="listing[title]"
-          value="<%= listing.title %>"
-          placeholder="Enter title"
-          maxlength="50"
-        />
-
-        <div class="invalid-feedback">Please enter title</div>
-      </div>
-
-      <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
-        <textarea
-          class="form-control"
-          name="listing[description]"
-          placeholder="Enter description"
-          id="description"
-          required
-        >
-<%= listing.description %></textarea
-        >
-        <div class="invalid-feedback">Please enter description</div>
-      </div>
-      <div class="mb-3">
-        <label for="current-image" class="form-label">Image Preview</label
-        ><br />
-        <img
-          class="img-fluid"
-          style="width: 250px; height: 130px; object-fit: cover"
-          id="current-image"
-          src="<%= listing.image.url + '?w=600&auto=format&fit=crop&q=60' %>"
-          alt="listing-image"
-          name="listing[image]"
-        />
-      </div>
-      <div class="mb-3">
-        <label for="image" class="form-label">Upload new image</label>
-        <input
-          class="form-control"
-          type="file"
-          name="listing[image]"
-          placeholder="Enter image"
-        />
-      </div>
-      <div class="row">
-        <div class="mb-3 col-md-4">
-          <label for="price" class="form-label">Price</label>
+<div class="row justify-content-center mt-4">
+  <div class="col-12 col-md-10 col-lg-8">
+    <div class="card shadow-lg border-0 p-4 p-md-5 rounded-4">
+      <h2 class="premium-heading mb-4">Edit Listing</h2>
+      
+      <form
+        enctype="multipart/form-data"
+        method="post"
+        class="needs-validation"
+        novalidate
+        action="/listings/<%= listing._id %>?_method=PUT"
+        onsubmit="handleSubmit(event,this)"
+      >
+        <div class="mb-4">
+          <label for="title" class="form-label fw-bold">Title</label>
           <input
+            class="form-control rounded-3 py-2 px-3 border-secondary-subtle shadow-sm"
             required
-            class="form-control"
-            type="number"
-            name="listing[price]"
-            value="<%= listing.price %>"
-            placeholder="Enter price"
-          />
-          <div class="invalid-feedback">Please enter price</div>
-        </div>
-        <div class="mb-3 col-md-8">
-          <label for="country" class="form-label">Country</label>
-          <input
-            required
-            class="form-control"
             type="text"
-            value="<%= listing.country %>"
-            name="listing[country]"
-            placeholder="Enter country name"
+            name="listing[title]"
+            id="title"
+            value="<%= listing.title %>"
+            placeholder="Enter title"
+            maxlength="50"
           />
-          <div class="invalid-feedback">Please enter country</div>
+          <div class="invalid-feedback">Please provide a title!</div>
         </div>
-      </div>
-      <div class="row">
-        <div class="mb-3 col col-md-5">
-          <label for="location" class="form-label">Location</label>
+
+        <div class="mb-4">
+          <label for="description" class="form-label fw-bold">Description</label>
+          <textarea
+            class="form-control rounded-3 py-2 px-3 border-secondary-subtle shadow-sm"
+            name="listing[description]"
+            placeholder="Enter description"
+            id="description"
+            rows="5"
+            required
+          ><%= listing.description %></textarea>
+          <div class="invalid-feedback">Please provide a description!</div>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label fw-bold d-block mb-3">Current Listing Image</label>
+          <div class="position-relative d-inline-block">
+            <img
+              class="rounded-3 shadow-sm border"
+              style="width: 280px; height: 160px; object-fit: cover"
+              id="current-image"
+              src="<%= listing.image.url + '?w=600&auto=format&fit=crop&q=60' %>"
+              alt="listing-image"
+            />
+            <div class="position-absolute top-0 start-0 m-2 badge bg-dark opacity-75">Preview</div>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label for="image" class="form-label fw-bold">Upload new image</label>
           <input
-            required
-            class="form-control"
-            type="text"
-            name="listing[location]"
-            placeholder="Kolkata, West Bengal"
-            value="<%= listing.location %>"
+            class="form-control rounded-3 py-2 px-3 border-secondary-subtle shadow-sm"
+            type="file"
+            name="listing[image]"
+            id="image"
           />
-          <div class="invalid-feedback">Enter location</div>
+          <p class="text-muted small mt-1">Leave blank to keep the current image.</p>
         </div>
-        <div class="mb-3col col-md-7">
-          <label for="select" class="form-label">Category</label>
-          <select
-            class="form-select"
-            id="select"
-            aria-label="select category"
-            required
-            name="listing[category]"
-          >
-            <option value="" disabled selected><%= listing.category %></option>
-            <option value="trending">Trending</option>
-            <option value="rooms">Rooms</option>
-            <option value="city">City</option>
-            <option value="mountain">Mountain</option>
-            <option value="castle">Castle</option>
-            <option value="pool">Pool</option>
-            <option value="camping">Camping</option>
-            <option value="farm">Farm</option>
-            <option value="arctic">Arctic</option>
-            <option value="forest">Forest</option>
-            <option value="beach">Beach</option>
-            <option value="heritage">Heritage</option>
-          </select>
+
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <label for="price" class="form-label fw-bold">Price per night</label>
+            <div class="input-group shadow-sm rounded-3 overflow-hidden">
+                <span class="input-group-text border-secondary-subtle bg-light">&#8377;</span>
+                <input
+                  required
+                  class="form-control border-secondary-subtle border-start-0 py-2"
+                  type="number"
+                  name="listing[price]"
+                  id="price"
+                  value="<%= listing.price %>"
+                />
+            </div>
+            <div class="invalid-feedback">Please enter a valid price!</div>
+          </div>
+          <div class="col-md-8">
+            <label for="country" class="form-label fw-bold">Country</label>
+            <input
+              required
+              class="form-control rounded-3 py-2 px-3 border-secondary-subtle shadow-sm"
+              type="text"
+              value="<%= listing.country %>"
+              name="listing[country]"
+              id="country"
+            />
+            <div class="invalid-feedback">Please enter the country!</div>
+          </div>
         </div>
-      </div>
-      <button class="btn btn-danger my-3" data-btn-text="Saving...">
-        Save
-      </button>
-    </form>
+
+        <div class="row g-3 mb-4">
+          <div class="col-md-6">
+            <label for="location" class="form-label fw-bold">Location</label>
+            <input
+              required
+              class="form-control rounded-3 py-2 px-3 border-secondary-subtle shadow-sm"
+              type="text"
+              name="listing[location]"
+              id="location"
+              value="<%= listing.location %>"
+            />
+            <div class="invalid-feedback">Please provide a location!</div>
+          </div>
+          <div class="col-md-6">
+            <label for="select" class="form-label fw-bold">Category</label>
+            <select
+              class="form-select rounded-3 py-2 px-3 border-secondary-subtle shadow-sm"
+              id="select"
+              required
+              name="listing[category]"
+            >
+              <option value="<%= listing.category %>" selected><%= listing.category.charAt(0).toUpperCase() + listing.category.slice(1) %></option>
+              <option value="trending">Trending</option>
+              <option value="rooms">Rooms</option>
+              <option value="city">City</option>
+              <option value="mountain">Mountain</option>
+              <option value="castle">Castle</option>
+              <option value="pool">Pool</option>
+              <option value="camping">Camping</option>
+              <option value="farm">Farm</option>
+              <option value="arctic">Arctic</option>
+              <option value="forest">Forest</option>
+              <option value="beach">Beach</option>
+              <option value="heritage">Heritage</option>
+            </select>
+            <div class="invalid-feedback">Please select a category!</div>
+          </div>
+        </div>
+
+        <button class="btn btn-danger w-100 py-3 rounded-3 fw-bold shadow-sm" data-btn-text="Saving changes...">
+          Save Changes
+        </button>
+      </form>
+    </div>
   </div>
 </div>
 
 <script>
   function handleSubmit(e, form) {
     if (!form.checkValidity()) {
-      return; // ❌ invalid → do nothing
+      return; 
     }
-
     const btn = form.querySelector("button");
     const text = btn.dataset.btnText;
     btn.disabled = true;
-    btn.innerText = text;
+    btn.innerHTML = `<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> ${text}`;
   }
 </script>

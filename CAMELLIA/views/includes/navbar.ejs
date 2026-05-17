@@ -1,14 +1,27 @@
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
-  <div class="container-fluid">
+<nav class="navbar navbar-expand-md">
+  <div class="container-fluid px-md-5">
     <a class="navbar-brand" href="/listings">
       <img class="nav-logo" src="/images/shortlogo.png" alt="Camellia Logo" />
     </a>
-    <div class="navbar-nav ms-auto me-4">
-      <a class="nav-link" href="/listings">Explore</a>
+
+    <!-- PREMIUM SEARCH BAR (CENTERED ON DESKTOP) -->
+    <div class="search-container d-none d-md-block">
+      <form class="search-form" role="search" method="get" action="/listings">
+        <input
+          name="search"
+          class="search-input-premium"
+          type="search"
+          placeholder="Start your search"
+          aria-label="Search"
+        />
+        <button class="search-btn-premium" type="submit">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </form>
     </div>
 
     <button
-      class="navbar-toggler"
+      class="navbar-toggler border-0 shadow-none"
       type="button"
       data-bs-toggle="collapse"
       data-bs-target="#navbarNavAltMarkup"
@@ -16,33 +29,38 @@
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
-      <span class="navbar-toggler-icon"></span>
+      <i class="fa-solid fa-bars fs-4"></i>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav ms-auto">
-        <a class="nav-link" href="/listings/new">Airbnb your home</a>
-        <% if (!currUser) { %>
-        <a class="nav-link" aria-current="page" href="/SignUp"
-          ><b>Sign up</b></a
-        >
-        <a class="nav-link" href="/login"><b>Login</b></a>
-        <% } %> <% if (currUser) { %>
-        <a class="nav-link" href="/logout">Logout</a>
-        <% } %>
-        <div>
-          <form class="d-flex" role="search" method="get" action="/listings">
+      <div class="navbar-nav ms-auto align-items-md-center gap-2">
+        <a class="nav-link premium-nav-link" href="/listings/new">Airbnb your home</a>
+        
+        <div class="d-md-none mt-2 mb-3">
+          <form class="search-form-mobile" role="search" method="get" action="/listings">
             <input
               name="search"
-              class="form-control me-2 search-input"
+              class="form-control rounded-pill border-secondary-subtle"
               type="search"
-              placeholder="Search"
+              placeholder="Search destination"
               aria-label="Search"
             />
-            <button class="btn btn-outline-success search-btn" type="submit">
-              Search
-            </button>
           </form>
         </div>
+
+        <% if (!currUser) { %>
+          <a class="nav-link premium-nav-link" href="/SignUp"><b>Sign up</b></a>
+          <a class="nav-link premium-nav-link" href="/login"><b>Login</b></a>
+        <% } else { %>
+          <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown">
+              <i class="fa-solid fa-circle-user fs-4 text-secondary"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2 p-2 rounded-4">
+              <li><a class="dropdown-item rounded-3" href="/logout">Logout</a></li>
+            </ul>
+          </div>
+        <% } %>
       </div>
     </div>
   </div>
