@@ -2,24 +2,25 @@
             <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown">
               <div class="user-avatar-container">
                 <% 
-                  // FINAL POLISHED AVATAR RESOLUTION
+                  // EMERGENCY ROBUST AVATAR RESOLUTION
                   const fallback = "https://res.cloudinary.com/dmue96vxb/image/upload/v1703612502/default_avatar_p3f2zv.png";
                   let src = fallback;
                   
                   if (currUser && currUser.avatar) {
-                    const avatar = currUser.avatar;
-                    if (typeof avatar === 'string' && avatar.includes('http')) {
-                      src = avatar;
-                    } else if (typeof avatar === 'object') {
-                      // Check if it's the new structured object
-                      if (avatar.url && typeof avatar.url === 'string' && avatar.url.includes('http')) {
-                        src = avatar.url;
-                      } 
-                      // Fallback for cases where object exists but url is missing or empty
+                    // Force check for string URL first (legacy/raw)
+                    if (typeof currUser.avatar === 'string' && currUser.avatar.includes('http')) {
+                      src = currUser.avatar;
+                    } 
+                    // Handle new structure (object)
+                    else if (typeof currUser.avatar === 'object') {
+                      // Explicitly target the url property inside the avatar object
+                      if (currUser.avatar.url && typeof currUser.avatar.url === 'string' && currUser.avatar.url.includes('http')) {
+                        src = currUser.avatar.url;
+                      }
                     }
                   }
                 %>
-                <img src="<%= src %>" 
+                <img src="<%= String(src) %>" 
                      alt="Profile" 
                      class="user-nav-avatar" 
                      onerror="this.onerror=null;this.src='https://res.cloudinary.com/dmue96vxb/image/upload/v1703612502/default_avatar_p3f2zv.png';">
