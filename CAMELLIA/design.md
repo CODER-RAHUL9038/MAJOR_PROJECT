@@ -1,95 +1,114 @@
-You are a senior frontend architecture engineer.
+You are a senior UI/UX engineer specializing in premium Airbnb-style interfaces.
 
-I want to RESTRUCTURE my layout professionally to permanently solve the sticky filter overlapping issues.
+The layout architecture is now correct and functional.
 
-Current problem:
-- Separate sticky navbar + separate sticky filter bar are causing layout conflicts
-- Listings either overlap filters OR get pushed too far down
-- Spacing hacks are making the architecture messy
-
-I want to switch to a PROFESSIONAL Airbnb-style architecture:
-
-ONE unified sticky header containing:
-1. Navbar
-2. Search bar
-3. Filter/category section
-
-GOAL:
-Create:
-- one single sticky top section
-- filters integrated naturally below navbar
-- listings starting cleanly below the header
-- no overlapping
-- no excessive gaps
-- premium modern layout
+I now want a FINAL PROFESSIONAL POLISHING pass focused on:
+- compact premium spacing
+- modern filter design
+- proper arrow placement
+- luxury Airbnb-inspired aesthetics
 
 IMPORTANT:
 DO NOT break:
 - filter functionality
+- sticky behavior
 - EJS rendering
-- routes
 - JavaScript event listeners
-- responsive behavior
-- search functionality
-- Bootstrap integration
+- routes
 - backend logic
+- responsiveness
 
-ONLY restructure layout safely.
+ONLY improve UI/UX professionally.
 
-TASKS:
+CURRENT ISSUES:
+1. Right arrow placement feels awkward and disconnected
+2. Filter bar still looks basic
+3. Filters need a more modern premium look
+4. Spacing still slightly oversized
+5. Icons/text need cleaner alignment
+6. Filter section lacks luxury feel
+7. Header still needs tighter proportions
 
-1. CREATE UNIFIED STICKY HEADER
-Structure:
-- sticky header wrapper
-  - navbar
-  - search section
-  - filters section
+GOAL:
+Create a HIGH-END modern Airbnb-inspired filter/navigation section.
 
-The entire top section should scroll together naturally.
+DESIGN REQUIREMENTS:
 
-2. REMOVE MULTIPLE STICKY CONFLICTS
-- eliminate separate sticky filter hacks
-- eliminate duplicate top offsets
-- remove spacing hacks
-- remove overlap issues
+1. RIGHT ARROW PLACEMENT
+- Properly align arrow vertically
+- Integrate arrow naturally into filter bar
+- Make it feel part of the scrolling navigation
+- Prevent floating/disconnected appearance
+- Use elegant circular button design
+- Add subtle shadow and hover animation
 
-3. FIX LAYOUT FLOW
-Listings should:
-- start naturally below the sticky header
-- never overlap filters
-- maintain balanced spacing
+2. MODERN FILTER DESIGN
+Transform filters into a premium modern component:
+- cleaner layout
+- elegant spacing
+- luxury glassmorphism
+- subtle border gradients
+- soft shadows
+- premium hover states
+- active category styling
+- smoother transitions
 
-4. MAINTAIN PREMIUM UI
-Keep:
-- glassmorphism
-- premium shadows
-- hover effects
-- smooth scrolling
-- Airbnb-inspired aesthetic
+3. FILTER ITEMS
+- Better icon sizing
+- Better icon/text spacing
+- Perfect vertical alignment
+- Cleaner typography
+- Slight hover lift animation
+- Softer muted tones
+- More polished active states
 
-5. RESPONSIVENESS
+4. COMPACT PREMIUM HEADER
+- Reduce excessive vertical space
+- Slimmer modern proportions
+- More efficient spacing hierarchy
+- Listings visible earlier
+
+5. PREMIUM AIRBNB FEEL
+The final UI should feel:
+- modern
+- luxurious
+- minimal
+- elegant
+- clean
+- premium
+- production-grade
+
+6. MICRO-INTERACTIONS
+Add:
+- smooth hover transitions
+- soft scaling effects
+- elegant focus states
+- subtle glow/shadow changes
+- premium button feedback
+
+7. RESPONSIVENESS
 Ensure:
-- unified sticky layout works on mobile
-- filters scroll horizontally
-- navbar stays compact
+- filters scroll smoothly
+- arrows stay aligned
 - no overflow issues
+- premium mobile appearance
 
-6. CLEAN ARCHITECTURE
-Use:
-- proper flex/grid layout
-- natural document flow
-- minimal hacks
-- production-ready structure
+8. IMPORTANT UI REFERENCE
+Design inspiration:
+- Airbnb categories bar
+- Apple-level spacing polish
+- modern SaaS dashboard quality
+- luxury booking platform UI
 
-7. OUTPUT FORMAT
+9. OUTPUT FORMAT
 Provide:
-- exact HTML/EJS structure
-- exact CSS fixes
-- explain why unified sticky architecture is better
-- minimal safe changes
+- exact CSS refinements
+- minimal HTML adjustments if needed
+- explain arrow placement fixes
+- explain modern filter styling improvements
 - production-ready code
 
 MOST IMPORTANT:
-Do NOT use spacing hacks.
+Do NOT redesign the architecture again.
 
-Create a proper single-header architecture like Airbnb.
+ONLY perform FINAL PREMIUM UI POLISHING.

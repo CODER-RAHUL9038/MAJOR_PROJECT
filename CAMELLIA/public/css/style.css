@@ -39,18 +39,18 @@ h1, h2, h3, .premium-heading {
   color: var(--accent);
 }
 
-/* UNIFIED HEADER ARCHITECTURE */
+/* UNIFIED HEADER ARCHITECTURE - FINAL POLISH */
 .main-header {
   position: sticky;
   top: 0;
   width: 100%;
   z-index: 1200;
   background-color: #ffffff;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 1px 12px rgba(0,0,0,0.08);
 }
 
 .navbar {
-  height: 5rem;
+  height: 4.5rem; /* Slimmer compact header */
   width: 100%;
   background: #ffffff;
   border-bottom: 1px solid var(--border-soft);
@@ -60,7 +60,7 @@ h1, h2, h3, .premium-heading {
 }
 
 .nav-logo {
-  height: 40px;
+  height: 32px; /* Balanced logo size */
   width: auto;
   object-fit: contain;
   transition: var(--transition-fast);
@@ -77,7 +77,7 @@ h1, h2, h3, .premium-heading {
   margin-right: 2rem;
 }
 
-/* SEARCH BAR PREMIUM - PERFECT CENTERING */
+/* SEARCH BAR PREMIUM - CENTERED & COMPACT */
 .search-container {
   position: absolute;
   left: 50%;
@@ -86,7 +86,7 @@ h1, h2, h3, .premium-heading {
   display: flex;
   justify-content: center;
   width: 100%;
-  max-width: 380px;
+  max-width: 360px;
   pointer-events: none;
   z-index: 10;
 }
@@ -98,7 +98,7 @@ h1, h2, h3, .premium-heading {
   background: #fff;
   border: 1px solid var(--border-soft);
   border-radius: 500px;
-  padding: 6px 8px 6px 20px;
+  padding: 4px 8px 4px 20px;
   box-shadow: var(--shadow-sm);
   transition: var(--transition-smooth);
   pointer-events: auto;
@@ -113,7 +113,7 @@ h1, h2, h3, .premium-heading {
   border: none;
   background: transparent;
   flex: 1;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 500;
   color: var(--text-main);
   outline: none;
@@ -124,8 +124,8 @@ h1, h2, h3, .premium-heading {
   background: var(--primary);
   color: white;
   border: none;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -135,41 +135,43 @@ h1, h2, h3, .premium-heading {
 }
 
 .search-btn-premium i {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
 }
 
 .search-btn-premium:hover {
   background: var(--primary-hover);
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
+/* FILTERS SECTION - LUXURY REDESIGN */
 .filters-wrapper {
-  height: 4.5rem;
+  height: 4.8rem;
   width: 100%;
   background: #ffffff;
-  border-bottom: 1px solid var(--border-soft);
   display: flex;
   align-items: center;
+  padding-top: 0.5rem;
   transition: var(--transition-smooth);
 }
 
-/* Ensure content container respects flow */
-.container {
-  flex: 1;
+.filters-container {
+  position: relative;
+  display: flex;
+  align-items: center;
   width: 100%;
-  margin-top: 1.5rem; /* Balanced gap after sticky header */
 }
 
 #filters {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 2.2rem;
   overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
   scroll-behavior: smooth;
   min-width: 0;
   flex: 1;
+  padding: 0 0.5rem;
 }
 
 #filters::-webkit-scrollbar {
@@ -183,10 +185,10 @@ h1, h2, h3, .premium-heading {
   justify-content: center;
   min-width: fit-content;
   flex-shrink: 0;
-  padding-bottom: 12px;
-  opacity: 0.6;
+  padding-bottom: 10px;
+  opacity: 0.5;
   cursor: pointer;
-  transition: var(--transition-fast);
+  transition: var(--transition-smooth);
   border-bottom: 2px solid transparent;
   color: var(--text-main);
 }
@@ -194,6 +196,7 @@ h1, h2, h3, .premium-heading {
 .filter:hover {
   opacity: 1;
   border-bottom-color: #cbd5e1;
+  transform: translateY(-2px);
 }
 
 .filter.active {
@@ -203,40 +206,77 @@ h1, h2, h3, .premium-heading {
 }
 
 .filter i {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+  margin-bottom: 0.4rem;
 }
 
 .filter p {
-  font-size: 0.75rem;
-  font-weight: 500;
+  font-size: 0.72rem;
+  font-weight: 600;
   margin: 0;
   white-space: nowrap;
 }
 
 .filter.active p {
-  font-weight: 700;
+  font-weight: 800;
 }
 
-/* INDEX PAGE ARROWS */
+/* INTEGRATED ARROW BUTTONS */
 .arrow-btn {
   border-radius: 50%;
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid var(--border-soft) !important;
-  background-color: var(--bg-main) !important;
-  box-shadow: var(--shadow-sm);
+  background-color: #ffffff !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   transition: var(--transition-fast);
   color: var(--accent) !important;
   cursor: pointer;
+  z-index: 5;
 }
 
 .arrow-btn:hover {
-  box-shadow: var(--shadow-md);
-  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transform: scale(1.1);
+  background-color: var(--bg-surface) !important;
+}
+
+/* TAXES TOGGLE - POLISHED */
+.tax-toggle-premium {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-fast);
+  cursor: pointer;
+  height: 42px;
+}
+
+.tax-toggle-premium:hover {
+  background-color: var(--bg-surface);
+  border-color: #cbd5e1;
+}
+
+.tax-toggle-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  white-space: nowrap;
+  margin-right: 10px;
+  cursor: pointer;
+  color: var(--accent);
+}
+
+/* Ensure content container respects flow */
+.container {
+  flex: 1;
+  width: 100%;
+  margin-top: 1rem;
 }
 
 /* FOOTER REDESIGN */
@@ -462,7 +502,6 @@ h1, h2, h3, .premium-heading {
   overflow: hidden;
 }
 
-
 /* INDEX PAGE */
 .arrow-btn {
   border-radius: 50%;
@@ -473,31 +512,23 @@ h1, h2, h3, .premium-heading {
   justify-content: center;
 }
 
-
 /* GOOGLE BUTTON STYLE FOR SIGN UP AND LOGIN */
-
 .google-login-btn {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
-
     width: 100%;
     height: 44px;
-
     border: 1px solid #dadce0;
     border-radius: 4px;
-
     background-color: #ffffff;
     color: #3c4043;
-
     font-family: "Roboto", Arial, sans-serif;
     font-size: 14px;
     font-weight: 500;
-
     text-decoration: none;
     cursor: pointer;
-
     transition: background-color 0.2s ease, box-shadow 0.2s ease;
   }
 

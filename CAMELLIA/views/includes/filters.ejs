@@ -1,13 +1,13 @@
 <div class="filters-wrapper">
   <div class="container-fluid px-md-5">
-    <div class="d-flex align-items-center">
+    <div class="filters-container">
       <!-- LEFT ARROW -->
       <button class="btn arrow-btn d-none d-md-flex me-3" id="scrollLeft">
         <i class="fa-solid fa-chevron-left"></i>
       </button>
 
       <!-- Filters -->
-      <div id="filters" class="flex-grow-1">
+      <div id="filters">
         <% 
           const categoriesList = [
             { id: 'trending', label: 'Trending', icon: 'fa-fire' },
@@ -39,11 +39,11 @@
         <i class="fa-solid fa-chevron-right"></i>
       </button>
 
-      <!-- TAXES TOGGLE -->
-      <div class="tax-toggle d-none d-lg-flex align-items-center ms-4 p-3 border rounded-3 bg-white shadow-sm" style="height: 48px; cursor: pointer;">
-        <div class="form-check form-switch p-0 m-0 d-flex align-items-center gap-2">
-          <label class="form-check-label fs-small fw-bold" for="flexSwitchCheckDefault" style="font-size: 0.75rem; white-space: nowrap; cursor: pointer;">Display total before taxes</label>
-          <input class="form-check-input m-0" style="cursor: pointer;" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+      <!-- TAXES TOGGLE - PREMIUM POLISHED -->
+      <div class="tax-toggle-premium d-none d-lg-flex ms-4">
+        <div class="form-check form-switch p-0 m-0 d-flex align-items-center">
+          <label class="tax-toggle-label" for="flexSwitchCheckDefault">Display total before taxes</label>
+          <input class="form-check-input m-0" style="cursor: pointer; width: 2.2rem; height: 1.1rem;" type="checkbox" role="switch" id="flexSwitchCheckDefault">
         </div>
       </div>
     </div>
