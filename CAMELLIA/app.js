@@ -89,19 +89,9 @@ passport.deserializeUser(User.deserializeUser());
 
 // middleware to flash message
 app.use((req, res, next) => {
-  // DEBUG LOGS - REMOVE LATER
-  if (req.user) {
-    console.log("--- USER DEBUG ---");
-    console.log("Username:", req.user.username);
-    console.log("Avatar type:", typeof req.user.avatar);
-    console.log("Avatar value:", JSON.stringify(req.user.avatar));
-    console.log("------------------");
-  }
-  
-  // means req.local.message
-  res.locals.success = req.flash("success"); // res.locals.success make success msg available to all ejs
+  res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
-  res.locals.currUser = req.user; //used in Ejs
+  res.locals.currUser = req.user;
   next();
 });
 
@@ -115,14 +105,13 @@ app.get("/", (req, res) => {
   res.redirect("/listings");
 });
 
-//For all request for handling page not found
-app.all(/.*/, (req, res, next) => {
+// 404 Handler - Compatible regex for newer path-to-regexp versions
+app.all(/(.*)/, (req, res, next) => {
   next(new ExpressError(404, "Page not Found"));
 });
 
-// Custom error handler middleware
-app.use((err, req, res) => {
+// Custom error handler middleware - Fixed signature (4 params)
+app.use((err, req, res, next) => {
   let { statusCode = 500, message = "Something went wrong!" } = err;
-
   res.status(statusCode).render("error.ejs", { err });
 });

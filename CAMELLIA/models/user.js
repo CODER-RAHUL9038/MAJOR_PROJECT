@@ -44,7 +44,7 @@ userSchema.set('toObject', { virtuals: true });
 userSchema.set('toJSON', { virtuals: true });
 
 // Pre-save middleware to handle old data format if any
-userSchema.pre('save', function(next) {
+userSchema.pre('save', async function() {
   if (typeof this.avatar === 'string') {
     const oldAvatar = this.avatar;
     this.avatar = {
@@ -52,7 +52,6 @@ userSchema.pre('save', function(next) {
       filename: "converted_avatar"
     };
   }
-  next();
 });
 
 userSchema.plugin(passportLocalMongoose);

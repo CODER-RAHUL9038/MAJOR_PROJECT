@@ -34,16 +34,16 @@ passport.use(
             }
           });
           await user.save();
-          console.log("New User Created with Avatar:", profilePic);
+          console.log("SUCCESS: New User created with avatar:", profilePic);
         } else {
-          // Force update the avatar URL to ensure it's correct
+          // Force update the avatar object structure
           user.avatar = {
             url: profilePic,
             filename: "google_avatar"
           };
-          user.authProvider = "google"; // Ensure provider is set
+          user.authProvider = "google";
           await user.save();
-          console.log("Existing User Updated with Avatar:", profilePic);
+          console.log("SUCCESS: Existing User updated with avatar:", profilePic);
         }
 
         return done(null, user);

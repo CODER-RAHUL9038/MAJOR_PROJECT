@@ -1,131 +1,101 @@
-You partially implemented the avatar system correctly, but the avatar image is STILL not rendering in the navbar.
+You are a senior frontend debugging engineer specializing in infinite request/render loop issues.
+
+My Camellia app is now continuously sending requests after implementing the avatar/profile system.
 
 CURRENT ISSUE:
-The <img> element appears broken and only shows partial alt text ("Us..."), meaning:
-- the image src is invalid OR undefined
-- OR the avatar object structure is inconsistent
-- OR EJS is resolving the wrong property path
+- Browser continuously sends requests
+- Network tab keeps firing requests endlessly
+- UI becomes unstable/sluggish
+- Likely infinite frontend loop
 
 IMPORTANT:
-DO NOT redesign the system again.
+DO NOT redesign the app.
+DO NOT rewrite authentication.
+DO NOT rewrite frontend architecture.
 
-We now need PURE DEBUGGING and FIXING.
+ONLY debug and stop the infinite request/render loop professionally.
 
 CURRENT CONTEXT:
-- Google OAuth works
-- Session auth works
-- User exists
-- Avatar data is supposedly stored
-- Navbar is rendering an <img>
-- But the image URL is broken/undefined
+Recent changes include:
+- dynamic avatar rendering
+- Google profile image support
+- navbar avatar logic
+- filter/toggle scripts
+- responsive redesign
 
 LIKELY ROOT CAUSES TO CHECK:
 
-1. DATABASE STRUCTURE MISMATCH
-Some users may still have:
-avatar: "string-url"
+1. AVATAR IMAGE LOOP
+Check for:
+- img.onerror recursion
+- invalid fallback logic
+- broken avatar URL retry loop
 
-while newer users have:
-avatar: {
-  url: "...",
-  filename: "..."
-}
+Example issue:
+img.onerror → sets another invalid src → infinite loop
 
-2. EJS PATH ISSUE
-Possible issue:
-currUser.avatar.url
-
-when actual value may be:
-currUser.avatar
-OR
-currUser.profileImage
-OR undefined
-
-3. GOOGLE PROFILE IMAGE ISSUE
-Google image may not actually be saved in DB.
-
-4. SERIALIZATION ISSUE
-Passport session serialization may not include updated avatar field.
-
-5. CURRENT USER MIDDLEWARE ISSUE
-res.locals.currUser may not contain fresh avatar data.
-
-TASKS:
-
-1. DEBUG EXACT DATA STRUCTURE
-FIRST:
-Add temporary console logs to inspect:
-
-- req.user
-- res.locals.currUser
-- avatar field structure
-
+2. REPEATED FETCH CALLS
 Check:
-Is avatar:
-- string?
-- object?
-- undefined?
+- fetch() inside render loops
+- recursive API calls
+- repeated polling
+- useEffect-style repeated logic patterns
 
-2. FIX EJS RENDERING SAFELY
-Create ROBUST fallback logic:
-
-Handle ALL cases safely:
-- object avatar
-- string avatar
-- missing avatar
-- broken avatar
-
-Example logic:
-- if avatar.url exists → use it
-- else if avatar is string → use it
-- else → use default fallback avatar
-
-3. VERIFY GOOGLE STRATEGY
-Ensure Google strategy actually saves:
-profile.photos[0].value
-
-into MongoDB correctly.
-
-4. VERIFY SESSION SERIALIZATION
-Ensure latest avatar data exists after login:
-- serializeUser
-- deserializeUser
-
-5. VERIFY MIDDLEWARE
+3. EVENT LISTENER DUPLICATION
 Check:
-res.locals.currUser = req.user
+- listeners attached repeatedly
+- scripts running multiple times
+- nested DOMContentLoaded handlers
 
-Ensure avatar data survives correctly.
-
-6. TEST WITH EXISTING USERS
-Handle old DB records safely.
-
-If needed:
-auto-migrate old avatar strings into object format.
-
-7. IMAGE URL VALIDATION
+4. AUTO RELOAD / REDIRECT LOOP
 Check:
-- URL is not undefined
-- URL is not null
-- URL is accessible
-- No broken Google image URL
+- redirect recursion
+- auth redirect loops
+- repeated location.reload()
+- repeated res.redirect()
 
-8. NAVBAR FIX
+5. FILTER / TOGGLE SCRIPT LOOP
+Check:
+- category filter JS
+- tax toggle logic
+- DOM mutation causing rerenders
+
+6. DEBUG NETWORK TAB
+Identify:
+- which exact request repeats continuously
+- image request?
+- route request?
+- API request?
+- auth request?
+
+7. FIX AVATAR SAFELY
+If avatar image fails:
+- fallback ONLY ONCE
+- prevent recursive image retries
+
+Safe pattern:
+- remove onerror after first fallback
+- use default placeholder safely
+
+8. PERFORMANCE FIX
 Ensure:
-<img src="VALID_URL">
-
-actually renders properly.
+- scripts initialize only once
+- no recursive rendering
+- no duplicate listeners
 
 9. OUTPUT FORMAT
 Provide:
-- exact debug steps
-- exact console logs to add
-- exact EJS fix
-- exact schema fix if needed
-- exact Passport/session fix
-- production-ready debugging solution
+- exact root cause
+- exact frontend fix
+- exact avatar fix
+- exact JS corrections
+- production-safe solution
 
 10. MOST IMPORTANT
-Do NOT create another architecture redesign.
-
-ONLY debug why the image URL is not rendering and fix the existing system properly.
+Stop the infinite request loop WITHOUT breaking:
+- avatar system
+- filters
+- toggle
+- auth
+- responsiveness
+- existing UI
