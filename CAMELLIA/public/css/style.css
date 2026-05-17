@@ -542,7 +542,85 @@ h1, h2, h3, .premium-heading {
     background-color: #eeeeee;
   }
 
-  .google-login-btn img {
-    width: 18px;
-    height: 18px;
+/* RESPONSIVE BREAKPOINTS & MOBILE FIXES */
+@media (max-width: 991.98px) {
+  .search-container {
+    max-width: 320px;
   }
+}
+
+@media (max-width: 767.98px) {
+  .navbar {
+    height: auto;
+    padding: 1rem 0;
+  }
+  
+  .navbar-brand {
+    margin-right: 0;
+  }
+
+  .nav-logo {
+    height: 32px;
+  }
+
+  .search-container {
+    display: none; /* Hide premium search on mobile as per design */
+  }
+
+  .filters-wrapper {
+    height: auto;
+    padding: 0.75rem 0;
+  }
+
+  #filters {
+    gap: 1.5rem;
+  }
+
+  .filter i {
+    font-size: 1.2rem;
+  }
+
+  .tax-toggle-premium {
+    display: none !important;
+  }
+
+  /* FIX COLLAPSED CARDS ON MOBILE */
+  .listing-card {
+    margin-bottom: 2rem;
+    height: auto !important; /* Prevent collapse */
+  }
+
+  .card-img-container {
+    aspect-ratio: 4/3; /* Better for mobile viewing */
+    height: auto !important;
+  }
+
+  .card-img-top {
+    height: 100% !important;
+    position: relative !important;
+  }
+
+  .pagination-container {
+    margin: 2rem 0;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .container-fluid {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+
+  .card-title-premium {
+    font-size: 1rem;
+  }
+
+  .footer {
+    padding: 2rem 0;
+  }
+
+  .f-info-socials a {
+    font-size: 1.25rem;
+    margin: 0 0.5rem;
+  }
+}
