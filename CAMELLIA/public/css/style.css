@@ -425,6 +425,13 @@ h1, h2, h3, .premium-heading {
   color: var(--text-light);
 }
 
+.tax-info {
+  display: none;
+  font-style: normal;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
 .listing-link {
   text-decoration: none;
 }
