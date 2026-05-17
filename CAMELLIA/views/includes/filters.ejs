@@ -39,6 +39,16 @@
         <i class="fa-solid fa-chevron-right"></i>
       </button>
 
+      <!-- CLEAR FILTERS BUTTON -->
+      <% if ((typeof category !== 'undefined' && category) || (typeof search !== 'undefined' && search)) { %>
+      <div class="ms-3">
+        <a href="/listings" class="btn clear-filters-btn d-flex align-items-center gap-2">
+          <i class="fa-solid fa-rotate-left"></i>
+          <span>Clear Filters</span>
+        </a>
+      </div>
+      <% } %>
+
       <!-- TAXES TOGGLE - PREMIUM POLISHED -->
       <div class="tax-toggle-premium d-none d-lg-flex ms-4">
         <div class="form-check form-switch p-0 m-0 d-flex align-items-center">

@@ -1,66 +1,109 @@
-Add my real social media profile links into the Camellia footer and social sections professionally.
+You are a senior full-stack frontend engineer.
+
+I want to add a FULLY WORKING "Clear Filters" feature to my Airbnb-style Camellia listings page.
 
 IMPORTANT:
 DO NOT break:
-- existing footer layout
-- responsiveness
+- existing filters
+- category filtering
+- search functionality
+- pagination
+- toggle functionality
 - EJS rendering
-- styling
-- existing functionality
+- routes
+- responsive design
+- sticky header
+- backend logic
 
-ONLY integrate the real links cleanly and professionally.
+ONLY implement a professional clear/reset filters system.
 
-SOCIAL LINKS:
+CURRENT FEATURES:
+- Category filters already work
+- Query parameters are used
+- Listings filter dynamically
+- Search exists
+- Tax toggle exists
 
-Facebook:
-https://www.facebook.com/profile.php?id=100014990682633
+GOAL:
+Add a professional Airbnb-style "Clear Filters" button that COMPLETELY resets the page state.
 
-LinkedIn:
-https://www.linkedin.com/in/rahulshaw-dev/
+REQUIRED BEHAVIOR:
 
-Instagram:
-https://www.instagram.com/rahul_the_conqueror_of_misery/
-
-TASKS:
-
-1. UPDATE FOOTER SOCIAL ICONS
-- Make each icon clickable
-- Open links in new tab using:
-target="_blank"
-
-- Add:
-rel="noopener noreferrer"
-
-2. ADD HOVER EFFECTS
-Create premium hover effects:
-- smooth transitions
-- slight lift animation
-- subtle glow/shadow
-- platform-colored hover accents
-
-3. KEEP PREMIUM UI
-Maintain:
-- modern Airbnb-inspired design
-- clean spacing
-- elegant alignment
-- responsive layout
-
-4. MOBILE RESPONSIVENESS
-Ensure:
-- icons remain properly aligned
-- touch-friendly spacing
-- no overflow issues
-
-5. ACCESSIBILITY
+1. CLEAR FILTER BUTTON
 Add:
-- aria-labels
-- proper semantic anchor tags
+- modern "Clear Filters" button
+OR
+- subtle reset icon/button
 
-6. OUTPUT FORMAT
+Placement:
+- near filters/search area
+- visually integrated into filter bar
+
+2. WHEN CLICKED
+The button should:
+- remove active category filter
+- clear search input
+- reset tax toggle
+- remove query params
+- restore ALL listings
+- reset pagination if needed
+
+3. URL CLEANUP
+Example:
+
+Before:
+/listings?category=beach&search=goa
+
+After clear:
+/listings
+
+4. ACTIVE STATE RESET
+- remove active filter highlighting
+- restore default UI state
+- reset toggle visuals
+
+5. UI REQUIREMENTS
+Design should feel:
+- modern
+- minimal
+- premium
+- Airbnb-inspired
+
+Add:
+- hover animation
+- subtle transitions
+- elegant icon if needed
+
+6. RESPONSIVENESS
+Ensure:
+- works on mobile
+- touch friendly
+- no layout breaking
+
+7. IMPLEMENTATION REQUIREMENTS
+Use:
+- clean query param handling
+- proper DOM reset logic
+- safe URL manipulation
+
+DO NOT:
+- reload unnecessarily
+- break existing event listeners
+- hardcode categories
+
+8. OPTIONAL ENHANCEMENT
+Show:
+"Filters Applied"
+
+when filters are active,
+and hide it when cleared.
+
+9. OUTPUT FORMAT
 Provide:
-- exact HTML/EJS code
-- exact CSS refinements
+- exact EJS/HTML additions
+- exact JavaScript logic
+- exact CSS styling
 - production-ready implementation
 
-MOST IMPORTANT:
-Keep the footer elegant, minimal, and premium while integrating the real social links professionally.
+10. MOST IMPORTANT
+The "Clear Filters" button must FULLY reset the page state cleanly and reliably like a professional booking platform.
