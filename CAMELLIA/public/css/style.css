@@ -41,6 +41,7 @@ h1, h2, h3, .premium-heading {
 
 .container {
   flex: 1;
+  padding-top: 10rem; /* Space for fixed navbar (5rem) and filters (approx 5rem) */
 }
 
 .navbar {
@@ -49,9 +50,10 @@ h1, h2, h3, .premium-heading {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-soft);
-  position: sticky;
+  position: fixed; /* Changed from sticky to fixed for better stability */
+  width: 100%;
   top: 0;
-  z-index: 1100; /* Higher z-index to stay above everything */
+  z-index: 1100;
   transition: var(--transition-smooth);
   display: flex;
   align-items: center;
@@ -75,11 +77,12 @@ h1, h2, h3, .premium-heading {
   margin-right: 2rem;
 }
 
-/* SEARCH BAR PREMIUM - IMPROVED ALIGNMENT */
+/* SEARCH BAR PREMIUM - PERFECT CENTERING */
 .search-container {
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
+  top: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
   width: 100%;
@@ -139,19 +142,30 @@ h1, h2, h3, .premium-heading {
   transform: scale(1.05);
 }
 
-/* FILTERS REDESIGN - FIXED OVERLAP */
+/* FILTERS REDESIGN */
 .filters-wrapper {
-  background-color: var(--bg-main);
-  padding: 1rem 0 0 0;
-  margin-bottom: 1.5rem;
+  background-color: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 0.75rem 0 0 0;
   border-bottom: 1px solid var(--border-soft);
+  position: sticky;
+  top: 5rem; /* Exactly below the 5rem navbar */
+  z-index: 1000;
+  transition: var(--transition-smooth);
+  margin-bottom: 2rem; /* Add margin to prevent overlapping the content below */
 }
 
 #filters {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  display: flex;
-  gap: 2rem; /* Consistent spacing between filters */
+  scroll-behavior: smooth;
+  min-width: 0;
+  flex: 1;
 }
 
 #filters::-webkit-scrollbar {
@@ -163,7 +177,8 @@ h1, h2, h3, .premium-heading {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 60px; /* Reduced to allow tighter spacing */
+  min-width: fit-content;
+  flex-shrink: 0;
   padding-bottom: 12px;
   opacity: 0.6;
   cursor: pointer;
@@ -184,26 +199,26 @@ h1, h2, h3, .premium-heading {
 }
 
 .filter i {
-  font-size: 1.5rem; /* Slightly larger icons */
+  font-size: 1.5rem;
   margin-bottom: 0.5rem;
 }
 
 .filter p {
-  font-size: 0.8rem;
-  font-weight: 500; /* Softer font weight for standard state */
+  font-size: 0.75rem;
+  font-weight: 500;
   margin: 0;
   white-space: nowrap;
 }
 
 .filter.active p {
-  font-weight: 600; /* Bolder only when active */
+  font-weight: 700;
 }
 
-/* Arrow buttons for filters */
+/* INDEX PAGE ARROWS */
 .arrow-btn {
   border-radius: 50%;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -212,6 +227,7 @@ h1, h2, h3, .premium-heading {
   box-shadow: var(--shadow-sm);
   transition: var(--transition-fast);
   color: var(--accent) !important;
+  cursor: pointer;
 }
 
 .arrow-btn:hover {
@@ -444,30 +460,6 @@ h1, h2, h3, .premium-heading {
 
 
 /* INDEX PAGE */
-/* Desktop: hide scrollbar */
-#filters::-webkit-scrollbar {
-  display: none;
-}
-
-.filter {
-  min-width: 10px;
-  opacity: 0.7;
-  cursor: pointer;
-}
-
-.filter:hover,
-.reset:hover {
-  opacity: 1;
-}
-
-.filter i,
-.reset i {
-  font-size: 1rem;
-}
-.filter p,
-.reset p {
-  font-size: 0.75rem;
-}
 .arrow-btn {
   border-radius: 50%;
   width: 36px;
@@ -476,6 +468,7 @@ h1, h2, h3, .premium-heading {
   align-items: center;
   justify-content: center;
 }
+
 
 /* GOOGLE BUTTON STYLE FOR SIGN UP AND LOGIN */
 

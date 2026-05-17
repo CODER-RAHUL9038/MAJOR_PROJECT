@@ -1,87 +1,94 @@
-You are a senior frontend UI/UX engineer.
+You are a senior frontend layout debugging engineer.
 
-Fix my existing Airbnb-style navbar and filter section layout WITHOUT breaking any existing functionality, routes, EJS logic, JavaScript behavior, responsiveness, Bootstrap structure, or backend integration.
+My Airbnb-style filter/category bar is visually overlapping the listing cards.
 
-Current issue:
-- The logo becomes extremely large and breaks the navbar layout
-- The category filter section overlaps with the navbar
-- Navbar spacing/alignment is broken
-- Search bar alignment looks inconsistent
-- Overall navbar height and responsiveness are damaged
+The filter functionality works correctly.
+The UI redesign is mostly complete.
+This is now specifically a LAYOUT FLOW and POSITIONING bug.
+
+CURRENT ISSUE:
+- Listing cards are rendering underneath the filter section
+- The filter bar visually sits on top of the content
+- There is not enough vertical spacing reserved for the filter container
+- The page flow is broken
 
 IMPORTANT:
-DO NOT rewrite the whole project.
-DO NOT remove any functionality.
-DO NOT change backend logic.
-DO NOT rename classes, ids, routes, variables, EJS syntax, or JS event listeners unless absolutely necessary.
-ONLY fix and improve the UI/layout safely.
+DO NOT break:
+- existing filter functionality
+- JavaScript event listeners
+- EJS rendering
+- routes
+- Bootstrap integration
+- responsive behavior
+- sticky navbar behavior
 
-STACK:
-- Node.js
-- Express
-- MongoDB
-- EJS
-- Bootstrap
-- Vanilla CSS
-- Vanilla JS
+ONLY fix layout positioning and spacing safely.
+
+LIKELY ROOT CAUSE:
+The filter section is probably using:
+- position: absolute
+OR
+- position: fixed
+OR
+- incorrect sticky positioning
+WITHOUT reserving layout space below it.
 
 TASKS:
 
-1. FIX LOGO
-- Constrain logo size properly
-- Prevent oversized scaling
-- Maintain aspect ratio
-- Ensure logo stays aligned vertically
-- Make logo responsive
-- Remove any layout-breaking styles
+1. FIX FILTER CONTAINER POSITIONING
+- Ensure filter section participates correctly in document flow
+- Prevent cards from rendering underneath it
+- Maintain premium sticky behavior if needed
+- Proper z-index hierarchy
 
-2. FIX NAVBAR
-- Proper flex alignment
-- Vertically centered items
-- Consistent spacing
-- Premium modern appearance
-- Sticky navbar
-- Soft shadow and blur effect
-- Responsive behavior
+2. FIX SPACING BELOW FILTER BAR
+- Add proper bottom spacing/margin
+- Ensure listings start BELOW the filter container
+- Maintain consistent spacing hierarchy
 
-3. FIX SEARCH BAR
-- Keep centered properly
-- Responsive width
-- Premium pill design
-- Maintain existing search functionality
-- Better spacing between navbar items
+3. FIX STICKY IMPLEMENTATION
+If using:
+position: sticky
 
-4. FIX CATEGORY/FILTER SECTION
-- Prevent overlap with navbar
-- Add proper spacing
-- Make horizontal scrolling smooth
-- Improve icon alignment
-- Preserve existing filter functionality
+Then:
+- configure correct top value
+- ensure parent containers allow sticky behavior
+- prevent overlap with cards
 
-5. RESPONSIVENESS
-- Ensure mobile/tablet compatibility
-- Prevent overflow issues
-- Avoid breaking layout on smaller screens
+4. CHECK FOR:
+- absolute positioning
+- fixed positioning
+- negative margins
+- transform issues
+- collapsed parent height
+- overflow hidden issues
+- z-index conflicts
 
-6. DESIGN STYLE
-Create a premium modern Airbnb-inspired aesthetic:
-- clean spacing
-- subtle shadows
-- elegant typography
-- smooth hover animations
-- luxury minimal look
-- modern glassmorphism navbar
+5. MAINTAIN PREMIUM UI
+Keep:
+- glassmorphism
+- shadows
+- premium spacing
+- smooth scrolling
+- hover animations
+- modern Airbnb aesthetic
+
+6. RESPONSIVENESS
+- Ensure no overlap on all screen sizes
+- Maintain horizontal filter scrolling
+- Proper mobile spacing
 
 7. OUTPUT FORMAT
 Provide:
-- Exact CSS fixes
-- Exact HTML/EJS changes only where needed
-- Clearly explain what caused the issue
-- Safe production-ready code
-- Comments in code
+- exact CSS fixes
+- explain why overlap happens
+- minimal HTML adjustments if needed
+- production-safe solution
 
-8. CRITICAL RULE
-Preserve ALL existing functionality and logic.
-This is ONLY a UI/layout fix and enhancement task.
-
-Analyze the layout carefully and provide the safest professional fix possible.
+8. MOST IMPORTANT
+The filter bar must:
+- stay visible
+- stay functional
+- NOT overlap cards
+- preserve clean spacing hierarchy
+- feel professionally integrated into layout

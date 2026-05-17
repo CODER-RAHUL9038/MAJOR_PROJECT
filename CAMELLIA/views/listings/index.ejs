@@ -1,15 +1,15 @@
 <% layout("/layouts/boilerplate") -%>
 
-<div class="filters-wrapper sticky-top shadow-sm" style="top: 5rem; z-index: 999;">
+<div class="filters-wrapper">
   <div class="container-fluid px-md-5">
-    <div class="d-flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center">
       <!-- LEFT ARROW -->
-      <button class="btn btn-light arrow-btn d-none d-md-flex" id="scrollLeft">
+      <button class="btn arrow-btn d-none d-md-flex me-3" id="scrollLeft">
         <i class="fa-solid fa-chevron-left"></i>
       </button>
 
       <!-- Filters -->
-      <div id="filters" class="d-flex align-items-center flex-nowrap overflow-auto py-1 mx-2">
+      <div id="filters" class="flex-grow-1">
         <% 
           const categories = [
             { id: 'trending', label: 'Trending', icon: 'fa-fire' },
@@ -27,7 +27,7 @@
           ];
         %>
         <% for(let cat of categories) { %>
-          <a href="/listings?category=<%= cat.id %>" class="text-decoration-none text-dark">
+          <a href="/listings?category=<%= cat.id %>" class="text-decoration-none">
             <div class="filter <%= category === cat.id ? 'active' : '' %>">
               <i class="<%= cat.brand ? 'fa-brands' : 'fa-solid' %> <%= cat.icon %>"></i>
               <p><%= cat.label %></p>
@@ -37,15 +37,15 @@
       </div>
 
       <!-- RIGHT ARROW -->
-      <button class="btn btn-light arrow-btn d-none d-md-flex" id="scrollRight">
+      <button class="btn arrow-btn d-none d-md-flex ms-3" id="scrollRight">
         <i class="fa-solid fa-chevron-right"></i>
       </button>
 
-      <!-- TAXES TOGGLE (OPTIONAL UI ADDITION MENTIONED IN DESIGN VIBE) -->
-      <div class="tax-toggle d-none d-lg-flex align-items-center ms-3 p-3 border rounded-3 bg-white shadow-sm" style="height: 48px; cursor: pointer;">
+      <!-- TAXES TOGGLE -->
+      <div class="tax-toggle d-none d-lg-flex align-items-center ms-4 p-3 border rounded-3 bg-white shadow-sm" style="height: 48px; cursor: pointer;">
         <div class="form-check form-switch p-0 m-0 d-flex align-items-center gap-2">
-          <label class="form-check-label fs-small fw-bold" for="flexSwitchCheckDefault" style="font-size: 0.75rem; white-space: nowrap;">Display total before taxes</label>
-          <input class="form-check-input m-0" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+          <label class="form-check-label fs-small fw-bold" for="flexSwitchCheckDefault" style="font-size: 0.75rem; white-space: nowrap; cursor: pointer;">Display total before taxes</label>
+          <input class="form-check-input m-0" style="cursor: pointer;" type="checkbox" role="switch" id="flexSwitchCheckDefault">
         </div>
       </div>
     </div>
