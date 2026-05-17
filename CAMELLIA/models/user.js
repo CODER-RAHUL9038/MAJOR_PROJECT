@@ -17,7 +17,7 @@ const userSchema = new Schema({
   avatar: {
     url: {
       type: String,
-      default: "https://res.cloudinary.com/dmue96vxb/image/upload/v1703612502/default_avatar_p3f2zv.png"
+      default: "https://lh3.googleusercontent.com/a/default-user=s100-c"
     },
     filename: String,
   },
@@ -48,7 +48,7 @@ userSchema.pre('save', async function() {
   if (typeof this.avatar === 'string') {
     const oldAvatar = this.avatar;
     this.avatar = {
-      url: oldAvatar || "https://res.cloudinary.com/dmue96vxb/image/upload/v1703612502/default_avatar_p3f2zv.png",
+      url: oldAvatar || "https://lh3.googleusercontent.com/a/default-user=s100-c",
       filename: "converted_avatar"
     };
   }

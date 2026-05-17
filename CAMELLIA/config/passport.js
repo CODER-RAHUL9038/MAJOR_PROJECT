@@ -20,7 +20,7 @@ passport.use(
         // Extract profile image URL
         let profilePic = profile.photos && profile.photos.length > 0 
           ? profile.photos[0].value.replace("s96-c", "s400-c") // Get higher res image
-          : "https://res.cloudinary.com/dmue96vxb/image/upload/v1703612502/default_avatar_p3f2zv.png";
+          : "https://lh3.googleusercontent.com/a/default-user=s100-c";
           
         if (!user) {
           user = new User({
