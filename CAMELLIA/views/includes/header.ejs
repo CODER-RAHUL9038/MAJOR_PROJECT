@@ -1,0 +1,7 @@
+<header class="main-header sticky-top">
+  <%- include("./navbar.ejs") %>
+  
+  <% if (typeof showFilters !== 'undefined' && showFilters) { %>
+    <%- include("./filters.ejs") %>
+  <% } %>
+</header>

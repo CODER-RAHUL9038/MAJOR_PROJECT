@@ -1,111 +1,95 @@
-You partially fixed the spacing hierarchy, but the core layout issue still exists.
+You are a senior frontend architecture engineer.
 
-CURRENT ISSUE:
-The listing cards are STILL rendering underneath the sticky filter bar.
+I want to RESTRUCTURE my layout professionally to permanently solve the sticky filter overlapping issues.
 
-The filter section visually floats on top of the listings instead of occupying proper layout space.
+Current problem:
+- Separate sticky navbar + separate sticky filter bar are causing layout conflicts
+- Listings either overlap filters OR get pushed too far down
+- Spacing hacks are making the architecture messy
 
-This is NOT a simple margin/padding problem anymore.
-This is now a STICKY LAYOUT STRUCTURE issue.
+I want to switch to a PROFESSIONAL Airbnb-style architecture:
 
-ROOT CAUSE:
-The sticky filter container is visually fixed,
-but the layout below is not reserving proper vertical space for it.
-
-As a result:
-- cards appear behind filters
-- filters visually overlay content
-- spacing hacks are being used instead of proper layout structure
-
-IMPORTANT:
-STOP adding random margin-top or padding-top fixes.
-
-Instead:
-Use a proper sticky-wrapper layout architecture.
+ONE unified sticky header containing:
+1. Navbar
+2. Search bar
+3. Filter/category section
 
 GOAL:
-Achieve true Airbnb-style behavior:
-Navbar
-↓
-Sticky Filters
-↓
-Listings start naturally BELOW filters
-↓
-No overlap
-↓
-No huge empty gaps
+Create:
+- one single sticky top section
+- filters integrated naturally below navbar
+- listings starting cleanly below the header
+- no overlapping
+- no excessive gaps
+- premium modern layout
+
+IMPORTANT:
+DO NOT break:
+- filter functionality
+- EJS rendering
+- routes
+- JavaScript event listeners
+- responsive behavior
+- search functionality
+- Bootstrap integration
+- backend logic
+
+ONLY restructure layout safely.
 
 TASKS:
 
-1. FIX STICKY LAYOUT ARCHITECTURE
-Create proper structure:
+1. CREATE UNIFIED STICKY HEADER
+Structure:
+- sticky header wrapper
+  - navbar
+  - search section
+  - filters section
 
-- outer layout wrapper
-- sticky navbar
-- sticky filter wrapper
-- listings container below
+The entire top section should scroll together naturally.
 
-Ensure the sticky filter section still occupies normal document flow space.
+2. REMOVE MULTIPLE STICKY CONFLICTS
+- eliminate separate sticky filter hacks
+- eliminate duplicate top offsets
+- remove spacing hacks
+- remove overlap issues
 
-2. FIX FILTER CONTAINER
-The filter bar should:
-- remain sticky while scrolling
-- NOT overlap cards
-- reserve its own layout height
-- behave naturally in the document flow
-
-3. REMOVE BAD FIXES
-Check and remove:
-- unnecessary padding-top
-- huge margins
-- spacer div hacks
-- height hacks
-- duplicate offsets
-- translateY fixes
-- top hacks
-
-4. CORRECT STICKY IMPLEMENTATION
-Use:
-position: sticky;
-
-ONLY where appropriate.
-
-Ensure:
-- correct parent container
-- correct stacking context
-- proper z-index
-- natural height reservation
-
-5. LISTINGS GRID
-The listings grid should:
-- start naturally below filters
+3. FIX LAYOUT FLOW
+Listings should:
+- start naturally below the sticky header
+- never overlap filters
 - maintain balanced spacing
-- NOT use huge artificial offsets
 
-6. RESPONSIVENESS
-Ensure:
-- sticky works correctly on all screen sizes
-- no overlap on mobile
-- no hidden content
-- smooth horizontal filter scrolling
-
-7. MAINTAIN PREMIUM UI
+4. MAINTAIN PREMIUM UI
 Keep:
 - glassmorphism
-- shadows
-- premium spacing
+- premium shadows
 - hover effects
+- smooth scrolling
 - Airbnb-inspired aesthetic
 
-8. OUTPUT FORMAT
+5. RESPONSIVENESS
+Ensure:
+- unified sticky layout works on mobile
+- filters scroll horizontally
+- navbar stays compact
+- no overflow issues
+
+6. CLEAN ARCHITECTURE
+Use:
+- proper flex/grid layout
+- natural document flow
+- minimal hacks
+- production-ready structure
+
+7. OUTPUT FORMAT
 Provide:
-- exact corrected layout structure
+- exact HTML/EJS structure
 - exact CSS fixes
-- explain why sticky caused overlap
-- production-safe solution
-- minimal HTML changes only if necessary
+- explain why unified sticky architecture is better
+- minimal safe changes
+- production-ready code
 
 MOST IMPORTANT:
-Do NOT patch spacing again.
+Do NOT use spacing hacks.
 
-Fix the ACTUAL sticky layout structure properly.
+Create a proper single-header architecture like Airbnb.

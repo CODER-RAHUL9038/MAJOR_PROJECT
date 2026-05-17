@@ -1,0 +1,51 @@
+<div class="filters-wrapper">
+  <div class="container-fluid px-md-5">
+    <div class="d-flex align-items-center">
+      <!-- LEFT ARROW -->
+      <button class="btn arrow-btn d-none d-md-flex me-3" id="scrollLeft">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+
+      <!-- Filters -->
+      <div id="filters" class="flex-grow-1">
+        <% 
+          const categoriesList = [
+            { id: 'trending', label: 'Trending', icon: 'fa-fire' },
+            { id: 'rooms', label: 'Rooms', icon: 'fa-bed' },
+            { id: 'city', label: 'Cities', icon: 'fa-city' },
+            { id: 'mountain', label: 'Mountain', icon: 'fa-mountain' },
+            { id: 'castle', label: 'Castles', icon: 'fa-fort-awesome', brand: true },
+            { id: 'pool', label: 'Pools', icon: 'fa-person-swimming' },
+            { id: 'camping', label: 'Camping', icon: 'fa-campground' },
+            { id: 'farm', label: 'Farms', icon: 'fa-tractor' },
+            { id: 'arctic', label: 'Arctic', icon: 'fa-snowman' },
+            { id: 'forest', label: 'Forest', icon: 'fa-tree' },
+            { id: 'beach', label: 'Beach', icon: 'fa-umbrella-beach' },
+            { id: 'heritage', label: 'Heritage', icon: 'fa-synagogue' }
+          ];
+        %>
+        <% for(let cat of categoriesList) { %>
+          <a href="/listings?category=<%= cat.id %>" class="text-decoration-none">
+            <div class="filter <%= (typeof category !== 'undefined' && category === cat.id) ? 'active' : '' %>">
+              <i class="<%= cat.brand ? 'fa-brands' : 'fa-solid' %> <%= cat.icon %>"></i>
+              <p><%= cat.label %></p>
+            </div>
+          </a>
+        <% } %>
+      </div>
+
+      <!-- RIGHT ARROW -->
+      <button class="btn arrow-btn d-none d-md-flex ms-3" id="scrollRight">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+
+      <!-- TAXES TOGGLE -->
+      <div class="tax-toggle d-none d-lg-flex align-items-center ms-4 p-3 border rounded-3 bg-white shadow-sm" style="height: 48px; cursor: pointer;">
+        <div class="form-check form-switch p-0 m-0 d-flex align-items-center gap-2">
+          <label class="form-check-label fs-small fw-bold" for="flexSwitchCheckDefault" style="font-size: 0.75rem; white-space: nowrap; cursor: pointer;">Display total before taxes</label>
+          <input class="form-check-input m-0" style="cursor: pointer;" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

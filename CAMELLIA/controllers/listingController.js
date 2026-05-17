@@ -44,6 +44,7 @@ module.exports.index = async (req, res) => {
     category: category || null,
     search: search || null,
     hasResults,
+    showFilters: true,
   });
 };
 
