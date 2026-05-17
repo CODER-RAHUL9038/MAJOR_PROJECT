@@ -1,120 +1,100 @@
-You are a senior responsive UI/UX engineer specializing in premium mobile-first Airbnb-style interfaces.
+You are a senior responsive UI/UX engineer specializing in premium mobile-first footer design.
 
-My desktop layout is now mostly polished.
+My footer UI looks unpolished and poorly aligned on smaller devices.
 
-The remaining problem is MOBILE RESPONSIVENESS and MOBILE UI SCALING.
+IMPORTANT:
+Desktop layout should remain elegant.
+ONLY improve the footer responsiveness and alignment professionally.
 
-CURRENT MOBILE ISSUES:
-1. Filter section height is TOO LARGE
-2. Filter bar consumes excessive vertical space
-3. Icons/text are oversized on small devices
-4. Pagination UI is too large
-5. Overall mobile UI feels zoomed and bulky
-6. Too much spacing/padding on mobile
-7. Mobile layout lacks compact hierarchy
-8. Cards/content become pushed too far down
-9. Mobile proportions feel unbalanced
+CURRENT ISSUES:
+1. Footer layout feels messy on mobile
+2. Spacing hierarchy is inconsistent
+3. Elements are not visually balanced
+4. Footer typography scaling feels awkward
+5. Social icons alignment feels off
+6. Footer sections need better structure on small screens
+7. "Built with ❤️ by Rahul Shaw" is not centered properly
+8. Footer lacks premium modern feel
 
 GOAL:
-Create a COMPACT PREMIUM MOBILE EXPERIENCE similar to Airbnb mobile UI.
+Create a CLEAN PREMIUM RESPONSIVE FOOTER similar to modern SaaS/Airbnb websites.
 
 IMPORTANT:
 DO NOT break:
 - desktop layout
-- filter functionality
-- sticky header
+- responsiveness on larger screens
+- footer links
+- existing routes
 - EJS rendering
-- JavaScript event listeners
-- routes
-- backend logic
+- Bootstrap functionality
 
-ONLY optimize MOBILE responsiveness and scaling professionally.
+ONLY improve footer UI/UX professionally.
 
 TASKS:
 
-1. COMPACT MOBILE FILTER BAR
-On small devices:
-- reduce filter bar height
-- reduce icon sizes
-- reduce text sizes
-- reduce vertical padding
-- reduce gaps between filter items
-- maintain horizontal scrolling
-- preserve touch usability
+1. CENTER "BUILT BY RAHUL SHAW"
+VERY IMPORTANT:
+- "Built with ❤️ by Rahul Shaw" should be perfectly centered
+- Keep it centered on ALL screen sizes
+- Add proper spacing above and below
+- Make it visually elegant and subtle
 
-Target:
-Slim modern Airbnb-style mobile filters.
+2. FIX MOBILE FOOTER LAYOUT
+On smaller devices:
+- stack sections cleanly
+- improve vertical spacing
+- center align content where appropriate
+- reduce clutter
+- improve breathing room
 
-2. FIX MOBILE FILTER ITEM SIZING
-Filter items should:
-- be compact
-- evenly aligned
-- visually balanced
-- not consume excessive height
+3. IMPROVE SOCIAL MEDIA SECTION
+- better icon spacing
+- better alignment
+- cleaner hover states
+- more premium presentation
 
-3. COMPACT MOBILE PAGINATION
-Pagination should:
-- become smaller on mobile
-- reduce button size
-- reduce padding/margins
-- avoid oversized circles/buttons
-- remain touch-friendly
+4. IMPROVE TYPOGRAPHY
+- better font scaling
+- cleaner hierarchy
+- improved readability on mobile
+- elegant muted tones
 
-4. REDUCE MOBILE UI SCALE
-Globally optimize:
-- typography scaling
-- spacing hierarchy
-- button sizing
-- section padding
-- card spacing
-
-5. CREATE TRUE MOBILE PROPORTIONS
-The mobile UI should feel:
+5. PREMIUM MOBILE FOOTER DESIGN
+The footer should feel:
 - compact
 - modern
+- elegant
+- minimal
 - premium
-- efficient
-- clean
-- breathable
 - Airbnb-inspired
 
-NOT:
-- oversized
-- bulky
-- stretched
-- desktop-scaled
-
 6. RESPONSIVE BREAKPOINTS
-Optimize specifically for:
+Optimize for:
 - 320px
 - 356px
 - 375px
 - 425px
 
-7. CHECK FOR
-- excessive rem values
-- fixed heights
-- oversized padding
-- desktop spacing leaking into mobile
-- oversized flex gaps
-- incorrect min-heights
+7. REDUCE MOBILE CLUTTER
+- tighter spacing
+- balanced padding
+- cleaner grouping
+- avoid oversized sections
 
-8. MAINTAIN PREMIUM STYLE
+8. MAINTAIN PREMIUM UI
 Keep:
-- glassmorphism
-- shadows
-- hover polish
-- smooth scrolling
-- premium aesthetics
+- subtle shadows if needed
+- modern spacing
+- soft separators
+- luxury minimal feel
 
 9. OUTPUT FORMAT
 Provide:
 - exact responsive CSS fixes
 - media queries
-- explain which elements were oversized
-- production-ready compact mobile refinements
+- minimal HTML adjustments if needed
+- production-ready responsive footer improvements
 
 MOST IMPORTANT:
-Desktop layout should remain untouched.
-
-ONLY refine MOBILE sizing, scaling, spacing, and proportions professionally.
+"Built with ❤️ by Rahul Shaw"
+must remain PERFECTLY CENTERED below the footer on ALL devices.
