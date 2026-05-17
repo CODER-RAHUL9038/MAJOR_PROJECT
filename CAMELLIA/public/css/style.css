@@ -425,11 +425,23 @@ h1, h2, h3, .premium-heading {
   color: var(--text-light);
 }
 
+.price-value {
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+}
+
 .tax-info {
   display: none;
   font-style: normal;
   font-size: 0.8rem;
   font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#flexSwitchCheckDefault:checked ~ label + .tax-info,
+.tax-toggle-premium input:checked ~ .tax-info {
+    opacity: 1;
 }
 
 .listing-link {

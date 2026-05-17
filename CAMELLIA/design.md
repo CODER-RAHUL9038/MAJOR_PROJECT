@@ -1,100 +1,117 @@
-You are a senior responsive UI/UX engineer specializing in premium mobile-first footer design.
+You are a senior full-stack frontend engineer.
 
-My footer UI looks unpolished and poorly aligned on smaller devices.
+I want to implement REAL dynamic tax toggle functionality for my Airbnb-style listings page.
 
-IMPORTANT:
-Desktop layout should remain elegant.
-ONLY improve the footer responsiveness and alignment professionally.
+CURRENT BEHAVIOR:
+Right now when the toggle is enabled:
+- only "+18% GST" text appears
+- the actual listing price does NOT change
 
-CURRENT ISSUES:
-1. Footer layout feels messy on mobile
-2. Spacing hierarchy is inconsistent
-3. Elements are not visually balanced
-4. Footer typography scaling feels awkward
-5. Social icons alignment feels off
-6. Footer sections need better structure on small screens
-7. "Built with ❤️ by Rahul Shaw" is not centered properly
-8. Footer lacks premium modern feel
-
-GOAL:
-Create a CLEAN PREMIUM RESPONSIVE FOOTER similar to modern SaaS/Airbnb websites.
+I want COMPLETE WORKING LOGIC like Airbnb pricing toggles.
 
 IMPORTANT:
 DO NOT break:
-- desktop layout
-- responsiveness on larger screens
-- footer links
-- existing routes
+- existing listing cards
 - EJS rendering
-- Bootstrap functionality
+- routes
+- pagination
+- filtering
+- responsiveness
+- existing UI design
+- card structure
+- backend logic unless necessary
 
-ONLY improve footer UI/UX professionally.
+STACK:
+- Node.js
+- Express
+- MongoDB
+- EJS
+- Vanilla JS
+- Bootstrap
 
-TASKS:
+GOAL:
+Implement a fully working "Display total before taxes" toggle.
 
-1. CENTER "BUILT BY RAHUL SHAW"
-VERY IMPORTANT:
-- "Built with ❤️ by Rahul Shaw" should be perfectly centered
-- Keep it centered on ALL screen sizes
-- Add proper spacing above and below
-- Make it visually elegant and subtle
+REQUIRED BEHAVIOR:
 
-2. FIX MOBILE FOOTER LAYOUT
-On smaller devices:
-- stack sections cleanly
-- improve vertical spacing
-- center align content where appropriate
-- reduce clutter
-- improve breathing room
+1. DEFAULT STATE
+- Listing prices are shown WITHOUT GST
+Example:
+₹1000/night
 
-3. IMPROVE SOCIAL MEDIA SECTION
-- better icon spacing
-- better alignment
-- cleaner hover states
-- more premium presentation
+2. WHEN TOGGLE ENABLED
+- Add 18% GST dynamically
+- Update displayed price LIVE
+- Preserve original base price internally
 
-4. IMPROVE TYPOGRAPHY
-- better font scaling
-- cleaner hierarchy
-- improved readability on mobile
-- elegant muted tones
+Example:
+Original:
+₹1000/night
 
-5. PREMIUM MOBILE FOOTER DESIGN
-The footer should feel:
-- compact
-- modern
-- elegant
-- minimal
-- premium
-- Airbnb-inspired
+After toggle ON:
+₹1180/night
 
-6. RESPONSIVE BREAKPOINTS
-Optimize for:
-- 320px
-- 356px
-- 375px
-- 425px
+3. WHEN TOGGLE DISABLED
+- Revert back to original base price
 
-7. REDUCE MOBILE CLUTTER
-- tighter spacing
-- balanced padding
-- cleaner grouping
-- avoid oversized sections
+4. IMPORTANT REQUIREMENTS
+- Price calculation must work for ALL listings
+- Should update instantly without page reload
+- Toggle state should persist while browsing/pagination if possible
+- Avoid recalculating wrong values repeatedly
+- Preserve formatting and UI styling
 
-8. MAINTAIN PREMIUM UI
-Keep:
-- subtle shadows if needed
-- modern spacing
-- soft separators
-- luxury minimal feel
+5. IMPLEMENTATION REQUIREMENTS
+Use:
+- data attributes OR
+- hidden original price values
+
+DO NOT:
+- parse already modified prices repeatedly
+- stack tax multiple times
+- hardcode values manually
+
+6. UI REQUIREMENTS
+When toggle ON:
+- smoothly animate price change
+- optionally show:
+  "incl. GST"
+
+When OFF:
+- return to clean base price display
+
+7. GST LOGIC
+Tax rate:
+18%
+
+Formula:
+finalPrice = basePrice + (basePrice * 0.18)
+
+OR:
+finalPrice = basePrice * 1.18
+
+Round properly for INR display.
+
+8. RESPONSIVENESS
+Ensure functionality works across:
+- desktop
+- tablet
+- mobile
 
 9. OUTPUT FORMAT
 Provide:
-- exact responsive CSS fixes
-- media queries
-- minimal HTML adjustments if needed
-- production-ready responsive footer improvements
+- exact EJS modifications
+- exact HTML/data-attribute setup
+- exact JavaScript implementation
+- exact CSS improvements if needed
+- production-ready clean solution
 
-MOST IMPORTANT:
-"Built with ❤️ by Rahul Shaw"
-must remain PERFECTLY CENTERED below the footer on ALL devices.
+10. MOST IMPORTANT
+The original listing price should remain the SOURCE OF TRUTH.
+
+Do NOT calculate tax on already-taxed prices.
+
+The toggle should always:
+BASE PRICE ↔ GST INCLUDED PRICE
+
+cleanly and accurately.

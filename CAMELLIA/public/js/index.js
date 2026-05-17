@@ -14,16 +14,25 @@ if (scrollRight) {
   });
 }
 
-// TAX TOGGLE LOGIC
+// TAX TOGGLE LOGIC - DYNAMIC PRICING
 const taxSwitch = document.getElementById("flexSwitchCheckDefault");
 if (taxSwitch) {
   taxSwitch.addEventListener("change", () => {
     let taxInfo = document.getElementsByClassName("tax-info");
-    for (let info of taxInfo) {
+    let priceValues = document.getElementsByClassName("price-value");
+
+    for (let i = 0; i < priceValues.length; i++) {
+      let basePrice = parseFloat(priceValues[i].getAttribute("data-base-price"));
+      
       if (taxSwitch.checked) {
-        info.style.display = "inline";
+        // Show price with 18% GST
+        let totalPrice = basePrice * 1.18;
+        priceValues[i].innerText = Math.round(totalPrice).toLocaleString("en-IN");
+        if (taxInfo[i]) taxInfo[i].style.display = "inline";
       } else {
-        info.style.display = "none";
+        // Restore base price
+        priceValues[i].innerText = basePrice.toLocaleString("en-IN");
+        if (taxInfo[i]) taxInfo[i].style.display = "none";
       }
     }
   });
