@@ -50,8 +50,8 @@
 <div class="container-fluid px-md-5 pagination-container">
   <div class="d-flex justify-content-center align-items-center gap-3">
     <% if (currentPage > 1) { %>
-    <a href="/listings?page=<%= currentPage - 1 %>" class="btn btn-outline-dark btn-pagination">
-      <i class="fa-solid fa-chevron-left me-2"></i> Prev
+    <a href="/listings?page=<%= currentPage - 1 %>" class="btn btn-outline-dark btn-pagination rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;" aria-label="Previous Page">
+      <i class="fa-solid fa-chevron-left"></i>
     </a>
     <% } %>
 
@@ -68,8 +68,8 @@
     </div>
 
     <% if (currentPage < totalPages) { %>
-    <a href="/listings?page=<%= currentPage + 1 %>" class="btn btn-outline-dark btn-pagination">
-      Next <i class="fa-solid fa-chevron-right ms-2"></i>
+    <a href="/listings?page=<%= currentPage + 1 %>" class="btn btn-outline-dark btn-pagination rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;" aria-label="Next Page">
+      <i class="fa-solid fa-chevron-right"></i>
     </a>
     <% } %>
   </div>
