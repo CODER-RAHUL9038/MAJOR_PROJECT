@@ -41,7 +41,7 @@ router.get(
     failureFlash: true,
   }),
   (req, res) => {
-    req.flash("success", "Logged in with Google!");
+    req.flash("success", `Welcome to Camellia! Logged in securely with Google.`);
     res.redirect("/listings");
   }
 );

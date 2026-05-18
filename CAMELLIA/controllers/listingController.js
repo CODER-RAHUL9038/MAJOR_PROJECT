@@ -87,7 +87,7 @@ module.exports.createListing = async (req, res) => {
   if (!response.data.features.length) {
     req.flash(
       "error",
-      "Address not found. Please remove house number or enter a nearby landmark."
+      "We couldn't find that address. Please try using a nearby landmark or removing the house number."
     );
     return res.redirect("/listings/new");
   }
@@ -103,7 +103,7 @@ module.exports.createListing = async (req, res) => {
 
   // 5️⃣ Save
   await newListing.save();
-  req.flash("success", "New listing created!");
+  req.flash("success", "Your new listing has been published!");
   res.redirect("/listings");
 };
 
@@ -123,7 +123,7 @@ module.exports.showListings = async (req, res) => {
     .populate("owner");
 
   if (!listing) {
-    req.flash("error", "Listing does not exists ");
+    req.flash("error", "Sorry, that listing is no longer available.");
     return res.redirect("/listings");
   }
 
@@ -185,7 +185,7 @@ module.exports.editListing = async (req, res) => {
 
     // 3️⃣ Validate result FIRST
     if (!response.data.features.length) {
-      req.flash("error", "Address not found. Please try a nearby landmark.");
+      req.flash("error", "We couldn't find that address. Please try using a nearby landmark.");
       return res.redirect("/listings/new");
     }
 
@@ -209,7 +209,7 @@ module.exports.editListing = async (req, res) => {
     await listing.save();
   }
   await listing.save();
-  req.flash("success", "Listing Updated!");
+  req.flash("success", "Listing successfully updated!");
   res.redirect(`/listings/${listing._id}`);
 };
 
@@ -231,7 +231,7 @@ module.exports.deleteListing = async (req, res) => {
   }
   await listing.deleteOne();
 
-  req.flash("success", " Listing Deleted!");
+  req.flash("success", "Listing has been removed.");
   res.redirect("/listings");
 };
 

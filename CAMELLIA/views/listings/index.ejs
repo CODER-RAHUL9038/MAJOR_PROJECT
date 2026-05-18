@@ -53,6 +53,7 @@
 </div>
 
 <!-- PAGINATION PREMIUM -->
+<% if (totalPages > 1) { %>
 <div class="container-fluid px-md-5 pagination-container">
   <div class="d-flex justify-content-center align-items-center gap-3">
     <% if (currentPage > 1) { %>
@@ -80,4 +81,5 @@
     <% } %>
   </div>
 </div>
+<% } %>
 <script src="/js/index.js"></script>

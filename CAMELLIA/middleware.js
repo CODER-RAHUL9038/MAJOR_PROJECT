@@ -31,7 +31,7 @@ module.exports.isLoggedIn = (req, res, next) => {
   if (!req.isAuthenticated()) {
     //redirect Url
     req.session.redirectUrl = req.originalUrl;
-    req.flash("error", "You must be logged in to create a listing");
+    req.flash("warning", "Please log in first to access this feature.");
     return res.redirect("/login");
   }
   next();
@@ -49,7 +49,7 @@ module.exports.isOwner = async (req, res, next) => {
   let { id } = req.params;
   let listing = await Listing.findById(id);
   if (!listing.owner._id.equals(req.user && req.user._id)) {
-    req.flash("error", "You are not the owner of this listing");
+    req.flash("error", "You don't have permission to modify this listing.");
     return res.redirect(`/listings/${id}`);
   }
   next();
@@ -59,7 +59,7 @@ module.exports.isReviewAuthor = async (req, res, next) => {
   let { id, reviewId } = req.params;
   let review = await Review.findById(reviewId);
   if (!review.author._id.equals(req.user && req.user._id)) {
-    req.flash("error", "You are not the author of this review");
+    req.flash("error", "You can only delete your own reviews.");
     return res.redirect(`/listings/${id}`);
   }
   next();
