@@ -72,57 +72,47 @@ function showToast(message, type = 'info', title = '') {
     // Pause on hover
     toast.addEventListener('mouseenter', () => {
         const progressBar = toast.querySelector('.toast-progress-bar');
-        progressBar.style.animationPlayState = 'paused';
+        if (progressBar) progressBar.style.animationPlayState = 'paused';
         clearTimeout(timeout);
     });
 
     toast.addEventListener('mouseleave', () => {
         const progressBar = toast.querySelector('.toast-progress-bar');
-        progressBar.style.animationPlayState = 'running';
+        if (progressBar) progressBar.style.animationPlayState = 'running';
         
-        // Calculate remaining time
-        // Note: Simple implementation, doesn't perfectly sync with progress bar 
-        // but feels okay for UX.
+        // Simpler approach for resume: just restart a shorter timeout
         setTimeout(() => {
             dismissToast(toast);
-        }, 2000); // Give it some extra time
+        }, 1500); 
     });
 }
 
 function dismissToast(toast) {
+    if (toast.classList.contains('hiding')) return;
+    
     toast.classList.add('hiding');
+    
+    // Snappier transition for hiding
+    toast.style.transition = 'all 0.3s ease-in';
+    
     toast.addEventListener('animationend', (e) => {
         if (e.animationName === 'toast-slide-out') {
             toast.remove();
-            
-            // Remove container if empty
-            const container = document.getElementById(toastConfig.containerId);
-            if (container && container.childNodes.length === 0) {
-                // container.remove(); // Keep container for performance if many toasts expected
-            }
         }
     });
 }
 
-// Initialize flash messages from data attributes
+// Initialize flash messages from global window object
 document.addEventListener('DOMContentLoaded', () => {
-    const flashData = document.getElementById('flash-data');
-    if (flashData) {
-        try {
-            const types = ['success', 'error', 'warning', 'info'];
-            types.forEach(type => {
-                const data = flashData.getAttribute(`data-${type}`);
-                if (data) {
-                    const messages = JSON.parse(data);
-                    if (Array.isArray(messages)) {
-                        messages.forEach(msg => {
-                            if (msg) showToast(msg, type);
-                        });
-                    }
-                }
-            });
-        } catch (e) {
-            console.error('Error parsing flash data:', e);
-        }
+    if (window.flashMessages) {
+        const types = ['success', 'error', 'warning', 'info'];
+        types.forEach(type => {
+            const messages = window.flashMessages[type];
+            if (Array.isArray(messages)) {
+                messages.forEach(msg => {
+                    if (msg) showToast(msg, type);
+                });
+            }
+        });
     }
 });

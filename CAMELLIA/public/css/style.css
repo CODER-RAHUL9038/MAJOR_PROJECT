@@ -323,21 +323,22 @@ h1, h2, h3, .premium-heading {
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  margin-left: 1.5rem; /* Standard desktop spacing */
 }
 
 /* CLEAR FILTERS BUTTON */
 .clear-filters-btn {
   border: 1px solid var(--border-soft);
   border-radius: 12px;
-  padding: 10px 16px;
-  font-size: 0.8rem;
+  padding: 10px 18px;
+  font-size: 0.85rem;
   font-weight: 700;
   color: var(--accent);
   background-color: #ffffff;
   box-shadow: var(--shadow-sm);
   transition: var(--transition-fast);
   text-decoration: none;
-  height: 42px;
+  height: 44px;
   display: flex !important;
   align-items: center;
   justify-content: center;
@@ -355,7 +356,7 @@ h1, h2, h3, .premium-heading {
 }
 
 .clear-filters-btn i {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--primary);
   flex-shrink: 0;
 }
@@ -761,8 +762,88 @@ h1, h2, h3, .premium-heading {
 
 /* RESPONSIVE BREAKPOINTS & MOBILE FIXES */
 @media (max-width: 991.98px) {
+  .main-header {
+    z-index: 5000 !important; /* High enough to clear all mobile sticky sections */
+    overflow: visible !important;
+  }
+
+  .navbar {
+    z-index: 5001 !important;
+    overflow: visible !important;
+  }
+
   .search-container {
     max-width: 300px;
+  }
+}
+
+/* DESKTOP-ONLY DROPDOWN & NAVBAR REFINEMENTS */
+@media (min-width: 992px) {
+  .main-header {
+    z-index: 5000 !important; /* Extremely high to clear all sticky filters */
+    position: sticky !important;
+    overflow: visible !important;
+  }
+
+  .navbar {
+    z-index: 5001 !important;
+    overflow: visible !important;
+  }
+
+  .user-avatar-container {
+    width: 40px; /* Slightly larger for better desktop presence */
+    height: 40px;
+  }
+
+  .nav-item.dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .dropdown-menu-end {
+    right: 0 !important;
+    left: auto !important;
+    margin-top: 12px !important; /* Elegant spacing from avatar */
+    width: 240px; /* Compact & Elegant */
+    min-width: auto;
+    border: 1px solid var(--border-soft) !important;
+    box-shadow: var(--shadow-lg) !important;
+    padding: 0.5rem !important;
+    border-radius: 1rem !important;
+    z-index: 2000;
+  }
+
+  .dropdown-item {
+    padding: 0.6rem 0.75rem !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-main);
+  }
+
+  /* User Info Section in Dropdown */
+  .dropdown-menu .border-bottom {
+    padding: 0.5rem 0.75rem 0.75rem 0.75rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .dropdown-menu .fw-bold.small {
+    font-size: 0.85rem !important;
+    margin-bottom: 2px;
+  }
+
+  .dropdown-menu .smaller {
+    font-size: 0.75rem !important;
+    opacity: 0.7;
+  }
+
+  .navbar-nav {
+    align-items: center;
+  }
+
+  .logout-link-minimal {
+    margin-top: 0 !important;
+    padding: 0.6rem 0.75rem !important;
   }
 }
 
@@ -784,16 +865,40 @@ h1, h2, h3, .premium-heading {
   }
 
   .filters-wrapper {
-    height: 4.2rem;
-    padding-top: 0.3rem;
+    height: auto !important;
+    padding: 0.5rem 0 0.8rem 0;
+  }
+
+  .filters-container {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   #filters {
-    gap: 1.2rem; /* Tighter gap */
+    flex: 0 0 100%;
+    order: 1;
+    gap: 1.5rem;
+    justify-content: flex-start; /* Ensure scrolling works properly */
   }
 
-  .filter {
-    padding-bottom: 6px;
+  .clear-filters-wrapper {
+    order: 2;
+    margin: 0.6rem 0 0 0 !important;
+    width: 100%;
+    justify-content: flex-end; /* Align to the right */
+    padding-right: 0.5rem;
+  }
+
+  .clear-filters-btn {
+    padding: 4px 10px;
+    font-size: 0.65rem;
+    height: 28px;
+    border-radius: 6px;
+    gap: 4px;
+  }
+
+  .clear-filters-btn i {
+    font-size: 0.75rem;
   }
 
   .filter i {
@@ -857,6 +962,34 @@ h1, h2, h3, .premium-heading {
     width: 30px;
     height: 30px;
   }
+
+  .logout-link-minimal {
+    padding: 6px 10px !important;
+    font-size: 0.8rem !important;
+  }
+}
+
+/* MINIMALIST LOGOUT STYLE - AIRBNB INSPIRED */
+.logout-link-minimal {
+  color: var(--accent) !important; /* Deep Slate / Black */
+  font-weight: 600 !important;
+  transition: var(--transition-fast) !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+  text-decoration: none !important;
+}
+
+.logout-link-minimal i {
+  color: var(--accent);
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.logout-link-minimal:hover {
+  background-color: var(--bg-surface) !important;
+  color: var(--accent) !important;
 }
 
 @media (max-width: 575.98px) {

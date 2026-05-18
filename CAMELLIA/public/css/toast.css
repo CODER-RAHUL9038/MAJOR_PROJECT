@@ -6,7 +6,7 @@
 
 .toast-notification {
     pointer-events: auto;
-    width: 350px;
+    width: 380px;
     background: var(--glass-bg, rgba(255, 255, 255, 0.9));
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -19,12 +19,12 @@
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: flex;
     align-items: center;
-    padding: 12px 16px;
-    animation: toast-slide-in 0.5s ease forwards;
+    padding: 14px 20px;
+    animation: toast-slide-in 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
 }
 
 .toast-notification.hiding {
-    animation: toast-slide-out 0.5s ease forwards;
+    animation: toast-slide-out 0.4s ease-in forwards;
 }
 
 @keyframes toast-slide-in {
@@ -50,15 +50,15 @@
 }
 
 .toast-icon {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 12px;
+    margin-right: 14px;
     flex-shrink: 0;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
 }
 
 .toast-content {
@@ -66,16 +66,17 @@
 }
 
 .toast-title {
-    font-weight: 700;
-    font-size: 0.95rem;
+    font-weight: 800;
+    font-size: 1rem;
     margin-bottom: 2px;
     color: var(--accent, #0f172a);
 }
 
 .toast-message {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--text-light, #64748b);
     line-height: 1.4;
+    font-weight: 500;
 }
 
 .toast-close {
@@ -83,18 +84,20 @@
     border: none;
     color: var(--text-light, #64748b);
     cursor: pointer;
-    padding: 4px;
-    margin-left: 8px;
+    padding: 6px;
+    margin-left: 10px;
     border-radius: 8px;
-    transition: var(--transition-fast);
+    transition: all 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0.6;
 }
 
 .toast-close:hover {
     background: rgba(0,0,0,0.05);
     color: var(--accent);
+    opacity: 1;
 }
 
 /* Toast Types */
@@ -156,16 +159,69 @@
     to { transform: scaleX(0); }
 }
 
-/* Mobile Responsiveness */
+/* RESPONSIVE MOBILE TOAST - PREMIUM COMPACT */
 @media (max-width: 576px) {
     .toast-container {
-        left: 50% !important;
-        transform: translateX(-50%);
-        width: 90%;
-        bottom: 1rem !important;
+        left: auto !important;
+        right: 1rem !important;
+        transform: none !important;
+        width: calc(100% - 32px);
+        bottom: 1.5rem !important;
     }
+
     .toast-notification {
         width: 100%;
+        max-width: 320px; /* Slightly more compact for right-alignment */
+        margin-left: auto; /* Push to right if container is wider */
+        margin-right: 0;
+        margin-bottom: 0.75rem;
+        padding: 10px 14px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    .toast-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        margin-right: 10px;
+        font-size: 1rem;
+    }
+
+    .toast-title {
+        font-size: 0.85rem;
+        font-weight: 700;
+    }
+
+    .toast-message {
+        font-size: 0.78rem;
+    }
+
+    .toast-close {
+        padding: 4px;
+        margin-left: 6px;
+    }
+
+    @keyframes toast-slide-in {
+        from {
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes toast-slide-out {
+        from {
+            transform: scale(1);
+            opacity: 1;
+        }
+        to {
+            transform: scale(0.95);
+            opacity: 0;
+        }
     }
 }
 
@@ -194,4 +250,3 @@
 .premium-inline-alert strong {
     color: var(--accent);
 }
-

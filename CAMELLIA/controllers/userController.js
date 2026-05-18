@@ -12,8 +12,8 @@ module.exports.signup = async (req, res) => {
       username,
     });
     let registeredUser = await User.register(newUser, password);
-    req.login(registeredUser, (error) => {
-      if (error) {
+    req.login(registeredUser, (err) => {
+      if (err) {
         return next(err);
       }
       req.flash("success", `Welcome to Camellia, ${username}!`);
@@ -42,10 +42,10 @@ module.exports.login = (req, res) => {
   res.redirect(redirectUrl);
 };
 
-module.exports.logout = (req, res) => {
+module.exports.logout = (req, res, next) => {
   req.logout((err) => {
     if (err) {
-      next(err);
+      return next(err);
     }
     req.flash("success", "You've been successfully logged out. See you next time!");
     res.redirect("/listings");

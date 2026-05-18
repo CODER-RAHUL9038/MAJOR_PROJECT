@@ -18,10 +18,29 @@
         <div class="col-12 col-md-8">
           <div class="d-flex justify-content-between align-items-center border-bottom pb-4 mb-4">
             <div>
-              <h4 class="fw-bold mb-1">Hosted by <%= listing.owner.username %></h4>
+              <h4 class="fw-bold mb-1">Hosted by <%= listing.owner ? listing.owner.username : "Unknown Host" %></h4>
               <p class="text-secondary mb-0">Member since 2025</p>
             </div>
-            <i class="fa-solid fa-circle-user fs-1 text-secondary"></i>
+            <div class="user-avatar-container">
+                <% 
+                  // CLEAN AVATAR RESOLUTION
+                  let currentAvatar = "https://lh3.googleusercontent.com/a/default-user=s100-c";
+                  
+                  if (currUser && currUser.avatar) {
+                    if (currUser.avatar.url) {
+                      currentAvatar = currUser.avatar.url;
+                    } else if (typeof currUser.avatar === 'string' && currUser.avatar.length > 5) {
+                      currentAvatar = currUser.avatar;
+                    }
+                  }
+                %>
+                <img src="<%= currentAvatar %>" 
+                     alt="Profile" 
+                     class="user-nav-avatar" 
+                     referrerpolicy="no-referrer"
+                     crossorigin="anonymous"
+                     onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/a/default-user=s100-c';">
+              </div>
           </div>
 
           <div class="listing-detail-container">
@@ -50,8 +69,8 @@
             </div>
           </div>
 
-          <% if (currUser && currUser._id.equals(listing.owner._id)) { %>
-          <div class="show-btns d-flex gap-3 mt-4 pt-4 border-top">
+          <% if (listing.owner && currUser && currUser._id.equals(listing.owner._id)) { %>
+          <div class="show-btns d-flex gap-3 mt-2 pt-2 ">
             <a href="/listings/<%= listing._id %>/edit" class="btn btn-danger px-4 rounded-pill">Edit</a>
             <form
               data-btn-text="Deleting..."
@@ -65,23 +84,7 @@
           <% } %>
         </div>
 
-        <!-- BOOKING CARD RIGHT SIDE (STATIC UI FOR NOW) -->
-        <div class="col-12 col-md-4">
-          <div class="card shadow-lg border-0 p-4 rounded-4 sticky-top" style="top: 7rem; z-index: 10;">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <h3 class="fw-bold mb-0">&#8377;<%= listing.price.toLocaleString("en-IN") %> <span class="fs-6 fw-normal text-secondary">night</span></h3>
-            </div>
-            <div class="border rounded-3 mb-3 overflow-hidden">
-                <div class="row g-0 border-bottom">
-                    <div class="col-6 border-end p-2 text-center" style="font-size: 0.7rem; font-weight: 700;">CHECK-IN</div>
-                    <div class="col-6 p-2 text-center" style="font-size: 0.7rem; font-weight: 700;">CHECKOUT</div>
-                </div>
-                <div class="p-2 text-center fw-bold" style="font-size: 0.8rem;">GUESTS: 1 guest</div>
-            </div>
-            <button class="btn btn-danger w-100 py-2 fw-bold rounded-3 mb-3" style="background: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);">Reserve</button>
-            <p class="text-center text-secondary small">You won't be charged yet</p>
-          </div>
-        </div>
+        
       </div>
 
       <!-- Review Section -->

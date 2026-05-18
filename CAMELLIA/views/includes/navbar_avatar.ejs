@@ -1,23 +1,23 @@
           <div class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <div class="user-avatar-container">
                 <% 
-                  // HIGH-RESOLUTION ROBUST AVATAR RESOLUTION
-                  const fallbackAvatar = "https://lh3.googleusercontent.com/a/default-user=s100-c";
-                  let resolvedSrc = fallbackAvatar;
+                  // CLEAN AVATAR RESOLUTION
+                  let currentAvatar = "https://lh3.googleusercontent.com/a/default-user=s100-c";
                   
                   if (currUser && currUser.avatar) {
-                    if (typeof currUser.avatar === 'string' && currUser.avatar.length > 5) {
-                      resolvedSrc = currUser.avatar;
-                    } else if (currUser.avatar.url && typeof currUser.avatar.url === 'string' && currUser.avatar.url.length > 5) {
-                      resolvedSrc = currUser.avatar.url;
+                    if (currUser.avatar.url) {
+                      currentAvatar = currUser.avatar.url;
+                    } else if (typeof currUser.avatar === 'string' && currUser.avatar.length > 5) {
+                      currentAvatar = currUser.avatar;
                     }
                   }
                 %>
-                <img src="<%= resolvedSrc %>" 
+                <img src="<%= currentAvatar %>" 
                      alt="Profile" 
                      class="user-nav-avatar" 
                      referrerpolicy="no-referrer"
+                     crossorigin="anonymous"
                      onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/a/default-user=s100-c';">
               </div>
             </a>
@@ -26,6 +26,6 @@
                 <span class="d-block fw-bold small text-truncate" style="max-width: 150px;"><%= currUser.username %></span>
                 <span class="d-block text-secondary smaller text-truncate" style="max-width: 150px; font-size: 0.75rem;"><%= currUser.email %></span>
               </li>
-              <li><a class="dropdown-item rounded-3" href="/logout">Logout</a></li>
+              <li><a class="dropdown-item rounded-3 logout-link-minimal" href="/logout"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Logout</a></li>
             </ul>
           </div>

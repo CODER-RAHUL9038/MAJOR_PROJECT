@@ -11,46 +11,54 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
-        console.log("--- GOOGLE PROFILE DEBUG ---");
-        console.log("Profile ID:", profile.id);
-        console.log("Photos:", JSON.stringify(profile.photos));
-        
+        const userEmail = profile.emails[0].value;
+
+        // 1. Try to find user by Google ID
         let user = await User.findOne({ googleId: profile.id });
 
-        // Extract profile image URL
-        let profilePic = profile.photos && profile.photos.length > 0 
-          ? profile.photos[0].value.replace("s96-c", "s400-c") // Get higher res image
-          : "https://lh3.googleusercontent.com/a/default-user=s100-c";
-          
+        // 2. If not found by Google ID, try to find by Email (Account Linking)
         if (!user) {
+          user = await User.findOne({ email: userEmail });
+
+          if (user) {
+            user.googleId = profile.id; // Link the Google ID
+          }
+        }
+
+        // Extract high-res profile image URL
+        let profilePic =
+          profile.photos && profile.photos.length > 0
+            ? profile.photos[0].value.split("=")[0] + "=s300-p"
+            : "https://lh3.googleusercontent.com/a/default-user=s100-c";
+
+        if (!user) {
+          // 3. Create new user if neither Google ID nor Email found
           user = new User({
             googleId: profile.id,
-            email: profile.emails[0].value,
+            email: userEmail,
             username: profile.displayName,
             authProvider: "google",
             avatar: {
               url: profilePic,
-              filename: "google_avatar"
-            }
+              filename: "google_avatar",
+            },
           });
           await user.save();
-          console.log("SUCCESS: New User created with avatar:", profilePic);
         } else {
-          // Force update the avatar object structure
+          // 4. Update existing user (Linked or Recurring Google User)
           user.avatar = {
             url: profilePic,
-            filename: "google_avatar"
+            filename: "google_avatar",
           };
           user.authProvider = "google";
           await user.save();
-          console.log("SUCCESS: Existing User updated with avatar:", profilePic);
         }
 
         return done(null, user);
       } catch (err) {
-        console.error("Google Auth Error:", err);
+        console.error("CRITICAL: Google Auth Error:", err);
         return done(err, null);
       }
-    }
-  )
+    },
+  ),
 );

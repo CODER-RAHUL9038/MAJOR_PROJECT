@@ -1,95 +1,90 @@
-You are a senior frontend UI engineer.
-
-Fix the MOBILE "Clear Filters" button/icon layout issue in my Camellia Airbnb-style app.
+You are fixing a MOBILE avatar dropdown layering issue in my Camellia Airbnb-style app.
 
 CURRENT ISSUE:
-On smaller devices:
-- the Clear Filters icon is breaking/wrapping
-- the icon and text alignment is broken
-- the button looks cramped
-- spacing inside the filter bar is inconsistent
-- the filter section feels visually unbalanced
+On phone/mobile view:
+- clicking the avatar opens the dropdown
+- username/email are visible
+- BUT the logout button gets hidden behind the filters section
 
-From the screenshot:
-- the rotate icon is partially cut/misaligned
-- "Filters" text wraps awkwardly
-- button height/padding is inconsistent
-- filter row feels overcrowded
+Result:
+- dropdown is clipped by filters
+- logout becomes partially hidden
+- bad mobile UX
 
-GOAL:
-Create a PREMIUM compact mobile filter action button similar to Airbnb mobile UI.
+IMPORTANT:
+This is ONLY a MOBILE issue.
+
+Desktop is already working properly.
+
+DO NOT modify:
+- desktop navbar
+- desktop dropdown
+- desktop filters
+- dropdown design
+- logout styling
+
+ONLY fix mobile layering/positioning.
 
 REQUIREMENTS:
 
-1. FIX ICON ALIGNMENT
+1. MOBILE DROPDOWN MUST FULLY OVERLAY FILTERS
+When avatar dropdown opens on mobile:
+- username
+- email
+- logout button
+
+must ALL be fully visible above the filters section.
+
+2. FIX MOBILE Z-INDEX
+Current issue is caused by:
+- filters having higher stacking context
+- sticky/mobile containers overlapping dropdown
+
 Ensure:
-- icon is fully visible
-- vertically centered
-- no clipping
-- no wrapping
-- proper spacing between icon and text
+.dropdown-menu
+has higher z-index than:
+- mobile filters
+- sticky filter bar
+- search container
 
-2. FIX BUTTON LAYOUT
-Button should:
-- stay in one line
-- use flex alignment
-- have balanced padding
-- compact responsive sizing
-- proper border radius
+3. FIX MOBILE STACKING CONTEXT
+Check for:
+- overflow: hidden
+- transform
+- sticky parents
+- position relative conflicts
 
-3. MOBILE RESPONSIVENESS
-On smaller devices:
-- reduce font size slightly
-- reduce icon size slightly
-- prevent overflow
-- maintain touch-friendly spacing
+Remove clipping behavior.
 
-4. USE FLEXBOX
-Implement:
-- display: flex
-- align-items: center
-- justify-content: center
-- gap spacing
+4. MOBILE ONLY FIX
+Apply changes ONLY inside:
+@media (max-width: 991px)
 
-5. PREVENT TEXT BREAKING
-Ensure:
-- white-space: nowrap
-- proper min-width
-- no multi-line wrapping
+5. FIX MOBILE DROPDOWN POSITION
+Dropdown should:
+- appear below avatar
+- stay fully visible
+- not get cut off
+- not overlap awkwardly
 
-6. PREMIUM UI
-Style should feel:
-- clean
-- modern
-- compact
-- production-grade
-- Airbnb-inspired
+6. KEEP EXISTING UI
+Do NOT redesign:
+- logout button
+- dropdown style
+- avatar
+- navbar structure
 
-7. FILTER BAR BALANCE
-Ensure:
-- button integrates smoothly with horizontal filters
-- proper spacing from category icons
-- no visual crowding
+ONLY fix:
+- visibility
+- layering
+- clipping
+- z-index
 
-8. KEEP DESKTOP UNCHANGED
-IMPORTANT:
-Desktop layout is already fine.
+7. FINAL RESULT
+On mobile:
+Clicking avatar should cleanly show:
+- username
+- email
+- logout button
 
-ONLY optimize:
-- mobile/tablet layout
-
-9. OUTPUT
-Provide:
-- exact CSS fixes
-- exact responsive media queries
-- exact button HTML improvements if needed
-- production-ready code
-
-10. MOST IMPORTANT
-The Clear Filters button should look:
-- polished
-- compact
-- centered
-- responsive
-- visually balanced
-- premium on mobile devices
+ALL fully visible ABOVE the filters section.
