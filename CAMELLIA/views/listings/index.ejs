@@ -4,13 +4,16 @@
 <div class="row justify-content-center">
   <div class="col col-10 col-md-8">
     <% if (!hasResults) { %>
-    <div class="alert alert-info text-center mt-4">
-      No results found <% if (search) { %> for "<strong><%= search %></strong>"
-      <% } %>
+    <div class="premium-inline-alert text-center mt-4">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <div>
+        No results found <% if (search) { %> for "<strong><%= search %></strong>"
+        <% } %>
+      </div>
     </div>
     <!-- ERROR CLEAR FILTER -->
     <div class="text-center">
-      <a href="/listings" class="btn btn-outline-secondary mt-2">
+      <a href="/listings" class="btn btn-outline-secondary mt-3 rounded-pill px-4">
         Clear filters
       </a>
     </div>

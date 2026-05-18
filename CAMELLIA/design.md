@@ -1,98 +1,138 @@
-You are a senior EJS + Express frontend debugging engineer.
+You are a senior frontend/full-stack engineer.
 
-My Google OAuth avatar system is now saving correctly in MongoDB.
+I want to completely replace my existing EJS flash message system with a modern PRODUCTION-GRADE toast notification system similar to the one used in my DriverVault project.
 
-Confirmed working:
-- Google OAuth login works
-- Avatar URL is stored correctly
-- MongoDB save succeeds
-- Session auth works
+CURRENT STACK:
+- Node.js
+- Express
+- EJS
+- connect-flash
+- express-session
+- Bootstrap
+- Vanilla JS
 
-BUT the avatar image is still broken in the navbar.
+CURRENT ISSUE:
+I am currently using traditional EJS flash alerts like:
+- success alerts
+- error alerts
+- Bootstrap alert boxes
 
-CURRENT SYMPTOM:
-The avatar circle shows broken image text like:
-"Pr..."
+They look outdated and are not production quality.
 
-This means the browser is likely receiving:
-src="[object Object]"
-
-instead of the actual image URL.
+GOAL:
+Replace ALL flash alerts with modern animated toast notifications.
 
 IMPORTANT:
-DO NOT redesign the auth system.
-DO NOT rewrite Passport.js.
-DO NOT change backend auth logic unnecessarily.
+DO NOT break:
+- existing flash logic
+- connect-flash
+- backend routes
+- validation flow
+- redirects
+- authentication
+- CRUD operations
 
-ONLY fix the frontend avatar rendering professionally.
+ONLY modernize the UI/UX presentation layer.
 
-LIKELY ROOT CAUSE:
-The EJS template is rendering:
-currUser.avatar
+REQUIRED FEATURES:
 
-instead of:
-currUser.avatar.url
+1. MODERN TOAST SYSTEM
+Create premium production-grade toast notifications:
+- floating notifications
+- smooth animations
+- glassmorphism feel
+- modern shadows
+- premium styling
+- clean typography
 
-because avatar is now an OBJECT.
+2. AUTO DISAPPEAR
+Toast should:
+- automatically disappear after 4 seconds
+- smoothly fade out
+- animate properly
 
-TASKS:
-
-1. DEBUG EJS NAVBAR
-Inspect:
-views/includes/navbar.ejs
-
-Find all avatar rendering code.
-
-2. FIX IMAGE SRC
-Ensure image uses:
-currUser.avatar.url
-
-NOT:
-currUser.avatar
-
-3. HANDLE BOTH OLD + NEW FORMATS
+3. TOAST TYPES
 Support:
-- old string avatar
-- new avatar object
-- missing avatar
+- success
+- error
+- warning
+- info
 
-4. CREATE SAFE AVATAR VARIABLE
-Create robust EJS logic like:
+Each with:
+- proper icon
+- color accent
+- modern UI
 
-- if avatar is object → use avatar.url
-- if avatar is string → use avatar
-- else use fallback placeholder
+4. KEEP CONNECT-FLASH
+Continue using:
+req.flash()
 
-5. VERIFY FINAL IMG TAG
-Ensure final HTML becomes:
+Backend logic should remain unchanged.
 
-<img src="ACTUAL_IMAGE_URL">
+Example:
+req.flash("success", "Listing created successfully!");
 
-and NEVER:
-- undefined
-- [object Object]
-- empty string
+should automatically show toast.
 
-6. ADD FALLBACK IMAGE
-If avatar missing:
-use professional placeholder avatar.
+5. GLOBAL TOAST SYSTEM
+Implement:
+- reusable toast container
+- centralized notification rendering
+- globally available layout integration
 
-7. PREVENT IMAGE ERROR LOOP
-If using onerror fallback:
-prevent infinite recursion.
+6. RESPONSIVENESS
+Ensure:
+- mobile friendly
+- stacked properly
+- no overflow
+- proper spacing on smaller devices
 
-8. OUTPUT FORMAT
+7. UX IMPROVEMENTS
+Add:
+- entrance animation
+- exit animation
+- close button
+- hover pause optional
+- subtle blur effects
+
+8. PRODUCTION-GRADE FEEL
+Design inspiration:
+- modern SaaS apps
+- Airbnb
+- Linear
+- Notion
+- DriverVault toast system
+
+9. REMOVE OLD ALERTS
+Completely remove:
+- Bootstrap alert boxes
+- inline flash UI
+- old EJS alert containers
+
+10. IMPLEMENTATION REQUIREMENTS
+Use:
+- clean EJS partial/component
+- reusable JS
+- maintainable CSS
+- no messy inline scripts
+
+11. OUTPUT FORMAT
 Provide:
-- exact EJS fix
-- exact avatar variable logic
-- corrected img tag
-- production-safe implementation
+- exact EJS partial/component
+- exact CSS
+- exact JavaScript
+- exact layout integration
+- exact flash integration
+- production-ready implementation
 
-9. MOST IMPORTANT
-ONLY fix avatar rendering.
+12. MOST IMPORTANT
+The final toast system should feel:
+- modern
+- premium
+- animated
+- production-ready
+- smooth
+- minimal
+- elegant
 
-Do NOT redesign:
-- auth
-- navbar
-- dropdown
-- session system
+and automatically disappear after 4 seconds.
