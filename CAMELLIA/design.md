@@ -1,138 +1,95 @@
-You are a senior frontend/full-stack engineer.
+You are a senior frontend UI engineer.
 
-I want to completely replace my existing EJS flash message system with a modern PRODUCTION-GRADE toast notification system similar to the one used in my DriverVault project.
-
-CURRENT STACK:
-- Node.js
-- Express
-- EJS
-- connect-flash
-- express-session
-- Bootstrap
-- Vanilla JS
+Fix the MOBILE "Clear Filters" button/icon layout issue in my Camellia Airbnb-style app.
 
 CURRENT ISSUE:
-I am currently using traditional EJS flash alerts like:
-- success alerts
-- error alerts
-- Bootstrap alert boxes
+On smaller devices:
+- the Clear Filters icon is breaking/wrapping
+- the icon and text alignment is broken
+- the button looks cramped
+- spacing inside the filter bar is inconsistent
+- the filter section feels visually unbalanced
 
-They look outdated and are not production quality.
+From the screenshot:
+- the rotate icon is partially cut/misaligned
+- "Filters" text wraps awkwardly
+- button height/padding is inconsistent
+- filter row feels overcrowded
 
 GOAL:
-Replace ALL flash alerts with modern animated toast notifications.
+Create a PREMIUM compact mobile filter action button similar to Airbnb mobile UI.
 
-IMPORTANT:
-DO NOT break:
-- existing flash logic
-- connect-flash
-- backend routes
-- validation flow
-- redirects
-- authentication
-- CRUD operations
+REQUIREMENTS:
 
-ONLY modernize the UI/UX presentation layer.
-
-REQUIRED FEATURES:
-
-1. MODERN TOAST SYSTEM
-Create premium production-grade toast notifications:
-- floating notifications
-- smooth animations
-- glassmorphism feel
-- modern shadows
-- premium styling
-- clean typography
-
-2. AUTO DISAPPEAR
-Toast should:
-- automatically disappear after 4 seconds
-- smoothly fade out
-- animate properly
-
-3. TOAST TYPES
-Support:
-- success
-- error
-- warning
-- info
-
-Each with:
-- proper icon
-- color accent
-- modern UI
-
-4. KEEP CONNECT-FLASH
-Continue using:
-req.flash()
-
-Backend logic should remain unchanged.
-
-Example:
-req.flash("success", "Listing created successfully!");
-
-should automatically show toast.
-
-5. GLOBAL TOAST SYSTEM
-Implement:
-- reusable toast container
-- centralized notification rendering
-- globally available layout integration
-
-6. RESPONSIVENESS
+1. FIX ICON ALIGNMENT
 Ensure:
-- mobile friendly
-- stacked properly
-- no overflow
-- proper spacing on smaller devices
+- icon is fully visible
+- vertically centered
+- no clipping
+- no wrapping
+- proper spacing between icon and text
 
-7. UX IMPROVEMENTS
-Add:
-- entrance animation
-- exit animation
-- close button
-- hover pause optional
-- subtle blur effects
+2. FIX BUTTON LAYOUT
+Button should:
+- stay in one line
+- use flex alignment
+- have balanced padding
+- compact responsive sizing
+- proper border radius
 
-8. PRODUCTION-GRADE FEEL
-Design inspiration:
-- modern SaaS apps
-- Airbnb
-- Linear
-- Notion
-- DriverVault toast system
+3. MOBILE RESPONSIVENESS
+On smaller devices:
+- reduce font size slightly
+- reduce icon size slightly
+- prevent overflow
+- maintain touch-friendly spacing
 
-9. REMOVE OLD ALERTS
-Completely remove:
-- Bootstrap alert boxes
-- inline flash UI
-- old EJS alert containers
+4. USE FLEXBOX
+Implement:
+- display: flex
+- align-items: center
+- justify-content: center
+- gap spacing
 
-10. IMPLEMENTATION REQUIREMENTS
-Use:
-- clean EJS partial/component
-- reusable JS
-- maintainable CSS
-- no messy inline scripts
+5. PREVENT TEXT BREAKING
+Ensure:
+- white-space: nowrap
+- proper min-width
+- no multi-line wrapping
 
-11. OUTPUT FORMAT
-Provide:
-- exact EJS partial/component
-- exact CSS
-- exact JavaScript
-- exact layout integration
-- exact flash integration
-- production-ready implementation
-
-12. MOST IMPORTANT
-The final toast system should feel:
+6. PREMIUM UI
+Style should feel:
+- clean
 - modern
-- premium
-- animated
-- production-ready
-- smooth
-- minimal
-- elegant
+- compact
+- production-grade
+- Airbnb-inspired
 
-and automatically disappear after 4 seconds.
+7. FILTER BAR BALANCE
+Ensure:
+- button integrates smoothly with horizontal filters
+- proper spacing from category icons
+- no visual crowding
+
+8. KEEP DESKTOP UNCHANGED
+IMPORTANT:
+Desktop layout is already fine.
+
+ONLY optimize:
+- mobile/tablet layout
+
+9. OUTPUT
+Provide:
+- exact CSS fixes
+- exact responsive media queries
+- exact button HTML improvements if needed
+- production-ready code
+
+10. MOST IMPORTANT
+The Clear Filters button should look:
+- polished
+- compact
+- centered
+- responsive
+- visually balanced
+- premium on mobile devices

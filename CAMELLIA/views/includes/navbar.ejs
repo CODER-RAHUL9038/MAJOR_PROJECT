@@ -4,6 +4,25 @@
       <img class="nav-logo" src="/images/shortlogo.png" alt="Camellia Logo" />
     </a>
 
+    <!-- MOBILE ACTIONS (AVATAR + TOGGLER) -->
+    <div class="d-flex d-md-none align-items-center gap-3">
+      <% if (currUser) { %>
+        <%- include("./navbar_avatar.ejs") %>
+      <% } %>
+      <button
+        class="navbar-toggler border-0 shadow-none p-0"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fa-solid fa-bars fs-4"></i>
+      </button>
+    </div>
+
+    
     <!-- PREMIUM SEARCH BAR (CENTERED ON DESKTOP) -->
     <div class="search-container d-none d-md-block">
       <form class="search-form" role="search" method="get" action="/listings">
@@ -14,47 +33,46 @@
           placeholder="Start your search"
           aria-label="Search"
         />
+        
         <button class="search-btn-premium" type="submit">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
       </form>
     </div>
 
-    <button
-      class="navbar-toggler border-0 shadow-none"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <i class="fa-solid fa-bars fs-4"></i>
-    </button>
-
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ms-auto align-items-md-center gap-2">
         <a class="nav-link premium-nav-link" href="/listings/new">Airbnb your home</a>
         
-        <div class="d-md-none mt-2 mb-3">
-          <form class="search-form-mobile" role="search" method="get" action="/listings">
-            <input
-              name="search"
-              class="form-control rounded-pill border-secondary-subtle"
-              type="search"
-              placeholder="Search destination"
-              aria-label="Search"
-            />
-          </form>
-        </div>
-
         <% if (!currUser) { %>
           <a class="nav-link premium-nav-link" href="/SignUp"><b>Sign up</b></a>
           <a class="nav-link premium-nav-link" href="/login"><b>Login</b></a>
         <% } else { %>
-          <%- include("./navbar_avatar.ejs") %>
+          <div class="d-none d-md-block">
+            <%- include("./navbar_avatar.ejs") %>
+          </div>
+          <!-- Mobile Menu Links -->
+          <div class="d-md-none border-top mt-2 pt-2">
+            <a class="nav-link text-danger fw-bold" href="/logout">Logout</a>
+          </div>
         <% } %>
       </div>
     </div>
+  </div>
+
+  <!-- MOBILE SEARCH BAR - BELOW TOP NAV -->
+  <div class="d-md-none px-3 pb-2 w-100 mt-2">
+    <form class="search-form-mobile" role="search" method="get" action="/listings">
+      <div class="search-input-wrapper-mobile">
+        <i class="fa-solid fa-magnifying-glass search-icon-mobile"></i>
+        <input
+          name="search"
+          class="form-control rounded-pill search-input-mobile"
+          type="search"
+          placeholder="Where to?"
+          aria-label="Search"
+        />
+      </div>
+    </form>
   </div>
 </nav>

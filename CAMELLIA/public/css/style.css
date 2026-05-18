@@ -50,13 +50,49 @@ h1, h2, h3, .premium-heading {
 }
 
 .navbar {
-  height: 5rem; /* Increased for better proportion with larger logo */
+  min-height: 5rem;
   width: 100%;
   background: #ffffff;
   border-bottom: 1px solid var(--border-soft);
   display: flex;
   align-items: center;
   transition: var(--transition-smooth);
+  padding: 0.5rem 0;
+}
+
+@media (max-width: 767.98px) {
+  .navbar {
+    flex-direction: column;
+    min-height: auto;
+    padding: 0.75rem 0;
+  }
+}
+
+.search-input-wrapper-mobile {
+  position: relative;
+  width: 100%;
+}
+
+.search-icon-mobile {
+  position: absolute;
+  left: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--primary);
+  font-size: 0.9rem;
+}
+
+.search-input-mobile {
+  padding-left: 2.8rem !important;
+  height: 48px;
+  border: 1px solid var(--border-soft) !important;
+  box-shadow: var(--shadow-sm) !important;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.search-input-mobile:focus {
+  border-color: var(--primary) !important;
 }
 
 .nav-logo {
@@ -152,6 +188,8 @@ h1, h2, h3, .premium-heading {
   align-items: center;
   padding-top: 0.5rem;
   transition: var(--transition-smooth);
+  position: relative;
+  z-index: 1100; /* Just below main navbar if needed, but above content */
 }
 
 .filters-container {
@@ -172,6 +210,14 @@ h1, h2, h3, .premium-heading {
   min-width: 0;
   flex: 1;
   padding: 0 0.5rem;
+  justify-content: flex-start;
+}
+
+@media (max-width: 767.98px) {
+  #filters {
+    justify-content: center; /* Center filters on mobile if they don't overflow */
+    gap: 1.5rem;
+  }
 }
 
 #filters::-webkit-scrollbar {
@@ -273,6 +319,12 @@ h1, h2, h3, .premium-heading {
   color: var(--accent);
 }
 
+.clear-filters-wrapper {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
 /* CLEAR FILTERS BUTTON */
 .clear-filters-btn {
   border: 1px solid var(--border-soft);
@@ -286,6 +338,12 @@ h1, h2, h3, .premium-heading {
   transition: var(--transition-fast);
   text-decoration: none;
   height: 42px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  gap: 8px;
+  width: max-content;
 }
 
 .clear-filters-btn:hover {
@@ -299,14 +357,28 @@ h1, h2, h3, .premium-heading {
 .clear-filters-btn i {
   font-size: 0.9rem;
   color: var(--primary);
+  flex-shrink: 0;
 }
 
 @media (max-width: 767.98px) {
   .clear-filters-btn {
-    padding: 8px 12px;
-    font-size: 0.75rem;
-    height: 38px;
-    border-radius: 10px;
+    padding: 6px 12px;
+    font-size: 0.7rem;
+    height: 34px;
+    border-radius: 8px;
+    gap: 6px;
+  }
+  
+  .clear-filters-btn i {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .clear-filters-btn {
+    padding: 4px 10px;
+    font-size: 0.65rem;
+    height: 30px;
   }
 }
 
@@ -696,7 +768,6 @@ h1, h2, h3, .premium-heading {
 
 @media (max-width: 767.98px) {
   .navbar {
-    height: 4rem; /* More compact header */
     padding: 0;
   }
   
@@ -777,6 +848,15 @@ h1, h2, h3, .premium-heading {
     height: 32px !important;
     font-size: 0.8rem;
   }
+
+  .container {
+    margin-top: 1.5rem;
+  }
+
+  .user-avatar-container {
+    width: 30px;
+    height: 30px;
+  }
 }
 
 @media (max-width: 575.98px) {
@@ -785,16 +865,8 @@ h1, h2, h3, .premium-heading {
     padding-right: 1rem !important;
   }
 
-  .navbar {
-    height: 3.5rem;
-  }
-
   .nav-logo {
     height: 28px;
-  }
-
-  .filters-wrapper {
-    height: 3.8rem;
   }
 
   .footer {
