@@ -1,227 +1,153 @@
-# CAMELLIA – Airbnb-Style Rental Platform (Major Project)
+# 🌿 CAMELLIA | Airbnb-Style Premium Rental Platform
 
-CAMELLIA is a **production-ready, full-stack rental platform** inspired by Airbnb, built from scratch with a strong focus on **backend engineering, clean architecture, and a fully responsive user interface**.
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge&logo=render)](https://major-project-zz1b.onrender.com)
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-blue?style=for-the-badge&logo=github)](https://github.com/CODER-RAHUL9038/MAJOR_PROJECT)
+[![Node.js Version](https://img.shields.io/badge/Node.js-v20.0.0+-339933?style=for-the-badge&logo=nodedotjs)](https://nodejs.org)
+[![License: ISC](https://img.shields.io/badge/License-ISC-yellow?style=for-the-badge)](https://opensource.org/licenses/ISC)
 
-The application works seamlessly across **mobile, tablet, and desktop devices**, ensuring a consistent user experience on all screen sizes.
-
-🔗 **Live Project:** https://major-project-zz1b.onrender.com  
-🔗 **GitHub Repository:** https://github.com/CODER-RAHUL9038/MAJOR_PROJECT/tree/main/CAMELLIA
+CAMELLIA is a **production-ready, full-stack rental platform** inspired by Airbnb. It's built with a focus on **clean architecture, luxury UI/UX, and robust backend engineering**, providing a seamless experience for hosts and travelers alike.
 
 ---
 
-## 🎥 Demo & Screenshots
+## 📸 Visual Showcase
 
-### Home Page
-
+### 🏠 Discover Luxury Stays
 ![Home Page](./screenshots/home.jpg)
 
-### Create Listing
-
-![Create Listing](./screenshots/create-listing.png)
-
-### Listing Details
-
-![Listing Details](./screenshots/listing-details.png)
-
-### Edit Listing
-
-![Edit Listing](./screenshots/edit.png)
-
-### Map Integration
-
-![Map Integration](./screenshots/map-view.png)
-
-### Navbar View
-
-![Navbar](./screenshots/navbar.png)
-
-### Mobile View
-
+### 📱 Premium Mobile Experience
 ![Mobile View](./screenshots/mobile-view.jpg)
 
-## 🚀 Core Features (Backend Focused)
-
-### 📱 Fully Responsive Design
-
-- Mobile-first, responsive UI
-- Optimized for **mobile, tablet, and desktop** screens
-- Seamless user experience across all devices
-- Built using Bootstrap grid system and responsive utilities
-
-### 🔐 Authentication & Authorization
-
-- Local authentication using **Passport.js**
-- Session-based login system
-- Middleware-protected routes
-- Authorization checks to ensure:
-  - Only owners can edit/delete listings
-  - Only logged-in users can create reviews
-
-### 🏠 Listings Management
-
-- Full CRUD operations for listings
-- Secure image upload using:
-  - Multer (file handling)
-  - Cloudinary (cloud storage)
-- Clean request body parsing & validation
-- Ownership checks before updates or deletion
-
-### ⭐ Reviews & Ratings
-
-- One-to-many relationship between listings and reviews
-- Average rating calculation
-- Secure deletion with ownership validation
-
-### 🗺️ Map Integration
-
-- Location-based listing mapping using **MapTiler**
-- Input sanitization and location cleanup
-- Geocoding for accurate coordinates
-
-### 🔍 Search, Filters & Pagination
-
-- Regex-based text search
-- Category-based filtering
-- Pagination using `limit` & `skip` for performance
-
-### ⚠️ Error Handling & Validation
-
-- Centralized error-handling middleware
-- Custom error class
-- Graceful handling of:
-  - Invalid Object IDs
-  - Unauthorized access
-  - Missing resources
+### 🗺️ Interactive Map Exploration
+![Map Integration](./screenshots/map-view.png)
 
 ---
 
-## 🧠 Backend Architecture
+## ✨ Key Features
 
-- **MVC Pattern**
-  - Models → Database logic
-  - Controllers → Business logic
-  - Routes → Request handling
-- **Middleware-based design**
-  - Authentication
-  - Authorization
-  - Error handling
-- **RESTful APIs**
-- Clean and scalable structure
+### 💎 Premium UI/UX (Airbnb Inspired)
+- **Luxury Aesthetic:** A sophisticated slate and charcoal palette with "Playfair Display" and "Plus Jakarta Sans" typography.
+- **Modern Toast System:** Fully custom, animated notification system replacing legacy alerts.
+- **Polished Navigation:** Intelligently responsive navbar with a professional profile dropdown and unified avatar resolution.
+- **Mobile-First Design:** Optimized specifically for high-end mobile UX, ensuring 0-gap alignment and perfect layering.
 
----
+### 🔐 Advanced Security & Auth
+- **Hybrid Authentication:** Seamlessly switch between local credentials and **Google OAuth 2.0**.
+- **Smart Account Linking:** Automatically links Google logins to existing accounts via email to prevent duplicates.
+- **Granular Authorization:** Multi-layer middleware ensuring only owners can modify their assets.
 
-### 🔐 Social Authentication (Planned)
+### 🏠 Property Management
+- **Full CRUD:** Comprehensive lifecycle management for rental listings.
+- **Cloud Storage:** Integrated with **Cloudinary** for high-performance image hosting and optimization.
+- **Robust Validation:** Client and server-side validation using **Joi** and Bootstrap.
 
-- Google OAuth 2.0 login
-- Facebook login
-- LinkedIn login
-- Secure OAuth-based authentication using Passport strategies
-- Optional account linking with existing local accounts
-
-## 📘 API Documentation
-
-### 🔐 Authentication Routes
-
-| Method | Route     | Description        |
-| ------ | --------- | ------------------ |
-| GET    | `/login`  | Render login page  |
-| POST   | `/login`  | Authenticate user  |
-| GET    | `/signup` | Render signup page |
-| POST   | `/signup` | Create new user    |
-| GET    | `/logout` | Logout user        |
-
----
-
-### 🏠 Listings Routes
-
-| Method | Route                | Description                |
-| ------ | -------------------- | -------------------------- |
-| GET    | `/listings`          | Get all listings           |
-| GET    | `/listings/new`      | Render create listing form |
-| POST   | `/listings`          | Create new listing         |
-| GET    | `/listings/:id`      | View single listing        |
-| GET    | `/listings/:id/edit` | Render edit listing form   |
-| PUT    | `/listings/:id`      | Update listing             |
-| DELETE | `/listings/:id`      | Delete listing             |
-
----
-
-### ⭐ Reviews Routes
-
-| Method | Route                             | Description     |
-| ------ | --------------------------------- | --------------- |
-| POST   | `/listings/:id/reviews`           | Add a review    |
-| DELETE | `/listings/:id/reviews/:reviewId` | Delete a review |
+### ⭐ Engagement & Search
+- **Smart Filters:** Category-based property filtering with a polished "Clear Filters" UI.
+- **Text Search:** Fast, regex-powered search bar for finding properties by location or title.
+- **Interactive Reviews:** Five-star rating system with user-specific ownership controls.
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Backend
+### Backend Engine
+![NodeJS](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white)
+![ExpressJS](https://img.shields.io/badge/Express.js-000000?style=flat-square&logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white)
+![Passport](https://img.shields.io/badge/Passport.js-34E27A?style=flat-square&logo=passport&logoColor=white)
 
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- Passport.js
-- Express-session
+### Frontend Surface
+![EJS](https://img.shields.io/badge/EJS-B4CA65?style=flat-square&logo=ejs&logoColor=black)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=flat-square&logo=bootstrap&logoColor=white)
 
-### Frontend
-
-- EJS (Server-Side Rendering)
-- HTML, CSS, JavaScript
-- Bootstrap
-
-### Tools & Services
-
-- Cloudinary (Image Storage)
-- Multer (File Uploads)
-- MapTiler (Maps)
-- Render (Deployment)
+### Services & Tools
+![Cloudinary](https://img.shields.io/badge/Cloudinary-3448C5?style=flat-square&logo=cloudinary&logoColor=white)
+![MapTiler](https://img.shields.io/badge/MapTiler-00B2EE?style=flat-square&logo=maptiler&logoColor=white)
+![Render](https://img.shields.io/badge/Render-000000?style=flat-square&logo=render&logoColor=white)
 
 ---
 
-## 📚 Key Learning Outcomes (Interview Ready)
+## 🧠 Architectural Overview
 
-- Implemented secure authentication & authorization
-- Designed RESTful APIs with proper middleware
-- Handled file uploads in production
-- Worked with real database relationships
-- Managed deployment & environment variables
-- Built scalable backend logic from scratch
+Camellia follows the **MVC (Model-View-Controller)** design pattern for maximum scalability:
 
----
-
-## 🛣️ Project Roadmap
-
-- [x] Local authentication with Passport.js
-- [x] Authorization & protected routes
-- [x] Image uploads with cloud storage
-- [x] Map integration
-- [x] Fully responsive UI across all devices
-- [ ] Google OAuth authentication
-- [ ] Facebook authentication
-- [ ] LinkedIn authentication
-- [ ] Account linking (local + social login)
-- [ ] Security hardening (rate limiting, headers)
+- **Models:** Mongoose schemas defining robust data structures for Listings, Reviews, and Users.
+- **Views:** Dynamic server-side rendering using EJS and custom partials.
+- **Controllers:** Clean separation of business logic from route definitions.
+- **Middleware:** Centralized authentication, authorization, and error-handling logic.
 
 ---
 
-## 📌 Project Management
+## 🚀 Getting Started
 
-This project uses **GitHub Issues** to track bugs, enhancements, and future features.
+### Prerequisites
+- Node.js (v20+)
+- MongoDB Atlas Account
+- Cloudinary Account
+- MapTiler API Key
 
-👉 View planned features & issues here:
-https://github.com/CODER-RAHUL9038/MAJOR_PROJECT/issues
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/CODER-RAHUL9038/MAJOR_PROJECT.git
+   cd MAJOR_PROJECT/CAMELLIA
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Configure Environment Variables:**
+   Create a `.env` file in the root directory:
+   ```env
+   CLOUD_NAME=your_cloudinary_name
+   CLOUD_API_KEY=your_cloudinary_key
+   CLOUD_API_SECRET=your_cloudinary_secret
+   ATLASDB_URL=your_mongodb_atlas_url
+   SESSION_SECRET=your_secure_secret
+   MAP_TOKEN=your_maptiler_key
+   GOOGLE_CLIENT_ID=your_google_id
+   GOOGLE_CLIENT_SECRET=your_google_secret
+   ```
+
+4. **Run the application:**
+   ```bash
+   npm start
+   ```
 
 ---
 
-## 👨‍💻 Author
+## 📁 Project Structure
+
+```
+CAMELLIA/
+├── config/             # Configuration (Passport, Cloudinary)
+├── controllers/        # Business Logic
+├── init/               # Database Seeding Tools
+├── models/             # Mongoose Schemas
+├── public/             # Static Assets (CSS, JS, Images)
+├── routes/             # RESTful Route Definitions
+├── utils/              # Helper Classes & Error Handlers
+├── views/              # EJS Templates & Layouts
+├── app.js              # Application Entry Point
+└── schema.js           # Joi Validation Schemas
+```
+
+---
+
+## 👨‍💻 Credits
 
 **Rahul Shaw**  
-Aspiring Backend / Full-Stack Developer  
-Focused on building real-world, scalable applications 🚀
+*Lead Developer & UI/UX Designer*
+
+Highly motivated full-stack developer focused on building high-performance, real-world applications with clean, maintainable code.
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/coder-rahul-shaw/)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white)](https://github.com/CODER-RAHUL9038)
 
 ---
 
-⭐ If you find this project valuable, consider giving it a **star** on GitHub!
+⭐ If you find this project valuable, please consider giving it a **star** on GitHub!
