@@ -140,14 +140,14 @@ CAMELLIA/
 
 ## 👨‍💻 Credits
 
-**Rahul Shaw**  
+**Rahul Shaw**
 *Lead Developer & UI/UX Designer*
 
 Highly motivated full-stack developer focused on building high-performance, real-world applications with clean, maintainable code.
 
+[![Portfolio](https://img.shields.io/badge/Portfolio-000000?style=flat&logo=vercel&logoColor=white)](https://rahul-shaw-ai-portfolio.vercel.app/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/coder-rahul-shaw/)
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white)](https://github.com/CODER-RAHUL9038)
-
 ---
 
 ⭐ If you find this project valuable, please consider giving it a **star** on GitHub!
