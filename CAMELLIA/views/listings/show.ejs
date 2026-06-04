@@ -3,7 +3,12 @@
 <div class="container-fluid px-md-5 mt-4">
   <div class="row justify-content-center">
     <div class="col-12 col-lg-9">
-      <h2 class="premium-heading mb-4"><%= listing.title %></h2>
+      <div class="d-flex align-items-center mb-4 gap-3">
+        <a href="/listings" class="btn btn-outline-dark btn-sm rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width: 38px; height: 38px;" title="Go Back">
+          <i class="fa-solid fa-chevron-left"></i>
+        </a>
+        <h2 class="premium-heading mb-0"><%= listing.title %></h2>
+      </div>
       
       <div class="show-img-container">
         <img
