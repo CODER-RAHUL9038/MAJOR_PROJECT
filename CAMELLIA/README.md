@@ -47,6 +47,13 @@ CAMELLIA is a **production-ready, full-stack rental platform** inspired by Airbn
 
 ---
 
+## 🚀 Latest Enhancements (June 2026)
+- **Improved Navigation:** Added a "Back to Listings" button on property detail pages for a smoother browsing flow.
+- **Functional Footer:** Re-engineered the footer with dynamic links, including Privacy, Terms, and social connectivity.
+- **Social Integration:** Added professional portfolio icons to social links for better developer visibility.
+
+---
+
 ## 🛠️ Tech Stack
 
 ### Backend Engine
